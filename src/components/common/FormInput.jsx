@@ -1,12 +1,33 @@
-const FormInput = ({ label, name, type = 'text', placeholder, icon }) => {
+const FormInput = ({
+  label,
+  name,
+  type = 'text',
+  placeholder,
+  icon,
+  onChange,
+  onBlur,
+}) => {
   return (
-    <div className="m-5 flex relative border-b-4 border-primary rounded p-2 shadow-md shadow-shadow">
-      <label htmlFor={name} className="absolute top-[-1.5rem] font-bold text-primary" >
-        {label}
-      </label>
-      {icon &&<i className={icon + ' text-primary flex items-center'}></i>}
-      <input name={name} type={type} className="outline-none ps-3 w-full" placeholder={placeholder} />
-    </div>
+    <>
+    
+      <div className="mt-3 flex relative border-b-4 border-primary rounded p-2 shadow transition">
+        <label  htmlFor={name} className="absolute left-0 capitalize top-[-1rem] font-bold text-primary text-xs invisible" >
+          {label}
+        </label>
+        <span className="text-primary">{icon}</span>
+        <input
+          id={name}
+          name={name}
+          type={type}
+          className="outline-none ps-3 w-full"
+          placeholder={placeholder}
+          onChange={onChange}
+          onBlur={onBlur}
+          autoComplete="false"
+        />
+      </div>
+    
+    </>
   );
 };
 

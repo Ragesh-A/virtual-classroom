@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  padding: 0.75rem 2rem;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid white;
+  transition: 1s ease;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 70px;
+  height: 100px;
+  background: linear-gradient(
+      70deg,
+      transparent,
+      transparent,
+      white,
+      transparent,
+      transparent
+  );
+  left: -70px;
+  top: -0.4rem;
+  transition: 0.5s ease-in-out;
+}
+.btn:hover::after {
+  left: 100%;
+}
+.shadow{
+  box-shadow: 0 0 8px 0 #BCCBFF;
+}
