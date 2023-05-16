@@ -62,7 +62,7 @@ const Login =()=>{
             icon={<KeyIcon />} 
             />
             {console.log()}
-            <ErrorMessage message={touched.emailOrPhone && errors.emailOrPhone || touched.password && errors.password}/>
+            <ErrorMessage message={(touched.emailOrPhone && errors.emailOrPhone) || (touched.password && errors.password)}/>
            <button type="submit" className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase" > {login} </button>
           </form>
         

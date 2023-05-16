@@ -14,8 +14,16 @@ const emailOrPhoneSchema = Yup.string().test('emailOrPhone', 'Invalid email or p
 });
 
 
-
+// login schema
 export const loginSchema = Yup.object({
   emailOrPhone: emailOrPhoneSchema.required('Email or phone number is required'),
   password : Yup.string().min(5, 'password should at least 5 character').required('please enter the password'),
+})
+
+// sign up schema
+export const signUpSchema = Yup.object({
+  name : Yup.string().min(2).required('Enter your name'),
+  emailOrPhone : emailOrPhoneSchema.required('Email or phone number is required'),
+  password : Yup.string().min(5, 'Please make the password more strong').required('Password is required'),
+  confirmPassword : Yup.string().required().oneOf([Yup.ref('password')],'Password should be match')
 })
