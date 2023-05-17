@@ -27,3 +27,8 @@ export const signUpSchema = Yup.object({
   password : Yup.string().min(5, 'Please make the password more strong').required('Password is required'),
   confirmPassword : Yup.string().required().oneOf([Yup.ref('password')],'Password should be match')
 })
+
+// OTP schema
+export const otpSchema = Yup.object({
+  otp : Yup.number().min(2).required("Enter the valid otp")
+})
