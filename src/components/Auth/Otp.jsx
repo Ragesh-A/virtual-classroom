@@ -27,7 +27,6 @@ const Otp = ({setOtpRequested}) => {
       setCount(0)
       clearInterval(timer)}, 30000)
   }
-  // counter()
 
   useEffect(()=>{
     counter()
