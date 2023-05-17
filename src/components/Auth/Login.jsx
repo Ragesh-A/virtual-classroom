@@ -68,7 +68,7 @@ const Login =()=>{
         
         <div className=" flex justify-between mt-3 w-full max-w-md flex-col sm:flex-row">
           <Link to="/auth/signup">I don't have an account</Link>
-          <Link to="/auth/reset">forgot password</Link>
+          <Link to="/auth/forgot-password">forgot password</Link>
         </div>
       </div>
 

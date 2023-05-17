@@ -5,19 +5,11 @@ import KeyIcon from '@mui/icons-material/Key';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { useLayoutEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { signUpSchema } from '../../schema/schema';
+import { SignUpInitialValues, isPhoneNumber, signUpSchema } from '../../schema/schema';
 import PersonIcon from '@mui/icons-material/Person';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 import Otp from './Otp';
 import { getLocalStorage, setLocalStorage } from '../../utils/storageHelper';
-
-const initialValues = {
-  name: '',
-  emailOrPhone: '',
-  password: '',
-  confirmPassword: '',
-};
-const phoneRegex = /^\d{3}\d{3}\d{4}$/;
 
 const SignUp = () => {
   const [send, setSend] = useState(false);
@@ -25,15 +17,14 @@ const SignUp = () => {
   const [otpRequested, setOtpRequested] = useState(false);
 
   useLayoutEffect(()=>{
-    const otp = getLocalStorage('otp');
-    otp.then((value)=>{
+    getLocalStorage('otp').then((value)=>{
       value && setOtpRequested(true)
     })
   })
 
   const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
     useFormik({
-      initialValues: initialValues,
+      initialValues: SignUpInitialValues,
       validationSchema: signUpSchema,
       onSubmit: (values) => {
         if (!send) {
@@ -55,7 +46,7 @@ const SignUp = () => {
     (touched.confirmPassword && errors.confirmPassword);
 
   function isOtpRequested (value){
-    if(phoneRegex.test(value)){
+    if(isPhoneNumber(value)){
       setOtpRequested(true);
       setLocalStorage('otp', true)
     }
