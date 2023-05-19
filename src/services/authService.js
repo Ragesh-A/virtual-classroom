@@ -14,22 +14,40 @@ const authServices = {
       });
   },
   login: async (userData) => {
-    return axios.post(BASE_URL + '/auth/login', userData).then((res)=>{
-      return res.data
-    }).catch(err=>{
-      return err;
-    });
+    return axios
+      .post(BASE_URL + '/auth/login', userData)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return err;
+      });
   },
   verifyEmail: async (userId, uuid) => {
-    return axios.post(BASE_URL+ `/auth/verify-email`, {userId, uuid}).then(res=>{
-      return res.data;
-    }).catch(err=>{
-      return err;
-    })
+    return axios
+      .post(BASE_URL + `/auth/verify-email`, { userId, uuid })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return err;
+      });
   },
   checkToken: () => {
-    return getLocalStorage('authentication')
-
+    return getLocalStorage('authentication');
+  },
+  requestResetOtp: async (emailOrPhone) => {
+    return axios
+      .post(BASE_URL + '/auth/password-reset-request', { emailOrPhone })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        return err;
+      });
+  },
+  resetPassword: async (payload) =>{
+    return axios.patch(BASE_URL + '/auth/password', payload).then(res=>{return res.data}).catch(err=>{return err})
   }
 };
 
