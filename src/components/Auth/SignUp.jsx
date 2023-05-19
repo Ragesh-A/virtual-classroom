@@ -1,20 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from '../common/ErrorMessage';
 import FormInput from '../common/FormInput';
 import KeyIcon from '@mui/icons-material/Key';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { SignUpInitialValues, isPhoneNumber, signUpSchema } from '../../schema/schema';
 import PersonIcon from '@mui/icons-material/Person';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 import Otp from './Otp';
 import { getLocalStorage, setLocalStorage } from '../../utils/storageHelper';
+import authServices from '../../services/authService';
+import { ToastContainer } from 'react-toastify';
 
 const SignUp = () => {
   const [send, setSend] = useState(false);
   const [sign, setSign] = useState('Sign up');
   const [otpRequested, setOtpRequested] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate()
+  
 
   useLayoutEffect(()=>{
     getLocalStorage('otp').then((value)=>{
@@ -26,19 +33,37 @@ const SignUp = () => {
     useFormik({
       initialValues: SignUpInitialValues,
       validationSchema: signUpSchema,
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
         if (!send) {
-          isOtpRequested(values.emailOrPhone);
           setSend(true);
           setSign('sending..');
-          setTimeout(() => {
-            setSign('sign up');
-            setSend(false);
-          }, 5000);
+          const res = await authServices.signUp(values)
+          setSend(false)
+          setSign('Sign up')
+          if(res.error){
+            setError(res.error)
+            setTimeout(()=>{
+              setError(false);
+            }, 3000)
+          }
+          if(res.success){
+            console.log(res);
+            if(isOtpRequested(values.emailOrPhone)){
+            }else{
+              setSuccess(res.success)
+            }
+          }
         }
       },
     });
-
+    useEffect(()=>{
+      if(success){
+        setTimeout(()=>{
+          navigate("/auth/login");
+        },3000)
+      }
+    }, [success])
+    
   let message =
     (touched.name && errors.name) ||
     (touched.emailOrPhone && errors.emailOrPhone) ||
@@ -49,11 +74,15 @@ const SignUp = () => {
     if(isPhoneNumber(value)){
       setOtpRequested(true);
       setLocalStorage('otp', true)
+      return true;
     }
+    return false;
   }
   
 
   return (
+    <>
+      <ToastContainer />
     <div className="relative z-[1] h-full md:grid grid-cols-2 gap-10">
       {!otpRequested ? (
         <div className="w-full h-full flex flex-col justify-center items-center">
@@ -115,6 +144,8 @@ const SignUp = () => {
               icon={<LockPersonIcon />}
             />
             <ErrorMessage message={message} />
+            {error && <ErrorMessage message={error} />}
+            {success && <p className='text-green-500'>{success}</p>}
             <button
               type="submit"
               className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase"
@@ -139,6 +170,7 @@ const SignUp = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };
 

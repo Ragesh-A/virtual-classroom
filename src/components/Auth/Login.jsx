@@ -6,6 +6,8 @@ import KeyIcon from '@mui/icons-material/Key';
 import { loginSchema } from "../../schema/schema";
 import ErrorMessage from "../common/ErrorMessage";
 import { useState } from "react";
+import authServices from "../../services/authService";
+import { setLocalStorage } from "../../utils/storageHelper";
 
 
 const initialValues = { emailOrPhone: '', password: '' };
@@ -13,20 +15,35 @@ const initialValues = { emailOrPhone: '', password: '' };
 const Login =()=>{
 
   const [send, setSend] = useState(false);
-  const [login, setLogin] = useState("Login")
+  const [login, setLogin] = useState("Login");
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
     validationSchema : loginSchema,
-    onSubmit : (values)=>{
+    onSubmit : async (values)=>{
       if(!send){
-        setSend(true)
+        setSend(true);
         setLogin('sending..')
+        const res = await authServices.login(values)
+        setSend(false);
         console.log('send')
-        setTimeout(()=>{
-          setLogin('login')
-          setSend(false)
-        }, 5000)
+        setLogin('Login')
+        if(res.error){
+          setError(res.error)
+          setTimeout(()=>{
+            setError(false);
+          }, 3000)
+        }
+        if(res.success){
+         console.log(res.success)
+         setLocalStorage('authentication', res?.success?.authentication)
+          setTimeout(()=>{
+            setSuccess(false);
+          }, 5000)
+        }
+        
       }
     }
   })
@@ -63,6 +80,8 @@ const Login =()=>{
             />
             {console.log()}
             <ErrorMessage message={(touched.emailOrPhone && errors.emailOrPhone) || (touched.password && errors.password)}/>
+            {error && <ErrorMessage message={error} />}
+            {success && <p className='text-green-500'>{success}</p>}
            <button type="submit" className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase" > {login} </button>
           </form>
         

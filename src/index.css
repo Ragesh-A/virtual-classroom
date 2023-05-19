@@ -34,3 +34,17 @@
 .shadow{
   box-shadow: 0 0 8px 0 #BCCBFF;
 }
+.text-animation{
+  animation: textAnimation 2s linear infinite;
+  overflow: hidden;
+}
+
+@keyframes textAnimation {
+  0% {
+    width: 0;
+  }
+  100%{
+    width: 100%;
+  }
+  
+}
