@@ -47,7 +47,6 @@ const SignUp = () => {
             }, 3000)
           }
           if(res.success){
-            console.log(res);
             if(isOtpRequested(values.emailOrPhone)){
             }else{
               setSuccess(res.success)

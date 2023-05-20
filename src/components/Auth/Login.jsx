@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInput from '../common/FormInput'
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import KeyIcon from '@mui/icons-material/Key';
@@ -8,6 +8,8 @@ import ErrorMessage from "../common/ErrorMessage";
 import { useState } from "react";
 import authServices from "../../services/authService";
 import { setLocalStorage } from "../../utils/storageHelper";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../../utils/store/userSlice";
 
 
 const initialValues = { emailOrPhone: '', password: '' };
@@ -18,6 +20,8 @@ const Login =()=>{
   const [login, setLogin] = useState("Login");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues : initialValues,
@@ -37,16 +41,21 @@ const Login =()=>{
           }, 3000)
         }
         if(res.success){
-         console.log(res.success)
          setLocalStorage('authentication', res?.success?.authentication)
+         logged(res?.success?.user)
           setTimeout(()=>{
             setSuccess(false);
+            navigate('/')
           }, 5000)
         }
         
       }
     }
   })
+
+  function logged (payload){
+    dispatch(userLogin(payload))
+  }
 
   return(
     <div className="relative z-[1] h-full md:grid grid-cols-2 gap-10">

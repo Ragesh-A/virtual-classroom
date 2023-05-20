@@ -1,6 +1,8 @@
+import ClassroomLayout from "../components/layouts/ClassroomLayout";
+
 const classRoute = {
   path: '/',
-  element: <>Class room</>
+  element: <ClassroomLayout />
 }
 
 export default classRoute;

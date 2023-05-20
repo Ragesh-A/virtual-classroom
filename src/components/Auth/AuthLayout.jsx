@@ -12,7 +12,7 @@ function AuthLayout() {
       if(token){
         navigate('/')
       }
-    });
+    },[]);
    
   })
   return (

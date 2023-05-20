@@ -45,14 +45,12 @@ const ForgotPassword = () => {
     message = errors.confirmPassword;
   }
 
- console.log('reds')
 
   function testValidation(value) {
     switch (currentStep) {
       case 1:
         data.emailOrPhone = value.emailOrPhone
         authServices.requestResetOtp(value.emailOrPhone).then((res) => {
-          console.log(res)
           if (res.error){
             setError(res.error)
             setTimeout(() => {
@@ -60,7 +58,6 @@ const ForgotPassword = () => {
             }, 3000);
           };
           if (res.success){
-            console.log(res.success)
             setSuccess(res.success)
             setTimeout(() => {
               setCurrentStep(2)
@@ -76,7 +73,6 @@ const ForgotPassword = () => {
       case 3:
         data = {...data, password: value.password}
         authServices.resetPassword(values).then(res=>{
-          console.log(res)
           if (res.success){
             setSuccess(res.success)
             setTimeout(() => {
@@ -200,7 +196,6 @@ const ForgotPassword = () => {
         </form>
 
         <div className=" flex justify-between mt-3 w-full max-w-md flex-col sm:flex-row">
-          {console.log(currentStep===2)}
           {currentStep === 1 && <Link to="/auth/signup">I do have an account</Link>}
           <Link to="/auth/login">yeah i remember</Link>
           {currentStep ===2 ? count ? "resend otp after " + count : <button onClick={reSendOtp}>Resend Otp</button>: null}
