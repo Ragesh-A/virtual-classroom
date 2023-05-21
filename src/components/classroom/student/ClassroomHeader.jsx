@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
-import Header from '../common/Header';
-import CreateClass from './CreateClass';
+import Header from '../../common/Header';
+import CreateClass from '../CreateClass';
 import { useState } from 'react';
 
 const ClassroomHeader = () => {
@@ -12,7 +12,7 @@ const ClassroomHeader = () => {
   return (
     <>
       <Header>
-        <div className="flex absolute bottom-0 left-0 w-full z-50 bg-gradient-to-r from-lightPrimary to-primary items-center justify-between overflow-hidden md:relative md:rounded-s-[2rem] ps-8 md:w-[70vw] max-w-[50rem] ">
+        <div className="flex fixed bottom-0 left-0 w-full z-50 bg-gradient-to-r from-lightPrimary to-primary items-center justify-between overflow-hidden md:relative md:rounded-s-[2rem] ps-8 md:w-[70vw] max-w-[50rem] ">
           <ul className="flex items-center">
             <NavLink to="/" className="border-t-4 border-transparent hover:border-white text-white font-bold p-[17px] me-1 nav">
               <i className="fa-solid fa-people-roof sm:hidden"></i>

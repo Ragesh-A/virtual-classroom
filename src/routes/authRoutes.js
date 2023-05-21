@@ -1,4 +1,4 @@
-import AuthLayout from '../components/Auth/AuthLayout';
+import AuthLayout from '../components/layouts/AuthLayout';
 import EmailVerification from '../components/Auth/EmailVerification';
 import ForgotPassword from '../components/Auth/ForgotPassword';
 import Login from '../components/Auth/Login';
