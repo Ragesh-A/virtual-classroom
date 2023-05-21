@@ -2,12 +2,12 @@ import { Outlet } from 'react-router';
 import bg from '../../assets/images/authLayoutBg.png';
 import authServices from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 function AuthLayout() {
   const navigate =  useNavigate()
   
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     authServices.checkToken().then((token)=>{
       if(token){
         navigate('/')

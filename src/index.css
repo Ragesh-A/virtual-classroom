@@ -1,7 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.nav{
+  transition: 1s ease;
+}
+#root{
+  position: relative;
+  min-height: 100vh;
+}
+.nav.active{
+  border-top-color: white !important;
+}
+.body{
+  position: relative;
+}
 .btn {
   padding: 0.75rem 2rem;
   position: relative;
@@ -30,6 +42,9 @@
 }
 .btn:hover::after {
   left: 100%;
+}
+.transition{
+  transition: 1s ease !important;
 }
 .shadow{
   box-shadow: 0 0 8px 0 #BCCBFF;

@@ -10,9 +10,9 @@ import store from './utils/store/store'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // eslint-disable-next-line react/jsx-filename-extension
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={App} />
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

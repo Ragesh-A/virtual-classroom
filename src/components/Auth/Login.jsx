@@ -41,12 +41,10 @@ const Login =()=>{
           }, 3000)
         }
         if(res.success){
-         setLocalStorage('authentication', res?.success?.authentication)
-         logged(res?.success?.user)
-          setTimeout(()=>{
-            setSuccess(false);
-            navigate('/')
-          }, 5000)
+          setLocalStorage('authentication', res?.success?.authentication)
+          logged(res?.success?.user)
+          setSuccess(false);
+          navigate('/')
         }
         
       }
@@ -87,7 +85,6 @@ const Login =()=>{
             placeholder="enter the password" 
             icon={<KeyIcon />} 
             />
-            {console.log()}
             <ErrorMessage message={(touched.emailOrPhone && errors.emailOrPhone) || (touched.password && errors.password)}/>
             {error && <ErrorMessage message={error} />}
             {success && <p className='text-green-500'>{success}</p>}

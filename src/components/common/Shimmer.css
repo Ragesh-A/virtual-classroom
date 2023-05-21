@@ -1,0 +1,23 @@
+.shimmer{
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::before{
+  position: absolute;
+  content: '';
+  width: 100px;
+  top: -5px;
+  height: 110%;
+  background: linear-gradient(to right, transparent, white, transparent);
+  transform: rotate(10deg);
+  animation: shimmer 1.75s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%{
+    left: -200px;
+  }
+  100%{
+    left: 120%
+  }
+}

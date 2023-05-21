@@ -5,7 +5,8 @@ import { BASE_URL } from '../constant/constant';
 
 const classServices = {
   getAllClasses: async  ()=>{
-    const token = localStorage.getItem('authentication');
+    try {
+      const token = localStorage.getItem('authentication');
 
 axios.defaults.headers.common['Authorization'] = token;
     return axios.get(BASE_URL+'/classes').then(res=>{
@@ -14,9 +15,12 @@ axios.defaults.headers.common['Authorization'] = token;
       }
       return res.data;
     }).catch(err=>{
-      console.log(err)
-      // return err;
+      console.log(err.message);
     })
+    } catch (error) {
+      console.log('fucked')
+    }
+    
   }
 }
 
