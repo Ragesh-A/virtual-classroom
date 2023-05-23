@@ -7,7 +7,7 @@ const classesSlice = createSlice({
     classes: null,
   },
   reducers: {
-    setClasses: (state, action) => {
+    storeClasses: (state, action) => {
       state.classes = action.payload;
     },
     addClass: (state, action) => {
@@ -17,5 +17,5 @@ const classesSlice = createSlice({
 })
 
 
-export const { setClasses, addClass } = classesSlice.actions;
+export const { storeClasses, addClass } = classesSlice.actions;
 export default classesSlice.reducer;

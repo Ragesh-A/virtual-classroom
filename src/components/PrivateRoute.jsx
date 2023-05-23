@@ -14,6 +14,7 @@ const PrivateRoute = ({ children }) => {
         setToken(false);
       } else {
         setToken(true);
+        axios.defaults.headers.common['Authorization'] = token;
       }
     });
   }, []);

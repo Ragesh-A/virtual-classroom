@@ -12,7 +12,10 @@ const classServices = {
           if (res.data.token === false) {
             localStorage.clear();
           }
-          return res.data;
+          if(res?.data?.success){
+            return res?.data?.success;
+          }
+          return [];
         })
         .catch((err) => {
           console.log(err.message);
@@ -21,13 +24,14 @@ const classServices = {
       
     }
   },
+  
   createClass: async (values)=>{
     console.log(values.name)
       const token = localStorage.getItem('authentication');
       axios.defaults.headers.common['Authorization'] = token;
       return axios.post(BASE_URL + '/classes',values)
       .then(res=>{
-        console.log(res.data,'derv')
+        return res?.data
       }).catch(err=>err)
 
   },

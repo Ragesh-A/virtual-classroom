@@ -7,16 +7,23 @@ import ErrorMessage from "../common/ErrorMessage";
 import useForm from "../../utils/formHelper";
 import { createClassInitialValues, createClassSchema } from "../../schema/schema";
 import classServices from "../../services/classServices";
+import { useDispatch } from "react-redux";
+import { addClass } from "../../utils/store/classesSlice";
 
 const CreateClass = ({visible, setVisible}) => {
 
   const [isJoin, setIsJoin] = useState(true)
   const [formError, setFormError] = useState(false)
+  const dispatch = useDispatch()
 
   const {formik, isSubmitting} = useForm(createClassInitialValues, createClassSchema, onSubmit)
   function onSubmit (values) {
     console.log(values)
-    classServices.createClass(values)
+    classServices.createClass(values).then(res=>{
+      if(res?.success){
+        dispatch(addClass(res.success))
+      }
+    })
   }
   if(formik.errors?.name){
     setTimeout(() => {
@@ -37,7 +44,7 @@ const CreateClass = ({visible, setVisible}) => {
               <li className={`cursor-pointer ${isJoin ? 'border-b-[3px] border-primary' : ''}`} onClick={()=> setIsJoin(true)}>Join class</li>
               <li className={`cursor-pointer ${isJoin ? '' : 'border-b-[3px] border-primary'}`} onClick={()=> setIsJoin(false)}>Create class</li>
             </ul>
-          {isJoin ? <JoinClassInput /> : <Form onSubmit={formik.handleSubmit}>
+          {isJoin ? <JoinClassInput /> : <Form onSubmit={formik.handleSubmit}  className="flex flex-col" >
           <CreateClassInput name='name' onChange={formik.handleChange} value={formik.values.name}/>
           <CreateClassInput name='section' onChange={formik.handleChange} value={formik.values.section}/>
           <CreateClassInput name='description' onChange={formik.handleChange} value={formik.values.description}/>
@@ -45,8 +52,8 @@ const CreateClass = ({visible, setVisible}) => {
           <ErrorMessage message={formik?.errors?.name} />
           <button
             type="submit"
-            className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase"
-          ></button>
+            className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 px-1 py-1 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase "
+          >Create class</button>
           </Form>}
         </div>
       </div>
