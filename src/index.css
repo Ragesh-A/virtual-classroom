@@ -43,8 +43,8 @@
 .btn:hover::after {
   left: 100%;
 }
-.transition{
-  transition: 1s ease !important;
+.transitions{
+  transition: 5s ease !important;
 }
 .shadow{
   box-shadow: 0 0 8px 0 #BCCBFF;

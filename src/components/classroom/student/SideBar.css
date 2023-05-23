@@ -2,7 +2,8 @@
   transition: .5s ease-in-out;
   background: #f8fbff;
   border: 1px solid white;
+  display: block;
 }
 .side-bar.active{
-  
+  width: 15rem;
 }
