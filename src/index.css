@@ -93,3 +93,10 @@
 .scroll-none::-webkit-scrollbar{
   display: none;
 }
+.SideBar-tab{
+  transition: .2s ease;
+}
+.SideBar-tab.active{
+  background: rgb(99 102 241);
+  color: white;
+}

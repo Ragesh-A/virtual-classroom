@@ -68,3 +68,17 @@ export const forgotPasswordSchema = {
   }),
   
 }
+
+export const createClassInitialValues =  {
+  name: '',
+  section: '',
+  description: '',
+  image: '',
+}
+
+export const createClassSchema = Yup.object({
+  name: Yup.string().min(2, 'class name at least 2 character').required('class name is required'),
+  section: Yup.string(),
+  description: Yup.string(),
+  image: Yup.string(),
+})
