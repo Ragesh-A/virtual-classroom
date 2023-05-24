@@ -93,7 +93,7 @@ body::-webkit-scrollbar{
   height: 70%;
   z-index: -1;
   transform: rotate(10deg);
-  background-color: #D9D9D9;
+  background-color: #bbc4ff;
 }
 .scroll-none::-webkit-scrollbar{
   display: none;
