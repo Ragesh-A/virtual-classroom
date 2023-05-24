@@ -14,9 +14,12 @@ const AllClasses = () => {
   useEffect(() => {
     if (!storeClass.classes) {
       classServices.getAllClasses().then((res) => {
-        setClasses(res.classes);
-        dispatch(storeClasses(res.classes))
-        setIsLoaded(true);
+        console.log(res)
+        if(res?.classes){
+          setClasses(res?.classes);
+          dispatch(storeClasses(res.classes))
+          setIsLoaded(true);
+        }
       });
     }else{
       setClasses(storeClass.classes)

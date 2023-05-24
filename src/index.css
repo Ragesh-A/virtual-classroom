@@ -77,7 +77,9 @@
     grid-template-rows: 1fr 1fr;
     background-color: red;
   }
-  
+  body{
+    margin-bottom: 5rem;
+  }
 }
 .class-card::before{
   position: absolute;
@@ -99,4 +101,19 @@
 .SideBar-tab.active{
   background: rgb(99 102 241);
   color: white;
+}
+.fade{
+  opacity: 1;
+  transition: .5s ease;
+  /* animation: fades 5s linear infinite; */
+
+}
+
+@keyframes fades{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+  }
 }

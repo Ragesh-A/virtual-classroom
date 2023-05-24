@@ -14,7 +14,7 @@ module.exports = {
         lightPink : '#FBF6FA',
         lightBlue : '#E3F0F8',
         shadow : '#BCCBFF',
-        tileColor: '#f8fbff',
+        tileColor: '#f3f7fb',
       },boxShadow: {
         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
       }

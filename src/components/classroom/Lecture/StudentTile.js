@@ -3,7 +3,7 @@ import imgs from '../../../assets/images/person.png'
 const StudentTile = () => {
   return (
     <>
-    <div className="bg-blue-50 p-3 flex justify-between items-center mb-2">
+    <div className="bg-tileColor shadow border-white border-2 p-3 flex justify-between items-center mb-2">
       <div className="flex items-center gap-5">
         <img src={imgs} alt="" width='70px' height='70px'/>
         <p className='font-bold  text-textColor'>TEST name</p>
