@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import CreateClass from '../classroom/CreateClass';
+import CreateClass from '../classroom/common/CreateClass';
 import { useState } from 'react';
 
 const ClassroomHeaderComponent = () => {

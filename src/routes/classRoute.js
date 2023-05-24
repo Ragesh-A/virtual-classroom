@@ -1,5 +1,5 @@
 import PrivateRoute from '../components/PrivateRoute';
-import AllClasses from '../components/classroom/AllClasses';
+import AllClasses from '../components/classroom/common/AllClasses';
 import DiscussionPanel from '../components/classroom/common/DiscussionPanel';
 import Profile from '../components/common/Profile';
 import ClassesLayout from '../components/layouts/ClassesLayout';
@@ -13,11 +13,11 @@ export const allClassRoute = {
     </PrivateRoute>
   ),
   children: [
-    {path: '/',
-  element: <AllClasses />},{
-    path: 'profile',
-    element: <Profile />
-  }
+    { path: '/', element: <AllClasses /> },
+    {
+      path: 'profile',
+      element: <Profile />,
+    },
   ],
 };
 
@@ -32,7 +32,6 @@ export const classRoute = {
     {
       path: '',
       element: <DiscussionPanel />,
-      // children: [singleClassRoute]
     },
   ],
 };

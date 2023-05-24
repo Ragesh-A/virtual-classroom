@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import img from '../../assets/images/person.png';
+import img from '../../../assets/images/person.png';
 
 const ClassCard = ({ to, classes = [] }) => {
   return (
