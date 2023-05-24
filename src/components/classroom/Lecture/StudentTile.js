@@ -10,7 +10,7 @@ const StudentTile = () => {
       </div>
       <div className="flex gap-4">
         <button className="bg-white text-textColor font-bold text-sm px-3 py-2 rounded hover:shadow hover:shadow-shadow">
-        <i class="fa-solid fa-eye me-2"></i>
+        <i className="fa-solid fa-eye me-2"></i>
         VIEW</button>
         <button className="bg-primary border-2 border-primary  text-white font-bold text-sm px-5 py-2 rounded hover:shadow hover:bg-white hover:text-primary hover:border-primary">Remove</button>
       </div>

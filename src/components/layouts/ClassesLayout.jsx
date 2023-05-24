@@ -2,13 +2,13 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../header/Header';
 
-const ClassroomLayout = () => {
+const ClassesLayout = () => {
   return (
     <>
-      <Header page="classroom" />
+      <Header page="allClass" />
       <Outlet />
     </>
   );
 };
 
-export default ClassroomLayout;
+export default ClassesLayout;

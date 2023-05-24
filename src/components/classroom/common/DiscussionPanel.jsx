@@ -1,10 +1,19 @@
+import { useParams } from "react-router-dom";
 import Section from "../../layouts/Section"
 import StudentTile from "../Lecture/StudentTile";
 import SideBar from "../student/SideBar";
 import AssignmentBar from "./AssignmentBar";
 import './DiscussionPanel.css'
+import { useEffect } from "react";
+import classServices from "../../../services/classServices";
 
 const DiscussionPanel = () => {
+
+  const { classId } = useParams();
+  useEffect(()=>{
+    classServices.getClass(classId)
+  })
+  
   return(
     <Section className="relative" >
       <SideBar />

@@ -39,7 +39,7 @@ return (
   {visible &&
   <AnimatePresence>
     <motion.div
-      className="fixed top-0 w-full bg-black z-[1] bg-opacity-20 h-full flex items-center justify-center p-5 transition-colors"
+      className="fixed top-0 left-0 w-full bg-black z-[1] bg-opacity-20 h-full flex items-center justify-center p-5 transition-colors"
       initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
       <div id="pop" className="bg-primary md:min-w-[500px] max-w-[500px] rounded-t-lg">
         <div className=" flex w-full justify-end pe-3">

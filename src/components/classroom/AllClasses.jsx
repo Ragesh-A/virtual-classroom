@@ -5,6 +5,7 @@ import ClassCards from '../classroom/ClassCards';
 import classServices from '../../services/classServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeClasses } from '../../utils/store/classesSlice';
+import Header from '../header/Header';
 
 const AllClasses = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,8 +28,8 @@ const AllClasses = () => {
     }
   }, []);
 
-  return (
-    <Section>
+  return (<>
+  <Section>
       {!isLoaded ? (
         <>
           <Shimmer />
@@ -41,6 +42,7 @@ const AllClasses = () => {
         </div>
       )}
     </Section>
+  </>
   );
 };
 
