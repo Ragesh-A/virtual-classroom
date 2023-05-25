@@ -1,0 +1,51 @@
+import { NavLink, Outlet, useParams } from "react-router-dom";
+import Section from "./Section";
+import { useState } from "react";
+
+const LayoutWithSidebar = () => {
+  const {classId} = useParams()
+  const [tab, setTab] = useState('students')
+  const [toggle, setToggle] = useState(true)
+
+  return (
+    <Section>
+      <ul className={`flex flex-col fixed w-15 overflow-hidden p-2 h-[75vh] rounded-md side-bar ${toggle ? 'active': ''}`} >
+      <li className="p-2 flex justify-between w-full items-center h-[2rem] transitions font-bold text-textColor" onClick={()=>setToggle(toggle ? false : true)}>
+        {toggle && <span>TASKS</span>}
+        <i className="fa-solid fa-arrows-left-right-to-line float-right text-textColor cursor-pointer self-end" ></i>
+      </li>
+      <li className="mt-2">
+        <NavLink className={`flex gap-5 items-center py-3 px-8 rounded shadow bg-white text-textColor font-bold  w-full text-left hover:bg-indigo-500 hover:text-white  SideBar-tab h-[3rem]`} to={`/class/${classId}/dashboard`}>
+            <i className="fa-solid fa-users-line"></i>
+            {toggle && <span className="side-bar-title">Students</span>}
+        </NavLink>
+  
+        </li>
+      <li className="mt-2">
+        <NavLink className={`flex gap-5 items-center py-3 px-8 rounded shadow bg-white text-textColor font-bold  w-full text-left hover:bg-indigo-500 hover:text-white  SideBar-tab h-[3rem]`} to={`/class/${classId}/dashboard/assignments`}>
+            <i className="fa-solid fa-list-check"></i>
+            {toggle && <span className="side-bar-title">Assignments</span>}
+        </NavLink>
+  
+        </li>
+      <li className="mt-2">
+        <NavLink className={`flex gap-5 items-center py-3 px-8 rounded shadow bg-white text-textColor font-bold  w-full text-left hover:bg-indigo-500 hover:text-white  SideBar-tab h-[3rem]`} to={`/class/${classId}/dashboard/attendance`}>
+            <i className="fa-solid fa-table-cells"></i>
+            {toggle && <span className="side-bar-title">Attendance</span>}
+        </NavLink>
+        <NavLink className={`flex gap-5 items-center py-3 px-8 rounded shadow bg-white text-textColor font-bold  w-full text-left hover:bg-indigo-500 hover:text-white  SideBar-tab h-[3rem]`} to={`/class/${classId}/dashboard/announcements`}>
+            <i className="fa-solid fa-bullhorn"></i>
+            {toggle && <span className="side-bar-title">Announcement</span>}
+        </NavLink>
+  
+        </li>     
+      </ul>
+      <div className={`bg-red-500 ml-28 transition ${toggle ? 'active' : ''} rounded sidebar-body`}>
+      <Outlet />
+      </div>
+    </Section>
+  )
+
+}
+
+export default LayoutWithSidebar;

@@ -3,7 +3,7 @@ import Section from './Section';
 import SideBar from '../classroom/student/SideBar';
 import { useState } from 'react';
 
-const ClassLayoutWithSidebar = () => {
+const ClassLayoutWithSidebar = ({Si=''}) => {
 
   const [toggle, setToggle] = useState(true)
   const handleToggle = () => {

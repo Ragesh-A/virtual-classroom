@@ -5,6 +5,7 @@ import Profile from '../components/common/Profile';
 import ClassesLayout from '../components/layouts/ClassesLayout';
 import ClassroomLayout from '../components/layouts/ClassroomLayout';
 import ClassLayoutWithSidebar from '../components/layouts/ClassLayoutWithSidebar';
+import lectureRoute from './lectureRoute';
 
 export const allClassRoute = {
   path: '/',
@@ -39,5 +40,6 @@ export const classRoute = {
       element: <ClassLayoutWithSidebar />,
       children: [{ path: '', element: <h1>dsgfg</h1> }],
     },
+    lectureRoute,
   ],
 };
