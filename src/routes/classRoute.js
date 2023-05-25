@@ -4,6 +4,7 @@ import DiscussionPanel from '../components/classroom/common/DiscussionPanel';
 import Profile from '../components/common/Profile';
 import ClassesLayout from '../components/layouts/ClassesLayout';
 import ClassroomLayout from '../components/layouts/ClassroomLayout';
+import ClassLayoutWithSidebar from '../components/layouts/ClassLayoutWithSidebar';
 
 export const allClassRoute = {
   path: '/',
@@ -32,6 +33,11 @@ export const classRoute = {
     {
       path: '',
       element: <DiscussionPanel />,
+    },
+    {
+      path: 'works',
+      element: <ClassLayoutWithSidebar />,
+      children: [{ path: '', element: <h1>dsgfg</h1> }],
     },
   ],
 };

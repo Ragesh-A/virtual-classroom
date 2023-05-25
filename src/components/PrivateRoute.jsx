@@ -12,6 +12,7 @@ const PrivateRoute = ({ children }) => {
     getLocalStorage('authentication').then((token) => {
       if (!token) {
         setToken(false);
+        navigate('/auth/login')
       } else {
         setToken(true);
         axios.defaults.headers.common['Authorization'] = token;
@@ -22,9 +23,8 @@ const PrivateRoute = ({ children }) => {
     return <Shimmer />;
   }
   if (token === false) {
-    return navigate('/auth/login');
-  }
-  if (token) {
+    navigate('/auth/login');
+  }else if (token) {
     axios.defaults.headers.common['Authorization'] = token;
     return children;
   }

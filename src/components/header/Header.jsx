@@ -3,7 +3,7 @@ import logo from '../../assets/images/logo-dark.png';
 import ClassroomHeaderComponent from './ClassroomHeaderComponent';
 import SingleClassHeaderComponent from './SingleClassHeader';
 
-const Header = ({ page }) => {
+const Header = ({ page, isLecture = false }) => {
   let element = <></>;
   if (page === 'allClass') {
     element = <ClassroomHeaderComponent />;

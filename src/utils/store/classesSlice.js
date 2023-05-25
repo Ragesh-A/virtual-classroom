@@ -14,12 +14,12 @@ const classesSlice = createSlice({
     addClass: (state, action) => {
       state.classes.push(action.payload);
     },
-    currentClass: (state, action) => {
+    setCurrentClass: (state, action) => {
       state.currentClass = action.payload;
     }
   }
 })
 
 
-export const { storeClasses, addClass, currentClass } = classesSlice.actions;
+export const { storeClasses, addClass, setCurrentClass } = classesSlice.actions;
 export default classesSlice.reducer;

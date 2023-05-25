@@ -105,6 +105,9 @@ body::-webkit-scrollbar{
   background: rgb(99 102 241);
   color: white;
 }
+.sidebar-body.active{
+  margin-left: 16rem;
+}
 .fade{
   opacity: 1;
   transition: .5s ease;
