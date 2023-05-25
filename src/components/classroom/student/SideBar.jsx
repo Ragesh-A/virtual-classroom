@@ -6,7 +6,7 @@ const SideBar = ({ toggle, setToggle}) => {
   const [tab, setTab] = useState('pending')
   return(
     
-      <ul className={`flex flex-col fixed w-15 overflow-hidden p-2 h-[75vh] rounded-md side-bar ${toggle ? 'active': ''}`} >
+      <ul className={`flex flex-col fixed w-15 overflow-hidden p-2 h-[75vh] rounded-md side-bar ${toggle ? 'active': ''} border-2`} >
         <li className="p-2 flex justify-between w-full items-center h-[2rem] transitions font-bold text-textColor">
           {toggle && <span>TASKS</span>}
           <i className="fa-solid fa-arrows-left-right-to-line float-right text-textColor cursor-pointer'" onClick={()=>setToggle(toggle ? false : true)}></i>

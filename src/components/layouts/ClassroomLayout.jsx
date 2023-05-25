@@ -22,7 +22,6 @@ const ClassroomLayout = () => {
             setIsLecture(true);
           }
         }
-        
       })
     }
 
@@ -30,7 +29,6 @@ const ClassroomLayout = () => {
       setIsLecture(false);
     }
   }, [])
-  console.log(currentClass?.class?._id,"current")
   return (
     <>
       <Header page="classroom" isLecture/>

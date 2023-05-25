@@ -39,14 +39,14 @@ const classServices = {
     const token = localStorage.getItem('authentication');
     axios.defaults.headers.common['Authorization'] = token;
     return axios.post(BASE_URL + '/classes/join', {uuid}).then(res=>{
-      console.log(res)
-    })
+      return res.data;
+    }).catch(err=>
+      console.log(err))
   },
   getClass: async (classId) => {
     const token = localStorage.getItem('authentication');
     axios.defaults.headers.common['Authorization'] = token;
     return axios.get(`${BASE_URL}/classes/${classId}`).then(res =>{
-      console.log(res.data)
       return res.data
     })
   }
