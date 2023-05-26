@@ -123,3 +123,28 @@ body::-webkit-scrollbar{
     opacity: 1;
   }
 }
+.box{
+  background-color: #fefefe;
+  box-shadow: 0 0 10px rgba(0, 56, 255, 19%);
+}
+.inner-shadow{
+  box-shadow: 0 0 10px rgba(0, 56, 255, 19%) inset;
+}
+
+.sidebar{
+  width: 60px;
+  transition: 1s ease-in-out;
+}
+.sidebar.active{
+  width: 200px;
+}
+.main-content{
+  transition: 1s ease-in-out;
+  width: calc(100% - 60px);
+  margin-left: 60px;
+}
+.sidebar.active ~ .main-content{
+  width: calc(100% - 200px);
+  margin-left: 200px;
+}
+
