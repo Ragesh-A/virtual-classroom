@@ -1,9 +1,10 @@
-import AdminLayout from "../components/layouts/AdminLayout";
+import UserManagement from '../components/Admin/UserManagement';
+import AdminLayout from '../components/layouts/AdminLayout';
 
 const adminRoute = {
   path: '/admin',
-  element: <AdminLayout />
-}
-
+  element: <AdminLayout />,
+  children: [{ path: '', element: <UserManagement /> }],
+};
 
 export default adminRoute;
