@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import adminServices from "../../services/admin.service";
+import { useDispatch, useSelector } from "react-redux";
+import { blockAndUnblock, setUser } from "../../utils/store/adminSlice";
 
 const UserManagement = () => {
 
-  const [users, setUsers] = useState()
-  const [blocked, setBlocked] = useState(false)
-  const handleBlock = () =>{
-    setBlocked( blocked ? false : true)
+  const {users} = useSelector(store=>store.admin)
+  console.log(users)
+  const dispatch = useDispatch()
+  const handleBlock = (id) =>{
+    dispatch(blockAndUnblock(id))
+    adminServices.blockOrUnblock(id);
   }
 
   useEffect(()=>{
-    adminServices.findAllUser().then(res=>{
-      setUsers(res?.success?.users)
-    })
+    if(!users){
+      adminServices.findAllUser().then(res=>{
+        dispatch(setUser(res?.success?.users))
+      })
+    }
   },[])
 
   return (

@@ -15,6 +15,12 @@ const adminServices = {
     }).catch(err=> {
       console.log(err);
     })
+  },
+  blockOrUnblock: async (userId) => {
+    setAxiosToken();
+    return axios.patch(BASE_URL + '/admin/users', {userId}).then(res=>{
+      return res.data;
+    })
   }
 };
 
