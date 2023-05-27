@@ -1,14 +1,19 @@
-import Organiserlayout from "../components/layouts/OrganiserLayout";
+import OrganizerLayout from "../components/layouts/OrganiserLayout";
 import ClassManagement from "../components/organizer/ClassManagement";
+import InstructorManagement from "../components/organizer/InstructorManagement";
 
 const organizerRoute = {
   path: '/organization',
-  element: <Organiserlayout />,
+  element: <OrganizerLayout />,
   children: [
     {
       path: '',
       element: <ClassManagement />
     },
+    {
+      path: 'instructors',
+      element: <InstructorManagement />
+    }
   ]
 };
 

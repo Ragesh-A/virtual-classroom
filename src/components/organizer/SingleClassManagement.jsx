@@ -9,9 +9,6 @@ const SingleClassManagement = ({classid, setState}) => {
   const {selectedClass} = useSelector(store=>store.organizer);
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false)
-  console.log(classid)
-
-  console.log(selectedClass?.class?._id !== classid, 'sele')
 
   useEffect(()=>{
     if(!selectedClass || selectedClass?.class?._id !== classid){

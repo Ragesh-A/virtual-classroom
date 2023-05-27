@@ -13,6 +13,12 @@ const OrganizerLayout = () => {
       <div className="sidebar active shadow top-0 bg-primary left-[-250px] md:left-0  fixed h-full overflow-hidden">
        <ul className='mt-40'>
         <li className=' rounded-sideBar-tab ps-3'>
+          <NavLink to='/organization/instructors' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold ${currentTab === 'lectures' ? 'text-primary bg-white' : 'text-white'}`} onClick={()=>setCurrentTab('lectures')}>
+          <i className="fa-solid fa-chalkboard-user ps-3"></i>
+            <span>Lectures</span>
+          </NavLink>
+        </li>
+        <li className=' rounded-sideBar-tab ps-3'>
           <NavLink to='/organization' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold ${currentTab === 'classes' ? 'text-primary bg-white' : 'text-white'}`} onClick={()=>setCurrentTab('classes')}>
             <i className="fa-solid fa-people-roof"></i>
             <span>Classes</span>
