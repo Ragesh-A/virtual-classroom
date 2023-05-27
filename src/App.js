@@ -4,6 +4,7 @@ import { allClassRoute, classRoute } from './routes/classRoute';
 import adminRoute from './routes/adminRoute';
 import organizerRoute from './routes/organizerRoute';
 import Home from './components/common/home/Home';
+import verifyRoute from './routes/verification.routes';
 
 const App = createBrowserRouter([
   authRoute,
@@ -12,6 +13,7 @@ const App = createBrowserRouter([
   { path: '/home', element: <Home /> },
   adminRoute,
   organizerRoute,
+  verifyRoute,
   { path: '*', element: <>404</> },
 ]);
 
