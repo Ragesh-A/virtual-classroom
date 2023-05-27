@@ -47,7 +47,7 @@ body::-webkit-scrollbar{
   left: 100%;
 }
 .transitions{
-  transition: 5s ease !important;
+  transition: 1s ease !important;
 }
 .shadow{
   box-shadow: 0 0 8px 0 #BCCBFF;
@@ -146,4 +146,13 @@ body::-webkit-scrollbar{
 .sidebar.active ~ .main-content{
   width: calc(100% - 200px);
   margin-left: 200px;
+}
+.slider{
+  right: -100%;
+  transition: .5s ease-in-out;
+  opacity: 50%;
+}
+.slider.active{
+  right: 2.5rem;
+  opacity: 100%;
 }
