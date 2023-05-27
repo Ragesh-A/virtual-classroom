@@ -24,6 +24,12 @@ const organizerServices = {
       console.log(err);// axios errors
     })
   },
+  sendInvitation: async (emailOrPhone, message) =>{
+    setAxiosToken();
+    return axios.post(BASE_URL + '/organizer/instructor', {emailOrPhone, message}).then(res=>{
+      return res.data
+    })
+  }
 };
 
 export default organizerServices;
