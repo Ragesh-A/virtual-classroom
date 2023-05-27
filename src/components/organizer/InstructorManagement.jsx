@@ -3,14 +3,12 @@ import Shimmer from '../common/Shimmer';
 import { useDispatch, useSelector } from 'react-redux';
 import organizerServices from '../../services/organizerServices';
 import { setClasses } from '../../utils/store/organizerSlice';
-import { ErrorMessage } from 'formik';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Message } from '@mui/icons-material';
 
 const InstructorManagement = () => {
   const [fade, setFade] = useState();
   const [popUp, setPopUp] = useState(false);
-  const [selectedClass, setSelectedClass] = useState(false);
+  const [instructors, setInstructors] = useState(false)
   const message = useRef();
   const emailOrPhone = useRef();
   
@@ -18,31 +16,28 @@ const InstructorManagement = () => {
     setFade(true);
   }, 1000);
   
-  const { classes } = useSelector((store) => store.organizer);
-  const dispatch = useDispatch();
   
   useEffect(() => {
-    if (!classes) {
-    organizerServices.allClasses().then((res) => {
-      dispatch(setClasses(res?.success?.classes));
-      console.log(res.success);
-  });
-  }
+    organizerServices.getInstructors().then((res)=>{
+      setInstructors(res?.success?.instructors);
+    })
   }, []);
-  const handleSection = (classId) => {
-    setPopUp(true);
-    setSelectedClass(classId);
-    console.log(classId);
-  };
 
   const handleSubmit = (e) =>{
       e.preventDefault();
       organizerServices.sendInvitation(emailOrPhone.current.value, message.current.value).then(res=>{
         console.log(res)
       })
+      setPopUp(false)
+  }
+
+  const handleRemove = (instructorId) =>{
+    organizerServices.removeInstructor(instructorId).then(res=>{
+      console.log(res)
+    })
   }
   
-  if (!classes) {
+  if (!instructors) {
   return (
 <>
   <Shimmer />
@@ -71,7 +66,7 @@ return (
           </th>
           <th className="text-white ">
             <span className="bg-lightPrimary block rounded p-2">
-              Classes
+              Contact
             </span>
           </th>
           <th className="text-white ">
@@ -82,9 +77,9 @@ return (
         </tr>
       </thead>
       <tbody className="text-center">
-        {classes &&
-        classes?.map((singleClass, index) => (
-        <tr key={singleClass?._id}>
+        {instructors &&
+        instructors?.map((instructor, index) => (
+        <tr key={instructor?._id}>
           <td>
             <span className="py-2 bg-indigo-50 block rounded">
               {index + 1}
@@ -92,18 +87,17 @@ return (
           </td>
           <td>
             <span className="py-2 bg-indigo-50 block rounded">
-              {singleClass?.uuid}
+              {instructor?.name}
             </span>
           </td>
           <td>
             <span className="py-2 bg-indigo-50 block rounded">
-              {singleClass?.name}
+              {instructor?.emailOrPhone}
             </span>
           </td>
           <td className="flex">
             <button className="bg-lightPrimary hover:bg-primary text-white px-2 py-2 rounded w-full" onClick={()=>
-              handleSection(singleClass?._id)}
-              >
+              handleRemove(instructor?._id)}>
               Remove
             </button>
           </td>
@@ -124,17 +118,13 @@ return (
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div id="pop" className="bg-primary md:min-w-[500px] max-w-[500px] rounded-t-lg">
         <div className=" flex w-full justify-end pe-3">
-          <i className="fa-solid fa-xmark text-white text-2xl cursor-pointer hover:animate-spin" onClick={()=>
-            setPopUp(false)}
-            ></i>
+          <i className="fa-solid fa-xmark text-white text-2xl cursor-pointer hover:animate-spin" onClick={()=>setPopUp(false)}></i>
         </div>
         <div className="bg-white p-3 px-6">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row mt-5 gap-3 py-5">
               <p>Enter the email or phone of to request to as instructor</p>
-              <input type="text" name="nameOrEmail"
-                className="bg-gray-200 rounded border-2 border-gray-300 px-2 py-2 focus:bg-blue-50 outline-primary"
-                ref={emailOrPhone} />
+              <input type="text" name="nameOrEmail" className="bg-gray-200 rounded border-2 border-gray-300 px-2 py-2 focus:bg-blue-50 outline-primary" ref={emailOrPhone} />
             </div>
               <textarea name="message" id="message" rows="5" placeholder="enter the invitation message" className='w-full p-3 border-2 rounded '
                 ref={message}></textarea>
@@ -145,8 +135,6 @@ return (
     </motion.div>
   </AnimatePresence>
   )}
-  {/* {slider&&
-  <SingleClassManagement setState={setSlider} classid={selectedClass} />} */}
 </>
 );
 };

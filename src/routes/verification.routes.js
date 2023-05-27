@@ -4,7 +4,7 @@ const verifyRoute = {
   path:'/verify',
   children: [
     {
-      path: 'instructor/join/:organizationId',
+      path: 'instructor/:uuid/join/:organizationId',
       element: <InvitationVerification />
     }
   ]

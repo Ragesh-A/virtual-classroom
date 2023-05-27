@@ -29,7 +29,19 @@ const organizerServices = {
     return axios.post(BASE_URL + '/organizer/instructor', {emailOrPhone, message}).then(res=>{
       return res.data
     })
-  }
+  },
+  getInstructors: async () => {
+    setAxiosToken();
+    return axios.get(BASE_URL + '/organizer/instructor').then(res=>{
+      return res.data
+    })
+  },
+  removeInstructor: async (instructor) => {
+    setAxiosToken();
+    return axios.delete(BASE_URL + `/organizer/instructor?instructor=${instructor}`).then(res=>{
+      console.log(res.data)
+    })
+  },
 };
 
 export default organizerServices;
