@@ -11,7 +11,7 @@ const SingleClassHeaderComponent = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const user = decodeUser();
-    if (user._id === currentClass?.class?.instructor) {
+    if (user._id === currentClass?.class?.instructor?._id) {
       setIsLecture(true);
     }
   }, [currentClass]);
@@ -38,10 +38,7 @@ const SingleClassHeaderComponent = () => {
           <li className="hidden sm:block">Class work</li>
         </NavLink>
       )}
-      <button className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav" onClick={handleSlide}>
-        <i className="fa-solid fa-video sm:hidden"></i>
-        <li className="hidden sm:block">People</li>
-      </button>
+      
       {isLecture && (
         <NavLink
           to={`/class/${classId}/dashboard`}
@@ -51,6 +48,19 @@ const SingleClassHeaderComponent = () => {
           <li className="hidden sm:block">Dashboard</li>
         </NavLink>
       )}
+      {isLecture && (
+        <NavLink
+          to={`/meet`}
+          className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
+        >
+          <i className="fa-solid fa-video sm:hidden"></i>
+          <li className="hidden sm:block">Meet up</li>
+        </NavLink>
+      )}
+      <button className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav" onClick={handleSlide}>
+        <i className="fa-solid fa-users-line sm:hidden"></i>
+        <li className="hidden sm:block">People</li>
+      </button>
     </ul>
   );
 };
