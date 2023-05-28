@@ -13,6 +13,7 @@
 }
 .body{
   position: relative;
+  background-color: #F7FAFF;
 }
 body::-webkit-scrollbar{
   display: none;
