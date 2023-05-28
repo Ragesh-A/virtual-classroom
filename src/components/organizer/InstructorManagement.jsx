@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Shimmer from '../common/Shimmer';
-import { useDispatch, useSelector } from 'react-redux';
 import organizerServices from '../../services/organizerServices';
-import { setClasses } from '../../utils/store/organizerSlice';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const InstructorManagement = () => {

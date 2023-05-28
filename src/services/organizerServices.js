@@ -42,6 +42,14 @@ const organizerServices = {
       console.log(res.data)
     })
   },
+  removeFromClass: async (classId, studentId) => {
+    setAxiosToken()
+    return axios.delete(`${BASE_URL}/classes/${classId}/students?student=${studentId}`).then(res=>{
+      return res.data;
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
 };
 
 export default organizerServices;
