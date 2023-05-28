@@ -23,6 +23,13 @@ const SingleClassHeaderComponent = () => {
   return (
     <ul className="flex items-center">
       <NavLink
+          to="/"
+          className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
+        >
+          <i className="fa-solid fa-people-roof sm:hidden"></i>
+          <li className="hidden sm:block">My class</li>
+        </NavLink>
+      <NavLink
         to={`/class/${classId}`}
         className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
       >
