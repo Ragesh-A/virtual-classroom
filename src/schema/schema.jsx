@@ -78,7 +78,18 @@ export const createClassInitialValues =  {
 
 export const createClassSchema = Yup.object({
   name: Yup.string().min(2, 'class name at least 2 character').required('class name is required'),
-  section: Yup.string(),
+  // section: Yup.string(),
   description: Yup.string(),
   image: Yup.string(),
+})
+
+export const assignmentInitialValue = {
+  title: '',
+  description: ''
+}
+
+export const assignmentSchema = Yup.object({
+  title: Yup.string().min(5, 'at least five character should be there').required('is required'),
+  dueDate: Yup.string().required('is required'),
+  description: Yup.string().min(10, 'should be more detailed').required('is required')
 })

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import organizerServices from "../../services/organizerServices";
 import { setSelectedClass } from "../../utils/store/organizerSlice";
 import Shimmer from "../common/Shimmer";
+import classServices from "../../services/classServices";
 
 const SingleClassManagement = ({classid, setState}) => {
   const [active, setActive] = useState(false)
@@ -10,8 +11,11 @@ const SingleClassManagement = ({classid, setState}) => {
   const [instructors, setInstructors] = useState()
   const op = useRef()
   const name = useRef()
+  const description = useRef()
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false)
+  const [err, setErr] = useState()
+  const [succ, setSucc] = useState()
 
   useEffect(()=>{
     if(!selectedClass || selectedClass?.class?._id !== classid){
@@ -47,12 +51,31 @@ const SingleClassManagement = ({classid, setState}) => {
     console.log(op.current.value)
     console.log(name.current.value)
     setEditMode(false)
+    const nameValue = name.current.value.trim()
+    const descriptionValue = description.current.value.trim()
+    const opValue = op.current.value;
+    if (nameValue === ''){
+      setErr('class name is required')
+    }
+    if (descriptionValue === ''){
+      setErr('description is required')
+    }
+    setTimeout(()=>{setErr(false)}, 2000)
+    classServices.updateClass(classid, nameValue, descriptionValue, opValue).then(res=>{
+      if (res.success){
+        setSucc('updated');
+      }
+      if (res.error){
+        setErr(res.error);
+      }
+      setTimeout(()=>{setErr(false);setSucc(false)}, 2000)
+    })
   } 
   
   return (
     <>
-      <div className={`absolute h-[80vh] w-[calc(100%-250px)]  slider top-0 right-60 pt-28 rounded ${active ? 'active': ''}`}>
-        <div className={`box relative overflow-y-scroll p-5`}>
+      <div className={`absolute h-[90vh] w-[calc(100%-250px)]  slider top-0 right-60 pt-28 rounded ${active ? 'active': ''}`}>
+        <div className={`box relative overflow-y-scroll p-5 h-full`}>
           {selectedClass?.class?._id !== classid ? <Shimmer /> :
           <form onSubmit={updateClass}>
           <div className="flex justify-end ">
@@ -62,9 +85,14 @@ const SingleClassManagement = ({classid, setState}) => {
             <div className="flex gap-3 items-center">
             <label htmlFor="">Class Name</label>
             {!editMode &&<p className="font-bold text-2xl text-gray-600">{selectedClass?.class?.name}</p>}
-            {editMode && <input type="text" defaultValue={selectedClass?.class?.name} ref={name}/>}
+            {editMode && <input type="text" defaultValue={selectedClass?.class?.name} ref={name} className="border-2"/>}
             </div>
             <p className="font-bold text-2xl text-gray-600">{selectedClass?.class?.uuid}</p>
+          </div>
+          <div className="flex gap flex-col">
+          <label htmlFor="">Description</label>
+            {!editMode &&<p className="font-semibold text-sm text-gray-600 mb-2">{selectedClass?.class?.description}</p>}
+            {editMode && <input type="text" defaultValue={selectedClass?.class?.description} ref={description} className="border-2 mb-2"/>}
           </div>
           <p className="font-bold text-primary  underline text-xl mb-3">Lecture</p>
           <div className="flex justify-between bg-indigo-100 p-1 rounded px-3 items-center">
@@ -92,14 +120,14 @@ const SingleClassManagement = ({classid, setState}) => {
                 </tr>
               </thead>
               <tbody className="text-center">
-                {selectedClass?.students?.students?.map((student, index)=>(
+                {selectedClass?.students?.map((student, index)=>(
                   <tr key={student?._id}>
-                  <td>{index}</td>
+                  <td>{index+1}</td>
                   <td>{student.name}</td>
-                  <td>{student.email}</td>
-                  <td>{'student'}</td>
-                  <td>{'student'}</td>
-                  <td><button className="bg-lightPrimary " onClick={()=>removeHandle(student._id)}>remove</button></td>
+                  <td>{'-'}</td>
+                  <td>{student.emailOrPhone}</td>
+                  <td>{'-'}</td>
+                  <td><button type="button" className="bg-lightPrimary w-full text-white hover:bg-primary  py-1" onClick={()=>removeHandle(student._id)}>remove</button></td>
                 </tr>
                 ))}
               </tbody>

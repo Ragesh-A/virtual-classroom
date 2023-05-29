@@ -1,9 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import CreateClass from '../common/CreateClass';
 import { useState } from 'react';
+import { decodeUser } from '../../../utils/storageHelper';
 
 const ClassroomHeaderComponent = () => {
   const [popIsVisible, setPopIsVisible] = useState(false);
+  const user = decodeUser();
+  console.log(user)
 
   const popHandle = () => {
     setPopIsVisible(popIsVisible ? false : true);

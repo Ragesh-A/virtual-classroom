@@ -93,11 +93,11 @@ const CreateClass = ({ visible, setVisible }) => {
                       onChange={formik.handleChange}
                       value={formik.values.name}
                     />
-                    <CreateClassInput
+                    {/* <CreateClassInput
                       name="section"
                       onChange={formik.handleChange}
                       value={formik.values.section}
-                    />
+                    /> */}
                     <CreateClassInput
                       name="description"
                       onChange={formik.handleChange}

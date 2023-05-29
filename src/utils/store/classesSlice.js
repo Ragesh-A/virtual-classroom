@@ -6,6 +6,7 @@ const classesSlice = createSlice({
   initialState: {
     classes: null,
     currentClass: null,
+    assignments: null
   },
   reducers: {
     storeClasses: (state, action) => {
@@ -16,10 +17,13 @@ const classesSlice = createSlice({
     },
     setCurrentClass: (state, action) => {
       state.currentClass = action.payload;
+    },
+    setAssignment: (state, action)=>{
+      state.assignments = action.payload;
     }
   }
 })
 
 
-export const { storeClasses, addClass, setCurrentClass } = classesSlice.actions;
+export const { storeClasses, addClass, setCurrentClass, setAssignment } = classesSlice.actions;
 export default classesSlice.reducer;

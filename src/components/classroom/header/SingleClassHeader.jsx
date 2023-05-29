@@ -14,6 +14,9 @@ const SingleClassHeaderComponent = () => {
     if (user._id === currentClass?.class?.instructor?._id) {
       setIsLecture(true);
     }
+    return ()=>{
+      setIsLecture(false)
+    }
   }, [currentClass]);
 
   const handleSlide = () => {
@@ -30,7 +33,7 @@ const SingleClassHeaderComponent = () => {
           <li className="hidden sm:block">My class</li>
         </NavLink>
       <NavLink
-        to={`/class/${classId}`}
+        to={`/class/${classId}/`}
         className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
       >
         <i className="fa-solid fa-people-roof sm:hidden"></i>
@@ -38,7 +41,7 @@ const SingleClassHeaderComponent = () => {
       </NavLink>
       {!isLecture && (
         <NavLink
-          to={`/class/${classId}/works`}
+          to={`/class/${classId}/works/`}
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
           <i className="fa-solid fa-video sm:hidden"></i>
@@ -48,7 +51,7 @@ const SingleClassHeaderComponent = () => {
       
       {isLecture && (
         <NavLink
-          to={`/class/${classId}/dashboard`}
+          to={`/class/${classId}/dashboard/`}
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
           <i className="fa-solid fa-user-shield sm:hidden"></i>

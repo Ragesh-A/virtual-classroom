@@ -1,6 +1,7 @@
 import OrganizerLayout from "../components/layouts/OrganiserLayout";
 import ClassManagement from "../components/organizer/ClassManagement";
 import InstructorManagement from "../components/organizer/InstructorManagement";
+import AssignmentManagement from "../pages/organizer/AssignmentManagement";
 
 const organizerRoute = {
   path: '/organization',
@@ -13,7 +14,11 @@ const organizerRoute = {
     {
       path: 'instructors',
       element: <InstructorManagement />
-    }
+    },
+    {
+      path: 'assignments',
+      element: <AssignmentManagement />
+    },
   ]
 };
 

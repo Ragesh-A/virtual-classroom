@@ -6,6 +6,7 @@ import ClassesLayout from '../components/layouts/ClassesLayout';
 import ClassroomLayout from '../components/layouts/ClassroomLayout';
 import ClassLayoutWithSidebar from '../components/layouts/ClassLayoutWithSidebar';
 import lectureRoute from './lectureRoute';
+import PendingAssignments from '../components/classroom/student/assignments/PendingAssignments';
 
 export const allClassRoute = {
   path: '/',
@@ -38,7 +39,7 @@ export const classRoute = {
     {
       path: 'works',
       element: <ClassLayoutWithSidebar />,
-      children: [{ path: '', element: <h1>dsgfg</h1> }],
+      children: [{ path: '', element: <PendingAssignments /> }],
     },
     lectureRoute,
   ],

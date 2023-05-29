@@ -49,7 +49,15 @@ const classServices = {
     return axios.get(`${BASE_URL}/classes/${classId}`).then(res =>{
       return res.data
     })
-  }
+  },
+  updateClass: async (classId, name, description, instructor=null) => {
+    const token = localStorage.getItem('authentication');
+      axios.defaults.headers.common['Authorization'] = token;
+      return axios.patch(BASE_URL + '/classes/'+ classId, {name, description, instructor}).then((res)=>{
+        console.log(res.data);
+        return res.data;
+      })
+  },
 };
 
 export default classServices;
