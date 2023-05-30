@@ -5,6 +5,7 @@ import adminRoute from './routes/adminRoute';
 import organizerRoute from './routes/organizerRoute';
 import Home from './components/common/home/Home';
 import verifyRoute from './routes/verification.routes';
+import meetUp from './routes/communication.routes';
 
 const App = createBrowserRouter([
   authRoute,
@@ -14,6 +15,7 @@ const App = createBrowserRouter([
   adminRoute,
   organizerRoute,
   verifyRoute,
+  meetUp,
   { path: '*', element: <>404</> },
 ]);
 

@@ -13,7 +13,7 @@ const ClassManagement = () => {
   const [selectedClass, setSelectedClass] = useState(false);
   setTimeout(()=>{
     setFade(true)
-  }, 1000)
+  }, 10)
 
   const { classes } = useSelector(store=>store.organizer)
   const dispatch = useDispatch();

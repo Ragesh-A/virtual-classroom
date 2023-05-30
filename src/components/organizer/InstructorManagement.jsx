@@ -12,7 +12,7 @@ const InstructorManagement = () => {
   
   setTimeout(() => {
     setFade(true);
-  }, 1000);
+  }, 10);
   
   
   useEffect(() => {

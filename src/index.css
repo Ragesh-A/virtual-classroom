@@ -157,3 +157,14 @@ body::-webkit-scrollbar{
   right: 2.5rem;
   opacity: 100%;
 }
+.sidebar-tab{
+  color: white
+}
+.sidebar-tab.active{
+  background-color: white;
+  color: #6060D8;
+}
+.body{
+  background: linear-gradient(145deg, #FBF6FA, #def2ff, #FBF6FA);
+  min-height: 100vh;
+}

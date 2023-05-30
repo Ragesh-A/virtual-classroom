@@ -46,16 +46,9 @@ const CreateClass = ({ visible, setVisible }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div
-              id="pop"
-              className="bg-primary md:min-w-[500px] max-w-[500px] rounded-t-lg"
-            >
+            <div id="pop" className="bg-primary md:min-w-[500px] max-w-[500px] rounded-t-lg">
               <div className=" flex w-full justify-end pe-3">
-                <CloseIcon
-                  className="text-white cursor-pointer my-2"
-                  sx={{ fontSize: '2rem' }}
-                  onClick={() => setVisible(false)}
-                />
+                <CloseIcon className="text-white cursor-pointer my-2"  sx={{ fontSize: '2rem' }} onClick={() => setVisible(false)}/>
               </div>
               <motion.div
                 className="bg-white rounded-t-lg p-5 transition"

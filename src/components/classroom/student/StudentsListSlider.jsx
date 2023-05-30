@@ -19,10 +19,8 @@ const StudentListSlider = () => {
         <input type="text" name="name" id="name" className="w-full outline-none bg-transparent"/>
       </div>
       <ul className="flex flex-col gap-2">
-        <li className="p-1 border-2 border-transparent border-b-white">Ajul</li>
-        <li className="p-1 border-2 border-transparent border-b-white">Junaid</li>
        {students && students.map(student=>(
-        <li className="p-1 border-2 border-transparent border-b-gray-500" key={student?._id}>{student?.name}</li>
+        <li className="p-1 border-2 border-transparent border-b-white" key={student?._id}>{student?.name}</li>
        ))}
       </ul>
     </div>
