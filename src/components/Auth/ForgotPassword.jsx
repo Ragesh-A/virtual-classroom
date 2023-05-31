@@ -47,7 +47,7 @@ const ForgotPassword = () => {
       console.log('times');
       dispatch(setNotification({ success: false, message }));
     }
-  }, [touched]);
+  }, [dispatch, message, touched]);
 
   function testValidation(value) {
     switch (currentStep) {
@@ -113,6 +113,7 @@ const ForgotPassword = () => {
     return () => {
       clearInterval(timer);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep]);
 
   const reSendOtp = () => {
