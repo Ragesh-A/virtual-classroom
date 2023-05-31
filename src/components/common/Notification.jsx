@@ -30,13 +30,13 @@ const Notification = () => {
     <>
       {notification && (
         <div
-          className={`fixed right-8 z-10 w-[250px] border-l-[6px] p-2 h-14 flex items-center rounded-md overflow-hidden px-3 notification ${
+          className={`fixed right-8 z-10 min-w-[250px] border-l-[6px] p-2 h-14 flex items-center rounded-md overflow-hidden px-3 notification ${
             success
               ? 'border-l-primary shadow text-primary bg-white'
               : 'border-l-red-500 bg-red-100 text-red-500 shadow-red-500'
           } ${show ? 'show': show !== undefined ? 'hide' : ''}`}
         >
-          <div className="relative w-full">
+          <div className="relative w-full pr-5">
             {!success ? (
               <i className="fa-solid fa-triangle-exclamation"></i>
             ) : (
@@ -53,12 +53,5 @@ const Notification = () => {
   );
 };
 
-export function useNotification(){
-  return function Test (success = false, message = '' ){
-    const dispatch = useDispatch();
-    dispatch(setNotification({success, message}))
-
-  }
-}
 
 export default Notification;

@@ -1,10 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
-import ErrorMessage from '../common/ErrorMessage';
 import { useEffect, useState } from 'react';
 import FormInput from '../common/FormInput';
 import KeyIcon from '@mui/icons-material/Key';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import SafetyCheckIcon from '@mui/icons-material/SafetyCheck';
 import {
   forgotPasswordInitialValues,
@@ -12,82 +10,82 @@ import {
 } from '../../schema/schema';
 import { useFormik } from 'formik';
 import authServices from '../../services/authService';
+import { useDispatch } from 'react-redux';
+import { setNotification } from '../../utils/store/uiSlice';
+import Button from '../common/Button';
 
-let data = {}
+let data = {};
 
 const ForgotPassword = () => {
-  const [send, setSend] = useState(false);
-  const [btnTitle, setBtnTitle] = useState('Sent');
   const [currentStep, setCurrentStep] = useState(1);
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  let [count, setCount] = useState(30)
-  const navigate = useNavigate()
+  let [count, setCount] = useState(30);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [load, setLoading] = useState(false);
+  const [resend, setResend] = useState(false);
 
-  
   const { errors, values, handleBlur, handleChange, handleSubmit, touched } =
-  useFormik({
-    initialValues: forgotPasswordInitialValues[currentStep],
-    validationSchema: forgotPasswordSchema[currentStep],
-    onSubmit: (values) => {
-      testValidation(values);
-    },
-  });
+    useFormik({
+      initialValues: forgotPasswordInitialValues[currentStep],
+      validationSchema: forgotPasswordSchema[currentStep],
+      onSubmit: async (values) => {
+        setLoading(true);
+        console.log(load);
+        await testValidation(values);
+      },
+    });
 
   let message;
-  if (touched.emailOrPhone && currentStep === 1 && errors.emailOrPhone) {
+  if (currentStep === 1 && touched.emailOrPhone && errors.emailOrPhone) {
     message = errors.emailOrPhone;
-  } else if (touched.otp && currentStep === 2 && errors.otp) {
+  } else if (currentStep === 2 && touched.otp && errors.otp) {
     message = errors.otp;
-  } else if (touched.password && errors.password) {
-    message = errors.password;
-  } else if (touched.confirmPassword && errors.confirmPassword) {
-    message = errors.confirmPassword;
   }
 
+  useEffect(() => {
+    if (message) {
+      console.log('times');
+      dispatch(setNotification({ success: false, message }));
+    }
+  }, [touched]);
 
   function testValidation(value) {
     switch (currentStep) {
       case 1:
-        data.emailOrPhone = value.emailOrPhone
+        data.emailOrPhone = value.emailOrPhone;
         authServices.requestResetOtp(value.emailOrPhone).then((res) => {
-          if (res.error){
-            setError(res.error)
-            setTimeout(() => {
-              setError(false)
-            }, 3000);
-          };
-          if (res.success){
-            setSuccess(res.success)
-            setTimeout(() => {
-              setCurrentStep(2)
-              setSuccess(false)
-            }, 3000);
+          setLoading(false);
+          if (res.error) {
+            dispatch(setNotification({ success: false, message: res.error }));
+          } else if (res.success) {
+            dispatch(setNotification({ success: true, message: res.success }));
+            setCurrentStep(2);
           }
         });
         break;
       case 2:
-            data = {...data, otp: value.otp}   
-        setCurrentStep(3);
+        data = { ...data, otp: value.otp };
+        authServices.verifyOtp(data.emailOrPhone, data.otp).then((res) => {
+          console.log(res);
+          setLoading(false);
+          if (res?.success) {
+            setCurrentStep(3);
+          } else {
+            dispatch(setNotification({ success: false, message: res?.error }));
+          }
+        });
         break;
       case 3:
-        data = {...data, password: value.password}
-        authServices.resetPassword(values).then(res=>{
-          if (res.success){
-            setSuccess(res.success)
-            setTimeout(() => {
-              setCurrentStep(3)
-              navigate('/auth/login')
-              setSuccess(false)
-            }, 3000);
+        data = { ...data, password: value.password };
+        authServices.resetPassword(values).then((res) => {
+          setLoading(false);
+          if (res.success) {
+            dispatch(setNotification({ success: true, message: res.success }));
+            navigate('/auth/login');
+          } else if (res.error) {
+            dispatch(setNotification({ success: false, message: res.error }));
           }
-          if (res.error){
-            setError(res.error)
-            setTimeout(() => {
-              setError(false)
-            }, 3000);
-          };
-        })
+        });
         break;
       default:
         setCurrentStep(1);
@@ -95,40 +93,47 @@ const ForgotPassword = () => {
   }
 
   let timer;
-  const counter = ()=>{
-    let i = 30
-     timer = setInterval(() => {
-     setCount(i--)
+  const counter = () => {
+    timer = setInterval(() => {
+      setCount(count--);
+      if (count <= 0) {
+        setCount(30);
+      }
     }, 1000);
-    setTimeout(()=>{
-      setCount(0)
-      clearInterval(timer)}, 30000)
-  }
-  
+    setTimeout(() => {
+      clearInterval(timer);
+      setResend(true);
+    }, 30020);
+  };
 
-  useEffect(()=>{
-    if(currentStep===2){
-      counter()
+  useEffect(() => {
+    if (currentStep === 2) {
+      counter();
     }
-    return ()=>{
-      clearInterval(timer)
-    }
-  },[currentStep])
+    return () => {
+      clearInterval(timer);
+    };
+  }, [currentStep]);
 
-  const reSendOtp = () =>{
-    counter()
-    authServices.requestResetOtp(data.emailOrPhone).then(res=>{
-      console.log(res)
-    })
-  }
+  const reSendOtp = () => {
+    setResend(false);
+    counter();
+    authServices.requestResetOtp(data?.emailOrPhone).then((res) => {
+      if (res.success) {
+        dispatch(setNotification({ success: true, message: res.success }));
+      } else if (res.error) {
+        dispatch(setNotification({ success: false, message: res.error }));
+      }
+    });
+  };
 
   return (
     <div className="relative z-[1] h-full md:grid grid-cols-2 gap-10">
       <div className="w-full h-full flex flex-col justify-center items-center">
-        <h3 className="font-bold text-[3rem] text-center text-textColor">
+        <h3 className="font-bold text-2xl md:text-[3rem] text-center text-textColor">
           Reset password
         </h3>
-        <p className="text-center text-textColor mb-3">
+        <p className="text-center text-sm md:text-base text-textColor mb-3">
           Reset the password and make it strong
         </p>
 
@@ -143,7 +148,7 @@ const ForgotPassword = () => {
               type="text"
               name="emailOrPhone"
               placeholder="enter phone or email"
-              icon={<PhoneIphoneIcon />}
+              icon={<i className="fa-solid fa-mobile-screen"></i>}
             />
           )}
           {currentStep === 2 && (
@@ -154,6 +159,7 @@ const ForgotPassword = () => {
               label="Otp"
               id="otp"
               name="otp"
+              type="number"
               placeholder="enter the otp"
               icon={<SafetyCheckIcon />}
             />
@@ -184,22 +190,29 @@ const ForgotPassword = () => {
               />
             </>
           )}
-          <ErrorMessage message={message} />
-          {error && <ErrorMessage message={error} />}
-          {success && <p className="text-green-500">{success}</p>}
-          <button
+
+          <Button
             type="submit"
-            className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase"
+            loading={load}
+            className="mt-2 bg-primary hover:bg-indigo-600 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase"
           >
-            {btnTitle}
-          </button>
+            SENT
+          </Button>
         </form>
 
         <div className=" flex justify-between mt-3 w-full max-w-md flex-col sm:flex-row">
-          {currentStep === 1 && <Link to="/auth/signup">I do have an account</Link>}
+          {currentStep === 1 && (
+            <Link to="/auth/signup">I do have an account</Link>
+          )}
           <Link to="/auth/login">yeah i remember</Link>
-          {currentStep ===2 ? count ? "resend otp after " + count : <button onClick={reSendOtp}>Resend Otp</button>: null}
-          </div>
+          {currentStep === 2 ? (
+            !resend ? (
+              'resend otp after ' + count
+            ) : (
+              <button onClick={reSendOtp} className='text-left'>Resend Otp</button>
+            )
+          ) : null}
+        </div>
       </div>
 
       <div className="hidden md:flex flex-col items-center justify-center">

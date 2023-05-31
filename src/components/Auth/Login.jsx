@@ -1,96 +1,94 @@
-import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
-import FormInput from '../common/FormInput'
+import { useFormik } from 'formik';
+import { Link, useNavigate } from 'react-router-dom';
+import FormInput from '../common/FormInput';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import KeyIcon from '@mui/icons-material/Key';
-import { loginSchema } from "../../schema/schema";
-import ErrorMessage from "../common/ErrorMessage";
-import { useState } from "react";
-import authServices from "../../services/authService";
-import { setLocalStorage } from "../../utils/storageHelper";
-import { useDispatch } from "react-redux";
-import { userLogin } from "../../utils/store/userSlice";
-
+import { loginSchema } from '../../schema/schema';
+import { useEffect, useState } from 'react';
+import authServices from '../../services/authService';
+import { setLocalStorage } from '../../utils/storageHelper';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../../utils/store/userSlice';
+import Button from '../common/Button';
+import { setNotification } from '../../utils/store/uiSlice';
 
 const initialValues = { emailOrPhone: '', password: '' };
 
-const Login =()=>{
+const Login = () => {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const [send, setSend] = useState(false);
-  const [login, setLogin] = useState("Login");
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: loginSchema,
+      onSubmit: async (values) => {
+        setLoading(true);
 
-  const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
-    initialValues : initialValues,
-    validationSchema : loginSchema,
-    onSubmit : async (values)=>{
-      if(!send){
-        setSend(true);
-        setLogin('sending..')
-        const res = await authServices.login(values)
-        setSend(false);
-        console.log('send')
-        setLogin('Login')
-        if(res.error){
-          setError(res.error)
-          setTimeout(()=>{
-            setError(false);
-          }, 3000)
+        const res = await authServices.login(values);
+        setLoading(false);
+        if (res.error) {
+          dispatch(setNotification({ success: false, message: res.error }));
         }
-        if(res.success){
-          setLocalStorage('authentication', res?.success?.authentication)
-          logged(res?.success?.user)
-          setSuccess(false);
-          navigate('/')
+        if (res.success) {
+          setLocalStorage('authentication', res?.success?.authentication);
+          navigate('/');
+          dispatch(userLogin(res?.success?.user));
         }
-        
-      }
-    }
-  })
+      },
+    });
 
-  function logged (payload){
-    dispatch(userLogin(payload))
-  }
+    useEffect(()=>{
+      let message = (touched.emailOrPhone && errors.emailOrPhone) ||
+      (touched.password && errors.password)
+      message && dispatch(setNotification({success: false, message}))
+    }, [dispatch, errors, touched]);
 
-  return(
+  return (
     <div className="relative z-[1] h-full md:grid grid-cols-2 gap-10">
       <div className="w-full h-full flex flex-col justify-center items-center">
-        <h3 className="font-bold text-[3rem] text-center text-textColor"> Hello!</h3>
-        <p className="text-center text-textColor mb-3">Sign into your account</p>
-        
-          <form className='flex flex-col w-full max-w-md' onSubmit={handleSubmit}>
+        <h3 className="font-bold text-[3rem] text-center text-textColor">
+          {' '}
+          Hello!
+        </h3>
+        <p className="text-center text-textColor mb-3">
+          Sign into your account
+        </p>
 
-            <FormInput 
-            values={values.emailOrPhone} 
-            onChange={handleChange} 
-            onBlur={handleBlur} 
-            label='Email or Phone' 
-            id='emailOrPhone' 
-            type="text" 
-            name="emailOrPhone" 
-            placeholder="enter phone or email" 
-            icon={<PhoneIphoneIcon/>} 
-            />
-            <FormInput 
-            values={values.password} 
-            onChange={handleChange} 
-            onBlur={handleBlur} 
-            label='Password' 
-            id='password' 
-            type="password" 
-            name="password"  
-            placeholder="enter the password" 
-            icon={<KeyIcon />} 
-            />
-            <ErrorMessage message={(touched.emailOrPhone && errors.emailOrPhone) || (touched.password && errors.password)}/>
-            {error && <ErrorMessage message={error} />}
-            {success && <p className='text-green-500'>{success}</p>}
-           <button type="submit" className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase" > {login} </button>
-          </form>
-        
+        <form className="flex flex-col w-full max-w-md" onSubmit={handleSubmit}>
+          <FormInput
+            values={values.emailOrPhone}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            label="Email or Phone"
+            id="emailOrPhone"
+            type="text"
+            name="emailOrPhone"
+            placeholder="enter phone or email"
+            icon={<PhoneIphoneIcon />}
+          />
+          <FormInput
+            values={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            label="Password"
+            id="password"
+            type="password"
+            name="password"
+            placeholder="enter the password"
+            icon={<KeyIcon />}
+          />
+          <Button
+            type="submit"
+            loading={loading}
+            className="mt-2 btn overflow-hidden bg-primary hover:bg-indigo-600 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase"
+          >
+            LOGIN
+          </Button>
+        </form>
+
         <div className=" flex justify-between mt-3 w-full max-w-md flex-col sm:flex-row">
           <Link to="/auth/signup">I don't have an account</Link>
           <Link to="/auth/forgot-password">forgot password</Link>
@@ -104,7 +102,7 @@ const Login =()=>{
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Login;
