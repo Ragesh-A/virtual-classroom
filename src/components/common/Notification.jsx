@@ -3,6 +3,7 @@ import { setNotification } from "../../utils/store/uiSlice";
 import { useEffect, useState, useRef } from "react";
 
 const Notification = () => {
+
   const { notification } = useSelector((store) => store.ui);
   const dispatch = useDispatch();
   const [show, setShow] = useState(true);
@@ -20,6 +21,7 @@ const Notification = () => {
   const close = () => {
     setShow(false);
     setTimeout(() => {
+      setShow(true);
       dispatch(setNotification(false));
     }, 1000);
   };
@@ -32,7 +34,7 @@ const Notification = () => {
             success
               ? 'border-l-primary shadow text-primary bg-white'
               : 'border-l-red-500 bg-red-100 text-red-500 shadow-red-500'
-          } ${show ? 'show' : show !== undefined ? 'hide' : ''}`}
+          } ${show ? 'show': show !== undefined ? 'hide' : ''}`}
         >
           <div className="relative w-full">
             {!success ? (
@@ -50,5 +52,13 @@ const Notification = () => {
     </>
   );
 };
+
+export function useNotification(){
+  return function Test (success = false, message = '' ){
+    const dispatch = useDispatch();
+    dispatch(setNotification({success, message}))
+
+  }
+}
 
 export default Notification;

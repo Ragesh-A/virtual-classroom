@@ -9,9 +9,6 @@ const authServices = {
       .then((res) => {
         return res.data;
       })
-      .catch((err) => {
-        return err;
-      });
   },
   login: async (userData) => {
     return axios
