@@ -6,6 +6,12 @@ import image from '../../../assets/images/pexels-julia-m-cameron-4144230.jpg'
 import image2 from '../../../assets/images/R.jpg'
 import { BASIC_FEATURES, PREMIUM_FEATURES } from "../../../constant/constant";
 import contactImage from '../../../assets/images/support.png'
+import image3 from '../../../assets/images/analytics-report.png'
+import image4 from '../../../assets/images/chat.png'
+import image5 from '../../../assets/images/exams.png'
+import image6 from '../../../assets/images/notifications.png'
+import image7 from '../../../assets/images/progress.png'
+import image8 from '../../../assets/images/video-conference.png'
 
 const Home = () => {
 const [response, setResponse] = useState(null)
@@ -48,7 +54,7 @@ return(
           <img src={image2} alt="" />
         </div>
         <div className="">
-          <h2 className=" text-5xl mb-9 font-bold">Features</h2>
+          <h2 className=" text-5xl mb-9 font-bold text-textColor">Features</h2>
           <div className="flex gap-2 flex-wrap">
             {
               BASIC_FEATURES.map(feature=>(
@@ -66,7 +72,7 @@ return(
     <Section>
       <div className="min-h-[100vh] m-auto max-w-7xl md:grid md:grid-cols-2 items-center gap-28">
         <div className="">
-          <h2 className=" text-5xl mb-9 font-bold"><i
+          <h2 className=" text-5xl mb-9 font-bold text-textColor"><i
               className="fa-solid fa-fire-flame-curved text-primary mr-5 animate-pulse"></i>Features</h2>
           <div className="flex gap-2 flex-wrap">
             {
@@ -115,11 +121,83 @@ return(
             <button type="button" className="w-full bg-gradient-to-r from-primary to-lightPrimary text-white btn rounded-xl overflow-hidden mt-5">connect</button>
           </form>
         </div>
-        <div class="hidden md:flex">
+        <div className="hidden md:flex">
           <img src={contactImage} alt="" />
         </div>
 
       </div>
+    </Section>
+    <Section>
+      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-[2rem]">
+        
+        <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
+            <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
+            <div className="">
+             <img src={image3} alt="" className="max-w-[20rem] relative"/>
+            </div>
+          <div className="relative">text</div>
+        </div>
+        <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
+            <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
+            <div className="">
+             <img src={image4} alt="" className="max-w-[20rem] relative"/>
+            </div>
+          <div className="relative">text</div>
+        </div>
+        <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
+            <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
+            <div className="">
+             <img src={image5} alt="" className="max-w-[20rem] relative"/>
+            </div>
+          <div className="relative">text</div>
+        </div>
+        <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
+            <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
+            <div className="">
+             <img src={image6} alt="" className="max-w-[20rem] relative"/>
+            </div>
+          <div className="relative">text</div>
+        </div>
+        <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
+            <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
+            <div className="">
+             <img src={image7} alt="" className="max-w-[20rem] relative"/>
+            </div>
+          <div className="relative">text</div>
+        </div>
+        <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
+            <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
+            <div className="">
+             <img src={image8} alt="" className="max-w-[20rem] relative"/>
+            </div>
+          <div className="relative">text</div>
+        </div>
+        
+      </div>
+      <marquee behavior="" direction="left">
+        <div className="flex gap-3">
+        {
+              PREMIUM_FEATURES.map(feature=>(
+                <div className="border-white border-2 bg-white bg-opacity-50 text-textColor  py-3 px-7 rounded-xl text-xl" key={feature.name}>
+                  <i className={`${feature.class} mr-5`}></i>
+                  <span>{feature.name}</span>
+                </div>
+              ))
+            }
+        </div>
+      </marquee>
+      <marquee behavior="" direction="right">
+        <div className="flex gap-3">
+        {
+              PREMIUM_FEATURES.map(feature=>(
+                <div className="border-white border-2 bg-white bg-opacity-50 text-textColor  py-3 px-7 rounded-xl text-xl" key={feature.name}>
+                  <i className={`${feature.class} mr-5`}></i>
+                  <span>{feature.name}</span>
+                </div>
+              ))
+            }
+        </div>
+      </marquee>
     </Section>
   </div>
 </>

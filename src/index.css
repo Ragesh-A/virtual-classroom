@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+  scroll-behavior: smooth;
+}
+
 .nav{
   transition: 1s ease;
 }
@@ -167,4 +171,20 @@ body::-webkit-scrollbar{
 .body{
   background: linear-gradient(145deg, #FBF6FA, #def2ff, #FBF6FA);
   min-height: 100vh;
+}
+.shape{
+  border-radius: 1rem 1rem 1rem 1rem;
+  transform: skewX(-10deg);
+}
+/* Define the initial state of the animated elements */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 2s, transform 0.3s;
+}
+
+/* Define the animation when elements enter the viewport */
+.animate-on-scroll.show {
+  opacity: 1;
+  transform: translateY(0);
 }

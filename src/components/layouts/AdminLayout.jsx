@@ -15,7 +15,7 @@ const AdminLayout = () => {
     <div className="bg-[#fefefe] px-5 min-h-screen flex flex-col">
       <div className='p-4 flex  justify-between items-center'>
       <img src={logo} alt="logo" width='50px' />
-      <i className="fa-solid fa-bars text-xl cursor-pointer" onClick={()=>handleToggle()}></i>
+      <i className="fa-solid fa-bars text-xl cursor-pointer" onClick={()=>handleToggle('doctor')} ></i>
       </div>
       <div className="bg-[#F4F7FE] inner-shadow rounded-md p-3 h-[90vh] overflow-y-scroll relative">
         <div className={`box sidebar rounded overflow-hidden p-2 fixed h-[87vh] ${toggle ? 'active' : ''}`}>
