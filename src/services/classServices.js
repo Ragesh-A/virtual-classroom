@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_URL } from '../constant/constant';
 
-const classServices = {
+const ClassServices = {
   getAllClasses: async () => {
     try {
       const token = localStorage.getItem('authentication');
@@ -16,9 +16,6 @@ const classServices = {
             return res?.data?.success;
           }
           return [];
-        })
-        .catch((err) => {
-          console.log(err.message);
         });
     } catch (error) {
       
@@ -60,4 +57,4 @@ const classServices = {
   },
 };
 
-export default classServices;
+export default ClassServices;

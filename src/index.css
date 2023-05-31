@@ -188,3 +188,33 @@ body::-webkit-scrollbar{
   opacity: 1;
   transform: translateY(0);
 }
+.notification{
+  opacity: 0;
+}
+.notification.show{
+  opacity: 1;
+  animation: slide_notification_open 1s ease;
+}
+.notification.hide{
+  opacity: 1;
+  animation: slide_notification_close 1s ease;
+}
+@keyframes slide_notification_open {
+  0%{
+    transform: translateX(100%);
+  }
+  40%{
+    transform: translateX(-10%);
+  }
+  80%{
+    transform: translateX(0%);
+  }
+}
+@keyframes slide_notification_close {
+  0%{
+    transform: translateX(-10%);
+  }
+  100%{
+    transform: translateX(150%);
+  }
+}

@@ -5,6 +5,7 @@ import ClassCards from './ClassCards';
 import classServices from '../../../services/classServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeClasses } from '../../../utils/store/classesSlice';
+import { setNotification } from '../../../utils/store/uiSlice';
 
 const AllClasses = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -14,12 +15,13 @@ const AllClasses = () => {
   useEffect(() => {
     if (!storeClass.classes) {
       classServices.getAllClasses().then((res) => {
-        console.log(res);
         if (res?.classes) {
           setClasses(res?.classes);
           dispatch(storeClasses(res.classes));
           setIsLoaded(true);
         }
+      }).catch(err=> {
+        dispatch(setNotification({success: false, message: err.message}))
       });
     } else {
       setClasses(storeClass.classes);
