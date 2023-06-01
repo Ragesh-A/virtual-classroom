@@ -20,9 +20,9 @@ const Notification = () => {
 
   const close = () => {
     setShow(false);
-    setTimeout(() => {
+    setTimeout(async() => {
+      await dispatch(setNotification(false));
       setShow(true);
-      dispatch(setNotification(false));
     }, 1000);
   };
 
