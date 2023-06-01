@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { getLocalStorage } from '../utils/storageHelper';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import Shimmer from './common/Shimmer';
 
 const PrivateRoute = ({ children }) => {
@@ -12,22 +12,18 @@ const PrivateRoute = ({ children }) => {
     getLocalStorage('authentication').then((token) => {
       if (!token) {
         setToken(false);
-        navigate('/auth/login')
+        navigate('/home');
       } else {
         setToken(true);
-        axios.defaults.headers.common['Authorization'] = token;
       }
     });
-  }, []);
-  if (token === null) {
+  }, [navigate]);
+  if (!token) {
     return <Shimmer />;
   }
-  if (token === false) {
-    navigate('/auth/login');
-  }else if (token) {
-    axios.defaults.headers.common['Authorization'] = token;
-    return children;
-  }
+
+  axios.defaults.headers.common['Authorization'] = token;
+  return children;
 };
 
 export default PrivateRoute;
