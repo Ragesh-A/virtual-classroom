@@ -33,6 +33,7 @@ const Login = () => {
           dispatch(setNotification({ success: false, message: res.error }));
         }
         if (res.success) {
+          dispatch(setNotification({ success: true, message: 'login success' }));
           setLocalStorage('authentication', res?.success?.authentication);
           navigate('/');
           dispatch(userLogin(res?.success?.user));
