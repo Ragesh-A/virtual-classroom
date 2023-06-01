@@ -38,6 +38,13 @@ const authServices = {
 
   verifyOtp: async (emailOrPhone, otp) => {
     return handleRequest(()=> axios.post(BASE_URL + '/auth/verify-otp', { emailOrPhone, otp }))
+  },
+  getMe: async (_id) => {
+    return handleRequest(()=>{
+      const token = localStorage.getItem('authentication');
+      axios.defaults.headers.common['Authorization'] = token;
+      return axios.get(BASE_URL + '/auth/find-me')
+    })
   }
 };
 

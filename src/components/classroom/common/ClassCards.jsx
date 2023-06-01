@@ -3,7 +3,7 @@ import defaultUser from '../../../assets/images/defaultUserProfile.png';
 import defaultBg from '../../../assets/images/bg.webp'
 import { IMAGE_PATH } from '../../../constant/constant';
 
-const ClassCard = ({ to, classes = [] }) => {
+const ClassCard = ({ classes = [] }) => {
   return (
     <>
       {classes.length === 0 ?
