@@ -6,9 +6,7 @@ const ClassServices = {
     try {
       const token = localStorage.getItem('authentication');
       axios.defaults.headers.common['Authorization'] = token;
-      return axios
-        .get(BASE_URL + '/classes')
-        .then((res) => {
+      return axios.get(BASE_URL + '/classes').then((res) => {
           if (res.data.token === false) {
             localStorage.clear();
           }
@@ -23,10 +21,11 @@ const ClassServices = {
   },
   
   createClass: async (values)=>{
-    console.log(values.name)
       const token = localStorage.getItem('authentication');
       axios.defaults.headers.common['Authorization'] = token;
-      return axios.post(BASE_URL + '/classes',values)
+      return axios.post(BASE_URL + '/classes',values,{
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
       .then(res=>{
         return res?.data
       }).catch(err=>err)

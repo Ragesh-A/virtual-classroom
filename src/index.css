@@ -91,14 +91,15 @@ body::-webkit-scrollbar{
 }
 .class-card::before{
   position: absolute;
-  content: '';
+  content: attr(data-image);
+  color: red;
   width: 120%;
   left: -10px;
   top: -2rem;
   height: 70%;
   z-index: -1;
   transform: rotate(10deg);
-  background-color: #bbc4ff;
+  background: rgb(190, 189, 189);
 }
 .scroll-none::-webkit-scrollbar{
   display: none;
@@ -216,5 +217,28 @@ body::-webkit-scrollbar{
   }
   100%{
     transform: translateX(150%);
+  }
+}
+.shim{
+  position: relative;
+  overflow: hidden;
+}
+.shim::after{
+  position: absolute;
+  content: '';
+  width: 100px;
+  top: -5px;
+  height: 150%;
+  background: linear-gradient(to right, transparent, white, transparent);
+  transform: rotate(10deg);
+  animation: shim 1.75s ease-in-out infinite;
+}
+
+@keyframes shim {
+  0%{
+    left: -200px;
+  }
+  100%{
+    left: 120%
   }
 }
