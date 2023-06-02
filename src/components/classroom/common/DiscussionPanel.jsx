@@ -9,7 +9,7 @@ const DiscussionPanel = () => {
   const { classId } = useParams();
   useEffect(()=>{
     classServices.getClass(classId)
-  })
+  }, [])
   
   return(
     <Section className="relative" >

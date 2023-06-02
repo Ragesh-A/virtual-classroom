@@ -8,19 +8,26 @@ const setAxiosToken = () => {
 }
 
 const adminServices = {
+  makeRequest: async (url, method, data) => {
+   try {
+    setAxiosToken()
+    const response = await axios({ url, method, data})
+    return response.data;
+   } catch (error) {
+    console.log("%c server " + error.message, "color: green; font-weight:bold;");
+   }
+  },
   findAllUser: async () => {
-    setAxiosToken();
-    return axios.get(BASE_URL + '/admin/users').then(res=>{
-      return res.data
-    }).catch(err=> {
-      console.log(err);
-    })
+    return adminServices.makeRequest(BASE_URL + '/admin/users', 'GET')
   },
   blockOrUnblock: async (userId) => {
-    setAxiosToken();
-    return axios.patch(BASE_URL + '/admin/users', {userId}).then(res=>{
-      return res.data;
-    })
+    return adminServices.makeRequest(BASE_URL + '/admin/users', "PATCH", { userId })
+  },
+  findAllClasses: async () => {
+    return adminServices.makeRequest(BASE_URL + '/admin/classes', "GET")
+  },
+  blockAndUnblockClass: async (classId) => {
+    return adminServices.makeRequest(BASE_URL + '/admin/classes', "PATCH", { classId })
   }
 };
 

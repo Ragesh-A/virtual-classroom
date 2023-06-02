@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import adminServices from "../../services/admin.service";
 import { useDispatch, useSelector } from "react-redux";
 import { blockAndUnblock, setUser } from "../../utils/store/adminSlice";
@@ -6,7 +6,6 @@ import { blockAndUnblock, setUser } from "../../utils/store/adminSlice";
 const UserManagement = () => {
 
   const {users} = useSelector(store=>store.admin)
-  console.log(users)
   const dispatch = useDispatch()
   const handleBlock = (id) =>{
     dispatch(blockAndUnblock(id))
@@ -19,7 +18,7 @@ const UserManagement = () => {
         dispatch(setUser(res?.success?.users))
       })
     }
-  },[])
+  },[dispatch, users])
 
   return (
     <div className="box p-5">

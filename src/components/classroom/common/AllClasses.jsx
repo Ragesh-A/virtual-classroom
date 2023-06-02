@@ -29,7 +29,7 @@ const AllClasses = () => {
     <>
       <Section>
           <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          { !isLoaded ? Array(3).fill().map(()=><div data-image='red' className="shim overflow-hidden shadow max-w-[500px] h-[250px] relative">
+          { !isLoaded ? Array(3).fill().map((e,index)=><div data-image='red' className="shim overflow-hidden shadow max-w-[500px] h-[250px] relative" key={index}>
             <div className='flex h-3/5 bg-gray-200'>
               
             </div>

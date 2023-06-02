@@ -15,18 +15,27 @@ const adminSlice = createSlice({
     },
     blockAndUnblock: (state, action)=>{
       const id = action.payload
-      console.log(action.payload, 'id')
       state.users = state.users.map(user=>{
         if (user._id === id){
           user.isBlocked = (user.isBlocked ? false : true); 
         }
         return user;
       })
-      console.log(state.users, "store")
     },
+    setClasses: (state, action) => {
+      state.classes = action.payload;
+    },
+    blockAndUnblockClass: (state, action) => {
+      state.classes = state.classes.map(single => {
+        if (single._id === action.payload){
+          single.isBlocked = !single.isBlocked
+        }
+        return single;
+      })
+    }
   }
 })
 
-export const { setUser, blockAndUnblock } = adminSlice.actions;
+export const { setUser, blockAndUnblock, setClasses, blockAndUnblockClass } = adminSlice.actions;
 
 export default  adminSlice.reducer;
