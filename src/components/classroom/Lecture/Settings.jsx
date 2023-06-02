@@ -61,14 +61,15 @@ const Settings = () => {
     <div className="">
       {succ&& <span className="text-green-500">{succ}</span>}
       <form onSubmit={handleSubmit} className="flex flex-col bg-tileColor max-w-md p-3 rounded ">
+      <label className="font-bold text-slate-600 mb-1">Background {err&&<span className="text-red-500 text-sm font-mono">{err}</span>}</label>
       <img src={ currentClass?.class?.image ? IMAGE_PATH + `/classroom/${image}` : image ? image : defaultImage} alt='class background' className="max-h-[8rem]"/>
       
-      <label htmlFor="name" className="font-bold text-slate-600 mb-1">name {err&&<span className="text-red-500">{err}</span>}</label>
+      <label htmlFor="name" className="font-bold text-slate-600 mb-1">name</label>
       <input type="text" name="name" id="name" defaultValue={currentClass?.class?.name} ref={name} className="p-1 rounded shadow shadow-shadow border border-blue-400 mb-3"/>
       <label htmlFor="description" className="font-bold text-slate-600 mb-1">description</label>
       <input type="text" name="description" id="description" defaultValue={currentClass?.class?.description} ref={description} className="p-1 rounded shadow shadow-shadow border border-blue-400 mb-3"/>
       <input name="image" id="image" type="file" accept="image/*" className="bg-gray-200 border-gray-300 outline-primary w-full py-1 focus:bg-blue-50 file:bg-violet-50 file:text-primary file:border-0 file:rounded file:px-3 file:py-2 file:font-bold  bg-transparent border-0" onChange={handleImage} ref={bgImage}/>
-      <Button type="submit" loading={loading} className=''>update</Button>
+      <Button type="submit" loading={loading} className='bg-primary hover:bg-indigo-700 text-white px-2 py-2 rounded w-full'>update</Button>
       </form>
     </div>
     </>

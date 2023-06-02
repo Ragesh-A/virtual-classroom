@@ -32,7 +32,7 @@ const ClassroomLayout = () => {
   }, [])
   return (
     <>
-      <Header page="classroom" isLecture/>
+      <Header page="classroom" isLecture={isLecture}/>
       <StudentListSlider />
       <Outlet />
     </>
