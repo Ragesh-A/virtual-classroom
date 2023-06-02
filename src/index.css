@@ -80,15 +80,7 @@ body::-webkit-scrollbar{
   display: grid;
   grid-template-rows: 1.5fr 1fr;
 }
-@media (max-width: 768px) {
-  .class-grid{
-    grid-template-rows: 1fr 1fr;
-    background-color: red;
-  }
-  body{
-    margin-bottom: 5rem;
-  }
-}
+
 .class-card::before{
   position: absolute;
   content: attr(data-image);
@@ -240,5 +232,26 @@ body::-webkit-scrollbar{
   }
   100%{
     left: 120%
+  }
+}
+
+@media (max-width: 768px) {
+  .class-grid{
+    grid-template-rows: 1fr 1fr;
+    background-color: red;
+  }
+  body{
+    margin-bottom: 5rem;
+  }
+  .sidebar.active ~ .main-content{
+    width: 100%;
+    margin-left: 0px;
+  }
+  .sidebar ~ .main-content{
+    width: 100%;
+    margin-left: 0px;
+  }
+  table{
+    font-size: 12px;
   }
 }

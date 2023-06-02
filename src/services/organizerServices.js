@@ -8,6 +8,16 @@ const setAxiosToken = () => {
 }
 
 const organizerServices = {
+  makeRequest: async (url, method, data) => {
+    try {
+      setAxiosToken();
+      const res = await axios({url, method, data})
+      return res.data;
+    } catch (error) {
+      console.log("%c server " + error.message, "color: green; font-weight:bold;");
+    }
+  }
+  ,
   allClasses: async () => {
     setAxiosToken();
     return axios.get(BASE_URL + '/organizer/classes').then(res=>{
@@ -49,7 +59,8 @@ const organizerServices = {
     }).catch(err=>{
       console.log(err)
     })
-  }
+  },
+  removeFromWaitingList: async (emailOrPhone) => organizerServices.makeRequest(BASE_URL + '/organizer/waiting', 'PATCH', { user: emailOrPhone })
 };
 
 export default organizerServices;

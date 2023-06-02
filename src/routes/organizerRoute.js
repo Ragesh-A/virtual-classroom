@@ -8,7 +8,7 @@ const organizerRoute = {
   element: <OrganizerLayout />,
   children: [
     {
-      path: '',
+      path: 'classes',
       element: <ClassManagement />
     },
     {

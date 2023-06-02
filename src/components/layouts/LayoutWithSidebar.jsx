@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const LayoutWithSidebar = () => {
   const {classId} = useParams()
-  const [tab, setTab] = useState('students')
   const [toggle, setToggle] = useState(true)
 
   return (
