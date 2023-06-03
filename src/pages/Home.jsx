@@ -1,29 +1,48 @@
 import { useState } from "react";
-import subscriptionServices from "../../../services/subscriptionService";
-import Header from '../../classroom/header/Header'
-import Section from '../../layouts/Section'
-import image from '../../../assets/images/pexels-julia-m-cameron-4144230.jpg'
-import image2 from '../../../assets/images/R.jpg'
-import { BASIC_FEATURES, PREMIUM_FEATURES } from "../../../constant/constant";
-import contactImage from '../../../assets/images/support.png'
-import image3 from '../../../assets/images/analytics-report.png'
-import image4 from '../../../assets/images/chat.png'
-import image5 from '../../../assets/images/exams.png'
-import image6 from '../../../assets/images/notifications.png'
-import image7 from '../../../assets/images/progress.png'
-import image8 from '../../../assets/images/video-conference.png'
+import Header from '../components/classroom/header/Header'
+import Section from '../components/layouts/Section'
+import image from '../assets/images/pexels-julia-m-cameron-4144230.jpg'
+import image2 from '../assets/images/R.jpg'
+import { BASIC_FEATURES, PREMIUM_FEATURES } from "../constant/constant";
+import contactImage from '../assets/images/support.png'
+import image3 from '../assets/images/analytics-report.png'
+import image4 from '../assets/images/chat.png'
+import image5 from '../assets/images/exams.png'
+import image6 from '../assets/images/notifications.png'
+import image7 from '../assets/images/progress.png'
+import image8 from '../assets/images/video-conference.png'
+import { decodeUser } from "../utils/storageHelper";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Notification from "../components/common/Notification";
+import Subscription from "./Subscription";
 
 const Home = () => {
-const [response, setResponse] = useState(null)
-const subscriptionHandle = () => {
-subscriptionServices.purchaseSubscription().then(res=>{
-console.log(res)
-})
-}
+  const [plan, setPlan] = useState()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const subscriptionHandle = (subs) => {
+    const user = decodeUser()
+    if (user?._id){
+      console.log('called');
+      // subscriptionServices.purchaseSubscription(subs).then(res=>{
+      // console.log(res)
+      // })
+    }else{
+      navigate('/auth/login')
+    }
+  }
+
+  const clickHandle = (plan) => {
+    setPlan(plan);
+
+  }
+
 
 return(
 <>
   <div className="body">
+        <Notification/>
     <div className="main min-h-screen">
       <Header page='home' />
       <Section className="flex flex-col-reverse md:flex-row min-h-screen md:min-h-[70vh] relative  items-center">
@@ -85,11 +104,12 @@ return(
             }
           </div>
           <div className="pt-5 flex gap-10">
-            <button className="btn overflow-hidden rounded bg-gradient-to-r from-slate-500 to-black text-white text-lg w-1/2 flex justify-between">
+            <button className="btn overflow-hidden rounded bg-gradient-to-r from-slate-500 to-black text-white text-lg w-1/2 flex justify-between" onClick={()=>clickHandle('monthly')}>
               <span className="text-2xl font-bold">₹10</span>
               <span>1 month</span>
             </button>
-          <button className="btn overflow-hidden rounded bg-gradient-to-r from-indigo-400 to-indigo-700 text-white text-lg w-1/2 flex justify-between">
+            
+          <button className="btn overflow-hidden rounded bg-gradient-to-r from-indigo-400 to-indigo-700 text-white text-lg w-1/2 flex justify-between" onClick={()=>clickHandle('yearly')}>
             <span className="text-2xl font-bold">₹100</span>
             <span>12 month</span>
           </button>
@@ -102,9 +122,11 @@ return(
 
     </Section>
 
+    {plan && <Subscription plan={plan} />}
+
     <Section>
       <div className="md:grid md:grid-cols-2 gap-6">
-        <div class="border-2 border-white p-9 rounded-xl max-w-xl">
+        <div className="border-2 border-white p-9 rounded-xl max-w-xl">
           <h3 className="text-center text-primary font-bold text-2xl my-5">Contact</h3>
           <form>
             <div className="border-b-4 border-b-primary rounded-md flex px-5 py-2 gap-5 items-center mb-5">
@@ -127,6 +149,8 @@ return(
 
       </div>
     </Section>
+    
+
     <Section>
       <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-[2rem]">
         

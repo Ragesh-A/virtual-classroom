@@ -22,7 +22,11 @@ export const getToken = () => {
 }
 
 export const decodeUser = () =>{
-  const token = getToken()
-  const user = jwtDecode(token)
-  return user;
+  try {
+    const token = getToken()
+    const user = jwtDecode(token)
+    return user;
+  } catch (error) {
+    return false
+  }
 }

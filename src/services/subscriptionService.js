@@ -8,13 +8,24 @@ const setAxiosToken = () => {
 }
 
 const subscriptionServices = {
+  makeRequest: async (url, method='GET', data='') => {
+    setAxiosToken()
+    const response = await axios({url, method, data})
+    return response.data;
+  },
   purchaseSubscription: async () => {
     setAxiosToken()
     return axios.post( BASE_URL + '/subscription').then(res=>{
       return res.data;
-    }).catch(err=>{
+    }).catch((err) => {
       console.log(err)
     })
+  },
+  createIndent: async (plan) => {
+    return subscriptionServices.makeRequest(BASE_URL + `/subscription?plan=${plan}`, 'GET')
+  },
+  createSubscription: async (plan,token) => {
+   return subscriptionServices.makeRequest(BASE_URL+'/subscription', "POST", {plan, token})
   }
 };
 

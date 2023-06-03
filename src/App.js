@@ -3,7 +3,7 @@ import authRoute from './routes/authRoutes';
 import { allClassRoute, classRoute } from './routes/classRoute';
 import adminRoute from './routes/adminRoute';
 import organizerRoute from './routes/organizerRoute';
-import Home from './components/common/home/Home';
+import Home from './pages/Home';
 import verifyRoute from './routes/verification.routes';
 import meetUp from './routes/communication.routes';
 
