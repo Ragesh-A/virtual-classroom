@@ -4,6 +4,7 @@ import organizerServices from "../../services/organizerServices";
 import { setClasses } from "../../utils/store/organizerSlice";
 import Shimmer from '../common/Shimmer'
 import SingleClassManagement from "./SingleClassManagement";
+import { setNotification } from "../../utils/store/uiSlice";
 
 
 const ClassManagement = () => {
@@ -11,25 +12,23 @@ const ClassManagement = () => {
   const [fade, setFade ] = useState();
   const [slider, setSlider] = useState(false);
   const [selectedClass, setSelectedClass] = useState(false);
-  setTimeout(()=>{
-    setFade(true)
-  }, 10)
-
   const { classes } = useSelector(store=>store.organizer)
   const dispatch = useDispatch();
+
+  setTimeout(()=>{ setFade(true)}, 10)
 
   useEffect(()=>{
     if(!classes){
       organizerServices.allClasses().then(res=>{
-        dispatch(setClasses(res?.success?.classes))
-        console.log(res.success);
+        if (res?.success) dispatch(setClasses(res?.success?.classes))
+        if (res?.error) dispatch(setNotification({ success: false, message: res.error})) 
     })
     }
   }, [])
+
   const handleSection = (classId) =>{
     setSlider(true)
     setSelectedClass(classId)
-    console.log(classId)
   }
 
   if(!classes){

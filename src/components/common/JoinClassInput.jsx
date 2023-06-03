@@ -1,13 +1,25 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import classServices from '../../services/classServices';
+import { useDispatch } from 'react-redux';
+import { setNotification } from '../../utils/store/uiSlice';
+import Button from './Button';
 
-const JoinClassInput = () => {
+const JoinClassInput = ({setVisible}) => {
   const inp = useRef();
+  const dispatch = useDispatch()
+  const [isLoading, setIsLoading] = useState(false)
   function formHandle(e) {
-    console.log();
     const value = inp.current.value.trim();
     if (value) {
-      classServices.joinClass(value);
+      classServices.joinClass(value).then(res=>{
+        setIsLoading(false)
+        setVisible(false)
+        if(res.success){
+          dispatch(setNotification({success: true, message: res.success.message}));
+        }else{
+          dispatch(setNotification({success: false, message: res.error}))
+        }
+      })
     }
   }
   return (
@@ -20,12 +32,7 @@ const JoinClassInput = () => {
           ref={inp}
         />
       </div>
-      <button
-        onClick={formHandle}
-        className="btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase w-full mt-9"
-      >
-        Join
-      </button>
+      <Button loading={isLoading} type='button' className="btn overflow-hidden bg-primary hover:bg-indigo-600 px-2 py-3 rounded text-white font-bold text-center shadow-sm shadow-shadow uppercase w-full mt-9" onClick={formHandle}>Join</Button>
     </>
   );
 };

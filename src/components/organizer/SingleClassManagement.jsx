@@ -4,6 +4,7 @@ import organizerServices from "../../services/organizerServices";
 import { setSelectedClass } from "../../utils/store/organizerSlice";
 import Shimmer from "../common/Shimmer";
 import classServices from "../../services/classServices";
+import { setNotification } from "../../utils/store/uiSlice";
 
 const SingleClassManagement = ({classid, setState}) => {
   const [active, setActive] = useState(false)
@@ -14,13 +15,17 @@ const SingleClassManagement = ({classid, setState}) => {
   const description = useRef()
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false)
-  const [err, setErr] = useState()
-  const [succ, setSucc] = useState()
 
   useEffect(()=>{
     if(!selectedClass || selectedClass?.class?._id !== classid){
       organizerServices.singleClass(classid).then(res=>{
-        dispatch(setSelectedClass(res?.success?.class))
+        if (res?.success){
+          dispatch(setSelectedClass(res?.success?.class))
+        }
+        else{
+          dispatch(setNotification({ success: false, message: res.error}))
+          setState(false)
+        }
       })
       organizerServices.getInstructors().then(res=>{
         setInstructors(res?.success?.instructors)
@@ -48,27 +53,24 @@ const SingleClassManagement = ({classid, setState}) => {
 
   const updateClass = (e) => {
     e.preventDefault();
-    console.log(op.current.value)
-    console.log(name.current.value)
     setEditMode(false)
     const nameValue = name.current.value.trim()
     const descriptionValue = description.current.value.trim()
     const opValue = op.current.value;
     if (nameValue === ''){
-      setErr('class name is required')
+      dispatch(setNotification({ success: false, message: 'class name is required' }))
     }
     if (descriptionValue === ''){
-      setErr('description is required')
+      dispatch(setNotification({ success: false, message: 'description is required' }))
     }
-    setTimeout(()=>{setErr(false)}, 2000)
+
     classServices.updateClass(classid, nameValue, descriptionValue, opValue).then(res=>{
       if (res.success){
-        setSucc('updated');
+        dispatch(setNotification({ success: false, message: 'class is updated' }))
       }
       if (res.error){
-        setErr(res.error);
+        dispatch(setNotification({ success: false, message: res.error }))
       }
-      setTimeout(()=>{setErr(false);setSucc(false)}, 2000)
     })
   } 
   
@@ -76,11 +78,11 @@ const SingleClassManagement = ({classid, setState}) => {
     <>
       <div className={`absolute h-[90vh] w-[calc(100%-250px)]  slider top-0 right-60 pt-28 rounded ${active ? 'active': ''}`}>
         <div className={`box relative overflow-y-scroll p-5 h-full`}>
-          {selectedClass?.class?._id !== classid ? <Shimmer /> :
-          <form onSubmit={updateClass}>
           <div className="flex justify-end ">
           <i className="fa-solid fa-xmark hover:animate-spin cursor-pointer text-2xl" onClick={handleSlider}></i>
           </div>
+          {selectedClass?.class?._id !== classid ? <Shimmer /> :
+          <form onSubmit={updateClass}>
           <div className="flex justify-between">
             <div className="flex gap-3 items-center">
             <label htmlFor="">Class Name</label>

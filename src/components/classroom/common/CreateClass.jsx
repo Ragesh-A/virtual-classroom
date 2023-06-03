@@ -67,7 +67,7 @@ const CreateClass = ({ visible, setVisible }) => {
                 </li>
               </ul>
               {isJoin ? (
-                <JoinClassInput />
+                <JoinClassInput setVisible={setVisible} />
               ) : (
                 <Form onSubmit={formik.handleSubmit} className="flex flex-col" e>
                   <CreateClassInput
