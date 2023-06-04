@@ -24,9 +24,10 @@ const subscriptionServices = {
   createIndent: async (plan) => {
     return subscriptionServices.makeRequest(BASE_URL + `/subscription?plan=${plan}`, 'GET')
   },
-  createSubscription: async (plan,token) => {
-   return subscriptionServices.makeRequest(BASE_URL+'/subscription', "POST", {plan, token})
-  }
+  createSubscription: async (data) => {
+   return subscriptionServices.makeRequest(BASE_URL+'/subscription', "POST", data)
+  },
+
 };
 
 export default subscriptionServices;

@@ -29,8 +29,11 @@ const CreateClass = ({ visible, setVisible }) => {
       dispatch(addClass(res.success));
       dispatch(setNotification({success: true, message: 'class created '}))
       setVisible(false)
+    }else{
+      dispatch(setNotification({success: false, message: res.error}))
+      
     }
-
+    
   }
 
   return (

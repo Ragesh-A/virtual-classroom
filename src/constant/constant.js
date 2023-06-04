@@ -17,7 +17,9 @@ export const PREMIUM_FEATURES = [
   {class: 'fa-solid fa-bell', name: 'Notifications'},
 ]
 
-export const IMAGE_PATH = 'http://localhost:8000/images/'
+export const IP = 'http://localhost:3000';
+
+export const IMAGE_PATH = 'http://localhost:8000/images/';
 
 export const fakeData = [{"id":1,"username":"Sibyl","email":"sbidewell0@arstechnica.com","status":false},
 {"id":2,"username":"Kip","email":"kdegogay1@furl.net","status":false},

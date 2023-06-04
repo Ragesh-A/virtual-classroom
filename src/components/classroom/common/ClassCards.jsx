@@ -12,10 +12,10 @@ return (
   </div>
   ) : (
   classes.map((singleClass) => (
-  <div key={singleClass._id}>
+  <div key={singleClass._id} className='h-72 '>
     {singleClass.isBlocked ? (
     <div
-      className="overflow-hidden shadow shadow-shadow shim h-72 relative hover:before:absolute hover:before:rotate-[-45deg] hover:before:px-[2rem] hover:before:py-[3px] hover:before:font-bold hover:before:text-white hover:before:shim hover:before:left-[-2rem] hover:before:top-[1rem] hover:before:bg-red-500 hover:before:z-[2] hover:before:content-['BLOCKED']">
+      className="overflow-hidden shadow shadow-shadow shim relative hover:before:absolute hover:before:rotate-[-45deg] hover:before:px-[2rem] hover:before:py-[3px] hover:before:font-bold hover:before:text-white hover:before:shim hover:before:left-[-2rem] hover:before:top-[1rem] hover:before:bg-red-500 hover:before:z-[2] hover:before:content-['BLOCKED']">
       <div className="flex h-3/5">
         <img src={ (singleClass.image && `${IMAGE_PATH}/classroom/${singleClass.image}`) || defaultBg } alt="background"
           className="w-full -full" />

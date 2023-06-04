@@ -6,27 +6,13 @@ import { setNotification } from '../utils/store/uiSlice';
 import { useNavigate } from 'react-router-dom';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import {
-  PaymentElement,
-  LinkAuthenticationElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
 import CheckoutForm from './CheckoutForm';
-
-const stripePromise = loadStripe("pk_test_51Mec4xSEQtOBXDH3MhJ48dvIEHZLl735i0wcJeZVCdQdFYcsArHzy7Zjlpg8s797dh4ccoFGOea0JMDKET8CWnDK00JbbXZdPJ");
-
 
 const Subscription = ({plan}) => {
   const [clientSecret, setClientSecret] = useState()
+  const [stripePromise, setStripePromise] = useState()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const user = decodeUser();
@@ -35,6 +21,7 @@ const Subscription = ({plan}) => {
         .createIndent(plan)
         .then((res) => {
           if (res?.success) {
+            setStripePromise(loadStripe(res.success.publicKey))
             setClientSecret(res.success.clientSecret);
           } else {
             dispatch(setNotification({ success: false, message: res.error }));
@@ -48,6 +35,8 @@ const Subscription = ({plan}) => {
     }
   }, []);
 
+  console.log('times');
+
   const appearance = {
     theme: 'stripe',
   };
@@ -59,10 +48,12 @@ const Subscription = ({plan}) => {
   return(
     <>
     {
-      clientSecret && (
+      clientSecret && stripePromise ?  <>
+      {console.log(clientSecret, 'key')}
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>)
+         <CheckoutForm clientSecret={clientSecret} plan={plan}/>
+        </Elements>
+        </> : null
     }
 
     </>

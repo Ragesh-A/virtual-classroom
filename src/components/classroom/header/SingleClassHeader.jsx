@@ -11,6 +11,7 @@ const SingleClassHeaderComponent = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const user = decodeUser();
+    console.log(user._id, currentClass?.class?.instructor?._id);
     if (user._id === currentClass?.class?.instructor?._id) {
       setIsLecture(true);
     }
