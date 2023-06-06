@@ -9,7 +9,7 @@ const Avatar = ({name=null, image=null}) => {
   return (
     <div className={`${color[num]} border-2 border-white w-10 h-10 rounded-full flex justify-center items-center overflow-hidden`}>
       {image ? <img src={img} alt="avatar" /> : (
-        <p>{name&&name[0]}</p>
+        <p className='uppercase'>{name&&name[0]}</p>
       )}
       <div className="online-dot"></div>
     </div>

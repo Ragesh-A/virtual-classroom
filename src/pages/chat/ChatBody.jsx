@@ -27,7 +27,7 @@ const ChatBody = ({ chat, currentUserId, friend }) => {
         
         </>
       )}
-      <SendBottomBar />
+      {friend && <SendBottomBar />}
     </div>
   )
 };
