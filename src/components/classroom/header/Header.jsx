@@ -31,7 +31,7 @@ const Header = ({ page, isLecture = false }) => {
           <img src={logo} alt="logo" />
         </Link>
       </div>
-      <div className="flex fixed bottom-0 left-0 w-full z-50 bg-gradient-to-r from-lightPrimary to-primary items-center justify-between overflow-hidden md:relative md:rounded-s-[2rem] ps-8 md:w-[70vw] max-w-[50rem]">
+      <div className="flex fixed bottom-0 left-0 w-full z-50 bg-gradient-to-r from-lightPrimary to-primary items-center justify-between overflow-hidden md:relative md:rounded-s-[2rem] ps-8 md:w-[70vw] max-w-[55rem]">
         {element}
         <div className="flex items-center my-2">
         {logged? page !== 'home' ? <Link className="text-primary font-bold bg-white p-3 px-6 ps-8 rounded-s-[2rem] uppercase" to='/profile'>

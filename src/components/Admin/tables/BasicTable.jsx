@@ -1,8 +1,8 @@
 import { useTable } from "react-table";
-import { fakeData } from "../../../constant/constant";
 import { userColumn } from './userTableColumn'
 import { useMemo } from "react";
 
+const fakeData = [];
 
 const BasicTable = () => {
 

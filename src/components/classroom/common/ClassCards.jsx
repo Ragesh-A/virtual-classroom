@@ -6,11 +6,7 @@ import { IMAGE_PATH } from '../../../constant/constant';
 const ClassCard = ({ classes = [] }) => {
 return (
 <>
-  {classes.length === 0 ? (
-  <div className="h-1/2 grid place-items-center w-full bg-red-500">
-    didn't join any class yet create now
-  </div>
-  ) : (
+  {(
   classes.map((singleClass) => (
   <div key={singleClass._id} className='h-72 '>
     {singleClass.isBlocked ? (

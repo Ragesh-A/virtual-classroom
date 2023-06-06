@@ -28,7 +28,7 @@ const AllClasses = () => {
   return (
     <>
       <Section>
-        {/* {storeClass?.classes.length === 0 && <div className="h-[50vh] grid place-items-center text-center">Didn't Join any class?<br /> create new One </div>} */}
+        {storeClass?.classes?.length === 0 && <div className="h-[50vh] grid place-items-center text-center">Didn't Join any class?<br /> create new One </div>}
         <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {!isLoaded ? (
             Array(3)

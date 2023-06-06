@@ -7,6 +7,7 @@ import ClassroomLayout from '../components/layouts/ClassroomLayout';
 import ClassLayoutWithSidebar from '../components/layouts/ClassLayoutWithSidebar';
 import lectureRoute from './lectureRoute';
 import PendingAssignments from '../components/classroom/student/assignments/PendingAssignments';
+import ChatHome from '../pages/chat/ChatHome';
 
 export const allClassRoute = {
   path: '/',
@@ -42,5 +43,9 @@ export const classRoute = {
       children: [{ path: '', element: <PendingAssignments /> }],
     },
     lectureRoute,
+    {
+      path: 'chat-mate',
+      element: <ChatHome />
+    }
   ],
 };

@@ -12,6 +12,9 @@
   position: relative;
   min-height: 100vh;
 }
+.scroll::-webkit-scrollbar{
+  display: none;
+}
 .nav.active{
   border-top-color: white !important;
 }
@@ -126,7 +129,7 @@ body::-webkit-scrollbar{
   box-shadow: 0 0 10px rgba(0, 56, 255, 19%);
 }
 .inner-shadow{
-  box-shadow: 0 0 10px rgba(0, 56, 255, 19%) inset;
+  box-shadow: 0 0 10px rgba(166, 180, 200, 0.75) inset;
 }
 
 .sidebar{

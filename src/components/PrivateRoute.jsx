@@ -6,6 +6,7 @@ import Shimmer from './common/Shimmer';
 import authServices from '../services/authService';
 import { useDispatch } from 'react-redux';
 import { userLogOut, userLogin } from '../utils/store/userSlice';
+import { BASE_URL } from '../constant/constant';
 
 const PrivateRoute = ({ children }) => {
   const [token, setToken] = useState(null);
@@ -43,8 +44,8 @@ const PrivateRoute = ({ children }) => {
   if (isBlocked) {
     return <h1>Blocked</h1>
   }
-
-  axios.defaults.headers.common['Authorization'] = token;
+  axios.defaults.baseURL = BASE_URL
+  // axios.defaults.withCredentials = true;
   return children;
 };
 
