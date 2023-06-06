@@ -1,4 +1,5 @@
 import img from '../../assets/images/defaultUserProfile.png'
+import { IMAGE_PATH } from '../../constant/constant'
 
 const Avatar = ({name=null, image=null}) => {
 
@@ -8,7 +9,7 @@ const Avatar = ({name=null, image=null}) => {
 
   return (
     <div className={`${color[num]} border-2 border-white w-10 h-10 rounded-full flex justify-center items-center overflow-hidden`}>
-      {image ? <img src={img} alt="avatar" /> : (
+      {image ? <img src={IMAGE_PATH+img} alt="avatar" /> : (
         <p className='uppercase'>{name&&name[0]}</p>
       )}
       <div className="online-dot"></div>

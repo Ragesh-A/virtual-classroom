@@ -17,7 +17,10 @@ const chatServices = {
       console.warn(error);
     }
   },
-  getChats: async () => chatServices.makeRequest(BASE_URL + '/chat', 'GET')
+  createConnection: async (classId, receiverId) => chatServices.makeRequest(BASE_URL + '/chat', 'POST', {classId, receiverId}),
+  getChats: async () => chatServices.makeRequest(BASE_URL + '/chat', 'GET'),
+  getMessages: async (chatId) => chatServices.makeRequest(`${BASE_URL}/message/${chatId}`, "GET"),
+  sendMessage: async (chatId, message) => chatServices.makeRequest(BASE_URL + '/message', 'POST', { chatId, message }),
 }
 
 export default chatServices;

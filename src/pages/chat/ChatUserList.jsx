@@ -14,7 +14,6 @@ const ChatUserList = ({ data, currentUserId, setPerson, userList }) => {
       {name: "binshad"},
       {name: "jasir"},
       {name: "sufiyan"},
-      {name: "hari"},
     ])
     return ()=>{
     setFriendsData(null)

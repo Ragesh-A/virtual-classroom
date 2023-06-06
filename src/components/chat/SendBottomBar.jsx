@@ -1,8 +1,22 @@
 import { useRef } from "react";
+import chatServices from "../../services/chatServices";
 
-const SendBottomBar = ({ friend }) => {
+const SendBottomBar = ({ friend, chatId, sendedMessage }) => {
   const mes = useRef();
-  const sendMessage = async() => {}
+  const sendMessage = async(e) => {
+    e.preventDefault()
+    const text = mes.current.value.trim();
+    if (text) {
+      console.log(chatId);
+      chatServices.sendMessage(chatId, text).then((res)=>{
+        
+        if (res.success){
+          mes.current.value = '';
+          sendedMessage(res.success.isSended);
+        }
+      })
+    }
+  }
   return (
     <div className="rounded absolute bottom-3 w-full left-0 px-3">
       <form onSubmit={sendMessage} className="w-full flex gap-1 ">

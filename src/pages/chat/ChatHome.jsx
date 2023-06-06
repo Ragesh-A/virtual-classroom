@@ -4,30 +4,35 @@ import { useState } from 'react';
 import Avatar from '../../components/common/Avatar';
 import { useSelector } from 'react-redux';
 import chatServices from '../../services/chatServices';
-import ChatUserList from './ChatUserList';
 import ChatBody from './ChatBody';
 import { io } from 'socket.io-client';
 import { SOCKET_IP } from '../../constant/constant';
+import ClassPersonList from '../../components/chat/ClassPersonList';
+import MessagedUsersLIst from '../../components/chat/MessagedUsersList';
+import bg from '../../assets/images/chat-mate.png'
 
 const ChatHome = () => {
   const [chats, setChats] = useState([]);
   const [onlineUser, setOnlineUsers] = useState([]);
+  const [tab, setTab] = useState('messaged');
   const { user } = useSelector((store) => store.user);
+  const { currentClass } = useSelector((store) => store.classes);
   const [selectedPerson, setSelectedPerson] = useState();
+  const [conversation, setConversation] = useState();
   const socket = useRef();
   const [message, setMessage] = useState([]);
   const mes = useRef();
 
   // socket connections
   useEffect(() => {
-    if (user) {
+    if (user && currentClass?.class) {
       socket.current = io(SOCKET_IP);
-      socket.current.emit('new-user-add', user?._id);
+      socket.current.emit('new-user-add', {user:user?._id, class: currentClass?.class?._id});
       socket.current.on('get-users', (users) => {
         setOnlineUsers(users);
       });
     }
-  }, [user]);
+  }, [user, currentClass]);
 
   // get the data from the server
   useEffect(() => {
@@ -36,71 +41,77 @@ const ChatHome = () => {
       if (res?.success) {
         // to whom he has chats
         setChats(res?.success?.chats);
-        console.log(res.success);
       }
     };
     getChats();
   }, []);
 
-  // sending message ro friend
-  function sendMessage(e) {
-    e.preventDefault();
-    let text = mes.current.value.trim();
-    if (text) {
-      setMessage([...message, text]);
-      text = {
-        senderId: user._id,
-        message: text,
-        chatId: '', // needed an chat is where they are chatting
-      };
-    }
+  console.log(user?._id, 'me');
     // create an function to send the data into the server
 
     // send the message to socket sever
-  }
+  
 
-  console.log(chats);
   return (
     <>
       <Section>
         <div className=" rounded md:h-[80vh] relative flex gap-3">
-
           <div className="bg-tileColor p-3 md:w-[25rem] h-full border-2 border-white rounded-xl shadow relative overflow-hidden">
-            <div className=" text-textColor mt-5">
-              <div className="flex items-center rounded pl-5 px-2 py-1 inner-shadow border-1 border-white">
-                <i className="fa-solid fa-magnifying-glass"></i>
-                <input
-                  type="text"
-                  className="w-full px-5 py-1 bg-transparent outline-none"
-                  placeholder="search name"
-                />
+            {tab === 'messaged' && (
+              <div
+                className=" absolute right-10 bg-primary flex justify-center items-center rounded-full w-10 h-10 bottom-10 cursor-pointer text-white hover:border-2"
+                onClick={() => setTab('classList')}
+              >
+                <i className="ri-chat-smile-3-fill"></i>
               </div>
-            </div>
-            <p className="font-mono text-sm font-bold tracking-widest py-2">
-              CHAT
-            </p>
-            <div className="flex flex-col overflow-y-scroll h-full relative">
-              <ChatUserList data={chats} userList={false} setPerson={setSelectedPerson} currentUserId={user && user._id} />
-              <div className="absolute bg-green-500 p-2 text-white">
-                <i className="ri-add-line"></i>
-              </div>
-            </div>
+            )}
+            {tab === 'messaged' ? (
+              <MessagedUsersLIst
+                usersList={[]}
+                setConversation={setConversation}
+                setPerson={setSelectedPerson}
+                currentPerson={user?._id}
+                onlineUsers={onlineUser}
+              />
+            ) : (
+              <ClassPersonList onlineUsers={onlineUser} back={() => setTab('messaged')} />
+            )}
           </div>
 
-          <div className="bg-tileColor md:w-[calc(100%-25rem)] border-2 border-white rounded-xl shadow p-4 relative">
-            <div className="pb-2 flex gap-3 items-center">
-              <Avatar name={selectedPerson} />
-              <div className="">
-              <p className='uppercase'>{selectedPerson && selectedPerson}</p>
-              <p className={`text-[10px] text-green-500`}>online</p>
-              </div>
+          {
+            <div className="bg-tileColor md:w-[calc(100%-25rem)] border-2 border-white rounded-xl shadow p-4 relative">
+              {selectedPerson ? (
+                <>
+                  <div className="pb-2 flex gap-3 items-center">
+                    <Avatar name={selectedPerson?.name} />
+                    <div className="">
+                      <p className="uppercase">
+                        {conversation && selectedPerson.name}
+                      </p>
+                      <p className={`text-[10px] text-green-500`}>online</p>
+                    </div>
+                  </div>
+                  <div className="rounded h-[92%] relative">
+                    <ChatBody
+                      chat={''}
+                      classId={currentClass?.class?._id}
+                      friend={selectedPerson}
+                      conversationId={conversation}
+                      currentUserId={user?._id}
+                      socket={socket}
+                    />
+                  </div>
+                </>
+              ) : (
+                <div className="flex gap-2 h-full flex-col justify-center items-center">
+                  <h2 className='text-primary font-bold text-4xl uppercase'>Chat mate</h2>
+                  <img src={bg} alt='chat-mate' />
+                  <p className='text-gray-400 font-bold'>select a person to person to communicate</p>
+                </div>
+              )}
             </div>
-            <div className="rounded h-[92%] relative">
-             <ChatBody chat={''} friend={selectedPerson} currentUserId={user?._id} />
-            </div>
-          </div>
+          }
         </div>
-
       </Section>
     </>
   );
