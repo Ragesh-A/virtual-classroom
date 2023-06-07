@@ -258,7 +258,7 @@ body::-webkit-scrollbar{
     background-color: red;
   }
   body{
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
   }
   .sidebar.active ~ .main-content{
     width: 100%;
