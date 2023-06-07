@@ -1,4 +1,3 @@
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
 const AnnouncementCard = () => {
   return(
@@ -9,7 +8,7 @@ const AnnouncementCard = () => {
         <button className="bg-red-500 text-white px-2 py-1 mt-3 min-w-[100px] rounded">Join</button>
       </div>
       <div className="w-[250px] flex justify-center items-center">
-        <PlayCircleOutlineIcon className='text-red-500' sx={{fontSize: '7rem' }}/>
+      <i className="ri-play-circle-line text-3xl"></i>
       </div>
     </div>
   )

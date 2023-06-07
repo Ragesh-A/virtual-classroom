@@ -1,7 +1,6 @@
 import { useFormik } from 'formik';
 import ErrorMessage from '../common/ErrorMessage';
 import FormInput from '../common/FormInput';
-import PasswordIcon from '@mui/icons-material/Password';
 import { useEffect, useState } from 'react';
 import { otpSchema } from '../../schema/schema';
 import { deleteLocalStorageItem } from '../../utils/storageHelper';
@@ -64,7 +63,7 @@ const Otp = ({setOtpRequested}) => {
             type="number"
             name="otp"
             placeholder="enter your OTP"
-            icon={<PasswordIcon />}
+            icon={<i className="ri-lock-password-fill font-bold"></i>}
           />
           <ErrorMessage message={message} />
           <button

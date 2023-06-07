@@ -1,9 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import FormInput from '../common/FormInput';
-import KeyIcon from '@mui/icons-material/Key';
-import LockPersonIcon from '@mui/icons-material/LockPerson';
-import SafetyCheckIcon from '@mui/icons-material/SafetyCheck';
 import {
   forgotPasswordInitialValues,
   forgotPasswordSchema,
@@ -131,7 +128,7 @@ const ForgotPassword = () => {
   return (
     <div className="relative z-[1] h-full md:grid grid-cols-2 gap-10">
       <div className="w-full h-full flex flex-col justify-center items-center">
-        <h3 className="font-bold text-2xl md:text-[3rem] text-center text-textColor">
+        <h3 className="font-bold text-2xl md:text-[3rem] text-center text-textColor md:mb-5">
           Reset password
         </h3>
         <p className="text-center text-sm md:text-base text-textColor mb-3">
@@ -149,7 +146,7 @@ const ForgotPassword = () => {
               type="text"
               name="emailOrPhone"
               placeholder="enter phone or email"
-              icon={<i className="fa-solid fa-mobile-screen"></i>}
+              icon={<i className="ri-mail-lock-fill text-xl"></i>}
             />
           )}
           {currentStep === 2 && (
@@ -162,7 +159,7 @@ const ForgotPassword = () => {
               name="otp"
               type="number"
               placeholder="enter the otp"
-              icon={<SafetyCheckIcon />}
+              icon={<i className="ri-shield-keyhole-line text-xl font-bold"></i>}
             />
           )}
           {currentStep === 3 && (
@@ -176,7 +173,7 @@ const ForgotPassword = () => {
                 type="password"
                 name="password"
                 placeholder="enter the password"
-                icon={<KeyIcon />}
+                icon={<i className="ri-key-line font-bold text-xl"></i>}
               />
               <FormInput
                 onChange={handleChange}
@@ -187,7 +184,7 @@ const ForgotPassword = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="confirm the password"
-                icon={<LockPersonIcon />}
+                icon={<i class="ri-lock-password-fill font-bold text-xl"></i>}
               />
             </>
           )}

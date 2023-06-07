@@ -1,8 +1,6 @@
 import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import FormInput from '../common/FormInput';
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
-import KeyIcon from '@mui/icons-material/Key';
 import { loginSchema } from '../../schema/schema';
 import { useEffect, useState } from 'react';
 import authServices from '../../services/authService';
@@ -51,7 +49,6 @@ const Login = () => {
     <div className="relative z-[1] h-full md:grid grid-cols-2 gap-10">
       <div className="w-full h-full flex flex-col justify-center items-center">
         <h3 className="font-bold text-[3rem] text-center text-textColor">
-          {' '}
           Hello!
         </h3>
         <p className="text-center text-textColor mb-3">
@@ -68,7 +65,7 @@ const Login = () => {
             type="text"
             name="emailOrPhone"
             placeholder="enter phone or email"
-            icon={<PhoneIphoneIcon />}
+            icon={<i className="ri-mail-settings-line font-bold"></i>}
           />
           <FormInput
             values={values.password}
@@ -79,7 +76,7 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="enter the password"
-            icon={<KeyIcon />}
+            icon={<i className="ri-key-line font-bold"></i>}
           />
           <Button
             type="submit"

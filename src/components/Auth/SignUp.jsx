@@ -1,13 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from '../common/ErrorMessage';
 import FormInput from '../common/FormInput';
-import KeyIcon from '@mui/icons-material/Key';
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { useLayoutEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { SignUpInitialValues, isPhoneNumber, signUpSchema } from '../../schema/schema';
-import PersonIcon from '@mui/icons-material/Person';
-import LockPersonIcon from '@mui/icons-material/LockPerson';
 import Otp from './Otp';
 import { getLocalStorage, setLocalStorage } from '../../utils/storageHelper';
 import authServices from '../../services/authService';
@@ -96,7 +92,7 @@ const SignUp = () => {
               type="text"
               name="name"
               placeholder="enter your name"
-              icon={<PersonIcon />}
+              icon={<i className="ri-user-fill text-xl"></i>}
             />
             <FormInput
               values={values.emailOrPhone}
@@ -107,7 +103,7 @@ const SignUp = () => {
               type="text"
               name="emailOrPhone"
               placeholder="enter phone or email"
-              icon={<PhoneIphoneIcon />}
+              icon={<i className="ri-mail-lock-fill text-xl"></i>}
             />
             <FormInput
               values={values.password}
@@ -118,7 +114,7 @@ const SignUp = () => {
               type="password"
               name="password"
               placeholder="enter the password"
-              icon={<KeyIcon />}
+              icon={<i className="ri-key-line font-bold text-xl"></i>}
             />
             <FormInput
               values={values.confirmPassword}
@@ -129,7 +125,7 @@ const SignUp = () => {
               type="password"
               name="confirmPassword"
               placeholder="confirm the password"
-              icon={<LockPersonIcon />}
+              icon={<i className="ri-lock-password-fill text-xl"></i>}
             />
             <ErrorMessage message={message} />
             <Button className='bg-primary text-white' type='submit' loading={loading} >Sign Up</Button>
