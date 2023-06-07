@@ -50,7 +50,7 @@ const ChatBody = ({ classId , currentUserId, friend, conversationId, socket }) =
   }, [arrivalMessages, friend])
 
   return (
-    <div className="bg-white rounded-md  pb-16 h-full relative">
+    <div className="bg-white rounded-md md:p-5 md:pb-20 h-full relative">
       {!conversationId ? <div className="w-full h-full flex justify-center items-center">No selected person</div> :( 
         <>
         <div className="overflow-y-scroll h-full scroll">

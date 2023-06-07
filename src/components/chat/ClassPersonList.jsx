@@ -54,7 +54,7 @@ const ClassPersonList = ({ back, onlineUsers }) => {
         </div>
       </div>
       <p className="font-mono text-sm font-bold tracking-widest py-2 my-1">Members in the class</p>
-      <div className="flex flex-col overflow-y-scroll h-full relative">
+      <div className="flex flex-col overflow-y-scroll scroll h-full relative">
         
         {filtered &&
           filtered?.map((user) => (

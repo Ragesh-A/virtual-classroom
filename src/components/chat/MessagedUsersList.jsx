@@ -52,7 +52,7 @@ const MessagedUsersLIst = ({usersList = [], currentPerson, setPerson, setConvers
         </div>
       </div>
       <p className="font-mono text-sm font-bold tracking-widest py-2">CHAT</p>
-      <div className="flex flex-col overflow-y-scroll h-full relative">
+      <div className="flex flex-col overflow-y-scroll scroll h-full relative">
         {chats &&
           chats?.map((chat, index) => (
             <div key={chat._id} className="" onClick={()=>handleSelection(chat._id, index)}>

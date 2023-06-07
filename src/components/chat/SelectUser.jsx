@@ -14,7 +14,7 @@ const SelectUser = ({ chat, setPerson }) => {
     <>
       {friend && (
         <div
-          className={`flex gap-5 items-center border-b-2 px-2 py-2 cursor-pointer scroll hover:bg-slate-100 rounded-md`}
+          className={`flex gap-5 items-center border-b-2 px-2 py-2 cursor-pointer  hover:bg-slate-100 rounded-md`}
           key={friend._id + 'chat'}
         >
           <Avatar name={`${friend.name}`} image={friend?.avatar} />
