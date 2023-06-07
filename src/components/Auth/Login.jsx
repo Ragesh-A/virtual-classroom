@@ -65,7 +65,7 @@ const Login = () => {
             type="text"
             name="emailOrPhone"
             placeholder="enter phone or email"
-            icon={<i className="ri-mail-settings-line font-bold"></i>}
+            icon={<i className="ri-mail-settings-line font-bold text-xl"></i>}
           />
           <FormInput
             values={values.password}
@@ -76,7 +76,7 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="enter the password"
-            icon={<i className="ri-key-line font-bold"></i>}
+            icon={<i className="ri-key-line font-bold text-xl"></i>}
           />
           <Button
             type="submit"
