@@ -12,10 +12,8 @@ const StudentListSlider = () => {
   }, [currentClass])
 
   const filterUser = (e) => {
-    const search = e.target.value;
-    const filtered = currentClass.students.filter((student) => {
-      return student.name.includes(search);
-    });
+    const search = e.target.value.toLowerCase();
+    const filtered = currentClass.students.filter((student) =>  student.name.toLowerCase().includes(search));
     setFilteredUsers(filtered);
   };
   
