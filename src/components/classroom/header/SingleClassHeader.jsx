@@ -24,28 +24,28 @@ const SingleClassHeaderComponent = () => {
   };
 
   return (
-    <ul className="flex items-center">
+    <ul className="flex justify-evenly items-center w-full">
       <NavLink
         to="/"
         className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
       >
-        <i className="fa-solid fa-people-roof sm:hidden"></i>
-        <li className="hidden sm:block">My class</li>
+        <i className="ri-home-2-fill md:hidden text-2xl"></i>
+        <li className="hidden md:block">My class</li>
       </NavLink>
       <NavLink
         to={`/class/${classId}/`}
         className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
       >
-        <i className="fa-solid fa-people-roof sm:hidden"></i>
-        <li className="hidden sm:block">Discussion panel</li>
+        <i className="ri-discuss-fill md:hidden text-2xl"></i>
+        <li className="hidden md:block">Discussion panel</li>
       </NavLink>
       {!isLecture && (
         <NavLink
-          to={`/class/${classId}/works/`}
+          to={`/class/${classId}/works`}
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="fa-solid fa-video sm:hidden"></i>
-          <li className="hidden sm:block">Class work</li>
+          <i className="ri-calendar-todo-fill md:hidden text-2xl"></i>
+          <li className="hidden md:block">Class work</li>
         </NavLink>
       )}
 
@@ -54,17 +54,17 @@ const SingleClassHeaderComponent = () => {
           to={`/class/${classId}/dashboard/`}
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="fa-solid fa-user-shield sm:hidden"></i>
-          <li className="hidden sm:block">Dashboard</li>
+          <i className="ri-dashboard-fill md:hidden text-2xl"></i>
+          <li className="hidden md:block">Dashboard</li>
         </NavLink>
       )}
       {currentClass && currentClass.class.subscription && (
         <NavLink
           to={`/class/${classId}/chat-mate/`}
-          className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
+          className="border-4 border-transparent  hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="fa-solid fa-user-shield sm:hidden"></i>
-          <li className="hidden sm:block">Chat</li>
+          <i className="ri-chat-private-fill md:hidden text-2xl"></i>
+          <li className="hidden md:block">Chat</li>
         </NavLink>
       )}
       {isLecture && (
@@ -72,16 +72,16 @@ const SingleClassHeaderComponent = () => {
           to={`/meet`}
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="fa-solid fa-video sm:hidden"></i>
-          <li className="hidden sm:block">Meet up</li>
+          <i className="ri-vidicon-fill md:hidden text-2xl"></i>
+          <li className="hidden md:block">Meet up</li>
         </NavLink>
       )}
       <button
         className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         onClick={handleSlide}
       >
-        <i className="fa-solid fa-users-line sm:hidden"></i>
-        <li className="hidden sm:block">People</li>
+        <i className="ri-team-fill md:hidden text-2xl"></i>
+        <li className="hidden md:block">People</li>
       </button>
     </ul>
   );

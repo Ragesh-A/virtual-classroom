@@ -14,29 +14,29 @@ const ClassroomHeaderComponent = () => {
 
   return (
     <>
-      <ul className="flex items-center">
+      <ul className="flex items-center justify-evenly md:justify-start w-full">
         <NavLink
           to="/"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="fa-solid fa-people-roof sm:hidden"></i>
-          <li className="hidden sm:block">My class</li>
+          <i className="ri-home-2-fill md:hidden"></i>
+          <li className="hidden md:block">My class</li>
         </NavLink>
         <li>
           <button
             className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
             onClick={popHandle}
           >
-            <i className="fa-solid fa-plus sm:hidden"></i>
-            <span className="hidden sm:block">Add | Join</span>
+            <i className="ri-add-fill md:hidden"></i>
+            <span className="hidden md:block">Add | Join</span>
           </button>
         </li>
         <NavLink
           to="/meetup"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="fa-solid fa-video sm:hidden"></i>
-          <li className="hidden sm:block">Meet Up</li>
+          <i className="ri-vidicon-fill md:hidden"></i>
+          <li className="hidden md:block">Meet Up</li>
         </NavLink>
       </ul>
       <CreateClass visible={popIsVisible} setVisible={setPopIsVisible} />

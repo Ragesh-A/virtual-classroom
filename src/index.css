@@ -18,6 +18,20 @@
 .nav.active{
   border-top-color: white !important;
 }
+@media (max-width: 768px) {
+  .nav{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+  }
+  .nav.active{
+    background-color: white;
+    color: #6060D8;
+  }
+}
 .body{
   position: relative;
   background-color: #F7FAFF;

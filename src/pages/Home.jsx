@@ -45,7 +45,7 @@ return(
         <Notification/>
     <div className="main min-h-screen">
       <Header page='home' />
-      <Section className="flex flex-col-reverse md:flex-row min-h-screen md:min-h-[70vh] relative  items-center">
+      <Section className="flex flex-col-reverse md:flex-row min-h-screen md:min-h-[70vh] relative  items-center" id='home'>
         <div className="flex-1 text-center md:text-left">
           <p className="text-2xl mt-5 md:mt-0 leading-10 md:text-3xl font-bold text-textColor md:leading-[3rem]">
             Unlock Your Potential Anywhere, Anytime: Experience the Future of Learning with our
@@ -125,7 +125,7 @@ return(
     {plan && <Subscription plan={plan} />}
 
     <Section>
-      <div className="md:grid md:grid-cols-2 gap-6">
+      <div className="md:grid md:grid-cols-2 gap-6" id="contact">
         <div className="border-2 border-white p-9 rounded-xl max-w-xl">
           <h3 className="text-center text-primary font-bold text-2xl my-5">Contact</h3>
           <form>
