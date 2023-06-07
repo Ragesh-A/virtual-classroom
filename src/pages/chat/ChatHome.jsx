@@ -12,7 +12,7 @@ import MessagedUsersLIst from '../../components/chat/MessagedUsersList';
 import bg from '../../assets/images/chat-mate.png'
 
 const ChatHome = () => {
-  const [chats, setChats] = useState([]);
+  const [userSelected, setUserSelected] = useState(false);
   const [onlineUser, setOnlineUsers] = useState([]);
   const [tab, setTab] = useState('messaged');
   const { user } = useSelector((store) => store.user);
@@ -20,8 +20,6 @@ const ChatHome = () => {
   const [selectedPerson, setSelectedPerson] = useState();
   const [conversation, setConversation] = useState();
   const socket = useRef();
-  const [message, setMessage] = useState([]);
-  const mes = useRef();
 
   // socket connections
   useEffect(() => {
@@ -35,16 +33,16 @@ const ChatHome = () => {
   }, [user, currentClass]);
 
   // get the data from the server
-  useEffect(() => {
-    const getChats = async () => {
-      const res = await chatServices.getChats();
-      if (res?.success) {
-        // to whom he has chats
-        setChats(res?.success?.chats);
-      }
-    };
-    getChats();
-  }, []);
+  // useEffect(() => {
+  //   const getChats = async () => {
+  //     const res = await chatServices.getChats();
+  //     if (res?.success) {
+  //       // to whom he has chats
+  //       setChats(res?.success?.chats);
+  //     }
+  //   };
+  //   getChats();
+  // }, []);
 
   console.log(user?._id, 'me');
     // create an function to send the data into the server
@@ -54,9 +52,9 @@ const ChatHome = () => {
 
   return (
     <>
-      <Section>
+      <Section className='p-0 md:px-[16px] md:p-5 h-full'>
         <div className=" rounded md:h-[80vh] relative flex gap-3">
-          <div className="bg-tileColor p-3 md:w-[25rem] h-full border-2 border-white rounded-xl shadow relative overflow-hidden">
+          <div className={`bg-tileColor absolute z-[2] w-full p-3 md:w-[25rem] h-full border-2 border-white rounded-xl shadow md:relative overflow-hidden ${userSelected && 'hidden'} md:block`}>
             {tab === 'messaged' && (
               <div
                 className=" absolute right-10 bg-primary flex justify-center items-center rounded-full w-10 h-10 bottom-10 cursor-pointer text-white hover:border-2"
@@ -72,6 +70,7 @@ const ChatHome = () => {
                 setPerson={setSelectedPerson}
                 currentPerson={user?._id}
                 onlineUsers={onlineUser}
+                setUserSelected={setUserSelected}
               />
             ) : (
               <ClassPersonList onlineUsers={onlineUser} back={() => setTab('messaged')} />
@@ -79,10 +78,11 @@ const ChatHome = () => {
           </div>
 
           {
-            <div className="bg-tileColor md:w-[calc(100%-25rem)] border-2 border-white rounded-xl shadow p-4 relative">
+            <div className="bg-tileColor w-full md:w-[calc(100%-25rem)] border-2 border-white rounded-xl shadow p-4 relative">
               {selectedPerson ? (
                 <>
                   <div className="pb-2 flex gap-3 items-center">
+                    <i className="ri-arrow-left-s-line p-1 cursor-pointer" onClick={()=>setUserSelected(false)}></i>
                     <Avatar name={selectedPerson?.name} />
                     <div className="">
                       <p className="uppercase">
@@ -106,7 +106,7 @@ const ChatHome = () => {
                 <div className="flex gap-2 h-full flex-col justify-center items-center">
                   <h2 className='text-primary font-bold text-4xl uppercase'>Chat mate</h2>
                   <img src={bg} alt='chat-mate' />
-                  <p className='text-gray-400 font-bold'>select a person to person to communicate</p>
+                  <p className='text-gray-400 font-bold'>select a person to communicate</p>
                 </div>
               )}
             </div>

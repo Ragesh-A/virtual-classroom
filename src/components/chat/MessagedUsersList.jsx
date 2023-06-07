@@ -3,7 +3,7 @@ import Shimmer from "../common/Shimmer";
 import chatServices from "../../services/chatServices";
 import SelectUser from "./SelectUser";
 
-const MessagedUsersLIst = ({usersList = [], currentPerson, setPerson, setConversation, onlineUsers}) => {
+const MessagedUsersLIst = ({usersList = [], currentPerson, setPerson, setConversation, onlineUsers, setUserSelected}) => {
   // const [usersList,setUsersList] = useState()
   const [filtered, setFiltered] = useState(1)
   const [users, setUsers] = useState()
@@ -31,6 +31,7 @@ const MessagedUsersLIst = ({usersList = [], currentPerson, setPerson, setConvers
   const handleSelection = (chatId, index)=>{
     setConversation(chatId);
     setPerson(users[index])
+    setUserSelected(true)
   }
 
 
