@@ -6,6 +6,7 @@ import organizerRoute from './routes/organizerRoute';
 import Home from './pages/Home';
 import verifyRoute from './routes/verification.routes';
 import meetUp from './routes/communication.routes';
+import VideoConference from './pages/video-conference/VideoConference';
 
 const App = createBrowserRouter([
   authRoute,
@@ -16,6 +17,7 @@ const App = createBrowserRouter([
   organizerRoute,
   verifyRoute,
   meetUp,
+  {path: '/meetup/:meetupId', element: <VideoConference />},
   { path: '*', element: <>404</> },
 ]);
 

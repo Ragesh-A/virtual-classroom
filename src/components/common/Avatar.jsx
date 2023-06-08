@@ -1,7 +1,7 @@
 import img from '../../assets/images/defaultUserProfile.png'
 import { IMAGE_PATH } from '../../constant/constant'
 
-const Avatar = ({name=null, image=null}) => {
+const Avatar = ({name=null, image=null, h='h-10', w='w-10', font}) => {
 
   const color = ['bg-red-200','bg-green-200','bg-blue-200','bg-orange-200',
                   'bg-cyan-300', 'bg-orange-500', 'bg-lime-500', 'bg-violet-500',
@@ -11,9 +11,9 @@ const Avatar = ({name=null, image=null}) => {
 
 
   return (
-    <div className={`${color[num]} border-2 border-white w-10 h-10 rounded-full flex justify-center items-center overflow-hidden`}>
+    <div className={`${color[num]} border-2 border-white ${w} ${h} rounded-full flex justify-center items-center overflow-hidden`}>
       {image ? <img src={IMAGE_PATH+img} alt="avatar" /> : (
-        <p className='uppercase'>{name&&name[0]}</p>
+        <p className={`uppercase ${font}`}>{name&&name[0]}</p>
       )}
       <div className="online-dot"></div>
     </div>

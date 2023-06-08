@@ -272,6 +272,8 @@ body::-webkit-scrollbar{
     font-size: 12px;
   }
 }
-.tes{
-  color: #e9f0f7a7;
+
+/*  VIDEO CONFERENCE */
+.video-conference{
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
