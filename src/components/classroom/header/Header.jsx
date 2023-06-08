@@ -25,7 +25,7 @@ const Header = ({ page, isLecture = false }) => {
   }
 
   return (
-    <header className="flex justify-between pt-8 md:ps-16 pb-10 rounded-bl-xl">
+    <header className="flex justify-between pt-8 md:ps-16 pb-2 rounded-bl-xl">
       <div className="max-w-[4rem] flex items-center ms-4 md:ms-0">
         <Link to="/home">
           <img src={logo} alt="logo" />

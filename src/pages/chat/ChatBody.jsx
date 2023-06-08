@@ -43,7 +43,7 @@ const ChatBody = ({ classId , currentUserId, friend, conversationId, socket }) =
         _id: Date.now()
       })
     })
-  }, [])
+  }, [socket])
 
   useEffect(()=> {
     arrivalMessages && arrivalMessages.senderId === friend?._id && setMessages((prev) => [...prev, arrivalMessages])

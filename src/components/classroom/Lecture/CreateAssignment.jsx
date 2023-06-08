@@ -2,13 +2,14 @@ import { useFormik } from "formik";
 import { assignmentInitialValue, assignmentSchema } from "../../../schema/schema";
 import services from '../../../services/lectureServices'
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const CreateAssignment = ({close}) => {
+const CreateAssignment = ({close, addNew}) => {
 
   const {classId} = useParams()
   const [err, setErr] = useState()
   const [succ, setSucc] = useState()
+  const [minDate, setMinDate] = useState();
   const {errors, values, handleChange, handleSubmit} = useFormik({
     initialValues: assignmentInitialValue,
     validationSchema: assignmentSchema,
@@ -20,12 +21,20 @@ const CreateAssignment = ({close}) => {
         }
         if (res?.success) {
           setSucc('Created successfully')
-
+          addNew(res.success.assignment);
           setTimeout(()=>{setErr(false); close()}, 2000)
         }
       })
     }
   })
+
+
+  useEffect(()=>{
+    const currentDate = new Date().toISOString().split('T')[0];
+    setMinDate(currentDate)
+  }, [])
+
+
   return (
     <div className="bg-tileColor rounded-md p-3">
       {err&& <p className="uppercase text-red-500">{err}</p>}
@@ -35,7 +44,7 @@ const CreateAssignment = ({close}) => {
           <label htmlFor="title" className={`text-sm p-2 ${errors?.title ? 'text-red-500' : 'text-slate-600'}`}>Title {errors?.title}</label>
           <label htmlFor="dueDate" className={`text-sm p-2 ${errors?.dueDate ? 'text-red-500' : 'text-slate-600'}`}>Due date {errors?.dueDate}</label>
           <input name="title" id="title" type="text" className={` py-1 px-3 rounded outline-none border-b-2 border-b-primary`} values={values.title} onChange={handleChange}/>
-          <input name="dueDate" id="dueDate" type="date" className={` py-1 px-3 rounded outline-none border-b-2 border-b-primary`}  values={values.dueDate} onChange={handleChange}/>
+          <input name="dueDate" id="dueDate" type="date" className={` py-1 px-3 rounded outline-none border-b-2 border-b-primary`}  values={values.dueDate} onChange={handleChange} min={minDate} />
         </div>
         <div className="mt-2">
           <label htmlFor="description" className={`text-sm p-2 mb-2 ${errors?.description ? 'text-red-500' : 'text-slate-600'}`}>Description {errors?.description}</label>

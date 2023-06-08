@@ -1,16 +1,5 @@
-import { useParams } from "react-router-dom";
-import lectureServices from "../../../services/lectureServices";
-
-const StudentsRequests = ({requests = []}) => {
-  const { classId } = useParams()
-
-  const handleRemove = (studentId) =>{
-    lectureServices.rejectRequest(classId, studentId)
-  }
-  const handleAccept = (studentId) =>{
-    lectureServices.acceptRequest(classId, studentId)
-  }
-
+const StudentsRequests = ({requests = [], handleAccept, handleRemove}) => {
+ 
   return (
     <>
     {requests.map(student=>(

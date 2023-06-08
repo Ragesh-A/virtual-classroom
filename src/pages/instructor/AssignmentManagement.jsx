@@ -16,20 +16,25 @@ const AssignmentManagement = () => {
       }
     })
   },[])
+
+  const addNewAssignment = (assignment) => {
+    setAssignments([...assignments, assignment])
+  }
  
   return (
    <div className="relative grid gap-2">
 
-    { newAssignment&& <CreateAssignment close={()=>setNewAssignment(false)}/>}
+    { newAssignment&& <CreateAssignment addNew={addNewAssignment} close={()=>setNewAssignment(false)}/>}
 
     {assignments && assignments.map(assignment=>(
       <div className={`bg-tileColor rounded-md p-3 overflow-hidden transition  ${selected === assignment?._id ? 'h-full' :  'h-12'}`} onClick={()=>setSelected(assignment?._id)} key={assignment._id}>
       <div className="flex justify-between mb-2">
         <p className="font-bold text-textColor">{assignment?.title}</p>
-        <p className="text-gray-500 font-semibold">{assignment?.dueDate}</p>
+        <p className="text-gray-500 font-semibold">{assignment?.dueDate.split('T')[0]}</p>
       </div>
       <p>{assignment?.description}</p>
       <Link className="btn overflow-hidden bg-primary text-white mt-5 float-right" to={assignment?._id}>view submissions</Link>
+      <Link className="btn overflow-hidden bg-primary text-white mt-5 float-right mr-2" to={assignment?._id}>Edit assignment</Link>
     </div>
     ))}
     

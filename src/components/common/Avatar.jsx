@@ -3,8 +3,11 @@ import { IMAGE_PATH } from '../../constant/constant'
 
 const Avatar = ({name=null, image=null}) => {
 
-  const color = ['bg-red-200','bg-green-200','bg-blue-200','bg-orange-200','bg-cyan-200',]
-  const num = (name?.charCodeAt(name?.length-1) % 6)
+  const color = ['bg-red-200','bg-green-200','bg-blue-200','bg-orange-200',
+                  'bg-cyan-300', 'bg-orange-500', 'bg-lime-500', 'bg-violet-500',
+                  'bg-pink-600', 'bg-rose-500', 'bg-primary'
+                ]
+  const num = (name?.charCodeAt(name?.length-1) % 11)
 
 
   return (

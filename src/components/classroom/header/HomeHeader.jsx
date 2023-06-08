@@ -12,7 +12,7 @@ const HomeHeader = () => {
           <li className="hidden md:block">Features</li>
       </a>
       <a htmlFor="contact" href="#contact" className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav" >
-          <i className="ri-user-heart-fill md:hidden"></i>
+      <i className="ri-customer-service-2-fill md:hidden"></i>
           <li className="hidden md:block">Contact</li>
       </a>
       <NavLink to="/home/meet-up" className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav" >

@@ -30,7 +30,7 @@ const ChatHome = () => {
         setOnlineUsers(users);
       });
     }
-  }, [user, currentClass]);
+  }, [currentClass?.class?._id, user]);
 
   // get the data from the server
   // useEffect(() => {

@@ -11,6 +11,7 @@ const LectureStudentsManagement = () => {
   const [ students, setStudents] =  useState([]);
   const { classId } = useParams();
   const {currentClass} = useSelector(store=>store.classes)
+
   useEffect(()=>{
     lectureServices.allStudents(classId).then(res=>{
       if(res?.success){
@@ -22,8 +23,35 @@ const LectureStudentsManagement = () => {
 
   const removeHandle = (studentId) => {
     lectureServices.removeFromClass(classId, studentId).then(res=>{
-      console.log(res)
+      if (res.success) {
+        const filtered = filterUser (studentId, students)
+        setStudents(filtered)
+      }
     })
+  }
+  const handleAccept = (studentId) => {
+    lectureServices.acceptRequest(classId, studentId).then(res=>{
+      if (res?.success) {
+        const user = isRequest.find(s=> s?._id === studentId)
+        setStudents([...students, user])
+        const filtered = filterUser(studentId, isRequest);
+        setIsRequest(filtered);
+      }
+    })
+  }
+
+  const removeFromRequest = (studentId) => {
+    lectureServices.rejectRequest(classId, studentId).then(res=>{
+      if (res?.success) {
+        const filtered = filterUser(studentId, isRequest)
+        setIsRequest(filtered)
+      }
+    })
+  }
+
+  function filterUser(studentId, array=[]) {
+    const filtered = array.filter(s=> s?._id !== studentId);
+    return filtered;
   }
 
   return (
@@ -57,7 +85,7 @@ const LectureStudentsManagement = () => {
       </div>
       ))
       }
-      {showRequest && isRequest && <StudentsRequests requests={isRequest} />}
+      {showRequest && isRequest && <StudentsRequests requests={isRequest} handleAccept={handleAccept} handleRemove={removeFromRequest}/>}
     </>
   );
 };

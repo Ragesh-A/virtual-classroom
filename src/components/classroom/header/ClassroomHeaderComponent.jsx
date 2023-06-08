@@ -2,11 +2,12 @@ import { NavLink } from 'react-router-dom';
 import CreateClass from '../common/CreateClass';
 import { useState } from 'react';
 import { decodeUser } from '../../../utils/storageHelper';
+import { useSelector } from 'react-redux';
 
 const ClassroomHeaderComponent = () => {
   const [popIsVisible, setPopIsVisible] = useState(false);
-  const user = decodeUser();
-  console.log(user)
+  const {user} = useSelector(store=>store.user)
+  console.log(user?.subscriber.status);
 
   const popHandle = () => {
     setPopIsVisible(popIsVisible ? false : true);
@@ -31,6 +32,13 @@ const ClassroomHeaderComponent = () => {
             <span className="hidden md:block">Add | Join</span>
           </button>
         </li>
+        {user?.subscriber?.status && <NavLink
+          to="/organization"
+          className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
+        >
+          <i className="ri-building-fill md:hidden text-xl"></i>
+          <li className="hidden md:block">Organization</li>
+        </NavLink>}
         <NavLink
           to="/meetup"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
