@@ -21,4 +21,5 @@ export const IP = 'http://localhost:3000';
 
 export const IMAGE_PATH = 'http://localhost:8000/images/';
 
-export const SOCKET_IP = 'http://localhost:8800';
+export const CHAT_SOCKET_IP = 'http://localhost:8800';
+export const MEETUP_SOCKET_IP = 'http://localhost:9090';

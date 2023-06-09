@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import chatServices from '../../services/chatServices';
 import ChatBody from './ChatBody';
 import { io } from 'socket.io-client';
-import { SOCKET_IP } from '../../constant/constant';
+import { CHAT_SOCKET_IP } from '../../constant/constant';
 import ClassPersonList from '../../components/chat/ClassPersonList';
 import MessagedUsersLIst from '../../components/chat/MessagedUsersList';
 import bg from '../../assets/images/chat-mate.png'
@@ -24,7 +24,7 @@ const ChatHome = () => {
   // socket connections
   useEffect(() => {
     if (user && currentClass?.class) {
-      socket.current = io(SOCKET_IP);
+      socket.current = io(CHAT_SOCKET_IP);
       socket.current.emit('new-user-add', {user:user?._id, class: currentClass?.class?._id});
       socket.current.on('get-users', (users) => {
         setOnlineUsers(users);

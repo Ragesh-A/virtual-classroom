@@ -15,7 +15,7 @@ const singleClassHeaderConfig = [
   {
     name: 'Meet Up',
     button: false,
-    path: '/meet-up',
+    path: '/meetup',
     icon: 'fa-solid fa-video',
   },
 ];

@@ -15,7 +15,7 @@ const HomeHeader = () => {
       <i className="ri-customer-service-2-fill md:hidden"></i>
           <li className="hidden md:block">Contact</li>
       </a>
-      <NavLink to="/home/meet-up" className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav" >
+      <NavLink to="/meetup" className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav" >
           <i className="ri-vidicon-fill md:hidden"></i>
           <li className="hidden md:block">Meet up</li>
       </NavLink>
