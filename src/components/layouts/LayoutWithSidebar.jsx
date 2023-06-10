@@ -1,13 +1,14 @@
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import Section from "./Section";
 import { useState } from "react";
+import Notification from "../common/Notification";
 
 const LayoutWithSidebar = () => {
   const {classId} = useParams()
   const [toggle, setToggle] = useState(true)
 
   return (
-    <Section>
+    <Section className="h-[80vh]">
       <ul className={`flex flex-col gap-2 fixed w-15 overflow-hidden p-2 h-[75vh] rounded-md border-2 border-white bg-tileColor shadow-inner side-bar ${toggle ? 'active': ''}`} >
       <li className="p-2 flex justify-between w-full items-center h-[2rem] transitions font-bold text-textColor" onClick={()=>setToggle(toggle ? false : true)}>
         {toggle && <span>TASKS</span>}
@@ -53,7 +54,8 @@ const LayoutWithSidebar = () => {
         </NavLink>
         </li>     
       </ul>
-      <div className={`ml-28 transition ${toggle ? 'active' : ''} rounded sidebar-body`}>
+      <div className={`ml-28 transition ${toggle ? 'active' : ''} rounded sidebar-body h-full`}>
+        <Notification />
       <Outlet />
       </div>
     </Section>

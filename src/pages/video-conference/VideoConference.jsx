@@ -4,7 +4,7 @@ import UserBox from '../../components/video-conference/UserBox';
 import UserList from '../../components/video-conference/UserList';
 import Chat from './Chat';
 import Notification from '../../components/common/Notification'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setNotification } from '../../utils/store/uiSlice';
 
 const VideoConference = () => {

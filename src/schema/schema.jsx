@@ -91,5 +91,6 @@ export const assignmentInitialValue = {
 export const assignmentSchema = Yup.object({
   title: Yup.string().min(5, 'at least five character should be there').required('is required'),
   dueDate: Yup.string().required('is required'),
-  description: Yup.string().min(10, 'should be more detailed').required('is required')
+  description: Yup.string().min(10, 'should be more detailed').required('is required'),
+  image: Yup.mixed().nullable(),
 })

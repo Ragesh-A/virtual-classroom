@@ -8,6 +8,17 @@ const setAxiosToken = () => {
 };
 
 const lectureServices = {
+  makeRequest: async (url, method, data) => {
+    try {
+     setAxiosToken()
+     const response = await axios({ url, method, data, headers: {
+      'Content-Type': 'multipart/form-data',
+     }})
+     return response.data;
+    } catch (error) {
+     console.log("%c server " + error.message, "color: green; font-weight:bold;");
+    }
+   },
   allStudents: async (classId) => {
     setAxiosToken();
     return axios
@@ -60,7 +71,9 @@ const lectureServices = {
   createAssignment: async (classId, values) => {
     setAxiosToken();
     return axios
-      .post(BASE_URL + '/assignments/', { classId, ...values })
+      .post(BASE_URL + '/assignments/', { classId, ...values },{
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
       .then((res) => {
         return res.data;
       }
@@ -68,10 +81,13 @@ const lectureServices = {
   },
   allAssignments: async (classId)=> {
     setAxiosToken();
-    return axios.get(BASE_URL + '/assignments/' + classId).then(res=>{
-      console.log(res.data)
-      return res.data;
-    })
+    return axios.get(BASE_URL + '/assignments/' + classId).then(res=> res.data)
+  },
+  getAssignment: async (classId, assignmentId) => {
+    return lectureServices.makeRequest(BASE_URL + `/assignments/${classId}/assignments/${assignmentId}`, 'GET');
+  },
+  updateAssignment: async (classId, assignmentId, values) => {
+    return lectureServices.makeRequest(BASE_URL + `/assignments/${classId}/assignments/${assignmentId}`, 'PATCH', values );
   },
   allSubmissions: async (classId, assignmentId) => {
     setAxiosToken();

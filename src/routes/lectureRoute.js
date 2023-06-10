@@ -3,6 +3,7 @@ import Settings from "../components/classroom/Lecture/Settings";
 import LayoutWithSidebar from "../components/layouts/LayoutWithSidebar";
 import AssignmentManagement from "../pages/instructor/AssignmentManagement";
 import Dashboard from "../pages/instructor/Dashboard";
+import EditAssignment from "../pages/instructor/EditAssignmet";
 import Submissions from "../pages/instructor/Submissions";
 
 const lectureRoute = {
@@ -23,6 +24,10 @@ const lectureRoute = {
     },
     {
       path: 'assignments/:assignmentId',
+      element: <EditAssignment />
+    },
+    {
+      path: 'assignments/:assignmentId/submissions',
       element: <Submissions />
     },
     {
