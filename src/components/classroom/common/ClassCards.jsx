@@ -31,7 +31,7 @@ return (
 
     ) : (
 
-    <Link to={'/class/' + singleClass?._id} className="h-72" >
+    <Link to={`/class/${singleClass?._id}/`} className="h-72" >
     <div className="overflow-hidden shadow shadow-shadow max-w-[500px] h-full relative">
       <div className="flex h-3/5">
         <img src={ (singleClass.image && `${IMAGE_PATH}/classroom/${singleClass.image}`) || defaultBg } alt="background"
