@@ -13,6 +13,7 @@ const AssignmentManagement = () => {
   useEffect(()=>{
     lectureServices.allAssignments(classId).then(res=>{
       if(res?.success){
+        
         setAssignments(res?.success?.assignments)
       }
     })

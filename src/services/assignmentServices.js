@@ -10,8 +10,9 @@ const setAxiosToken = () => {
 const assignmentService = {
   submitAssignment: async (classId, assignmentId, answer) => {
     setAxiosToken()
-    console.log('called');
-    return axios.post(BASE_URL + `/assignments/${classId}/assignments/${assignmentId}/submissions`, { answer }).then(res=>{
+    return axios.post(BASE_URL + `/classes/${classId}/assignments/${assignmentId}/submissions`, answer ,{
+      headers: { 'Content-Type': 'multipart/form-data' }
+    }).then(res=>{
       console.log(res.data)
       return res.data;
     })

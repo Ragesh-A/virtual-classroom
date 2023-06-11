@@ -47,7 +47,9 @@ body::-webkit-scrollbar{
   border: 1px solid white;
   transition: 1s ease;
 }
-
+.transform-center{
+  transform: translate(-50%, -50%);
+}
 .btn::after {
   content: "";
   position: absolute;
@@ -276,4 +278,18 @@ body::-webkit-scrollbar{
 /*  VIDEO CONFERENCE */
 .video-conference{
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* bar animation */
+.progress-bar{
+  animation: full_width 2s ease forwards;
+}
+
+@keyframes full_width {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }

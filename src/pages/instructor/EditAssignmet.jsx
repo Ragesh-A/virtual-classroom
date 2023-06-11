@@ -44,6 +44,7 @@ const EditAssignment = () => {
         }
         if (res?.success) {
           dispatch(setNotification({ success: true, message: 'assignment updated'}))
+          goBack()
         }
       });
     },
@@ -60,7 +61,7 @@ const EditAssignment = () => {
    } catch (error) {}
   }
   
-  const goBack = () => {
+  function goBack() {
     navigate(-1)
   }
 
@@ -104,7 +105,7 @@ const EditAssignment = () => {
           <i className="ri-image-add-line"></i>
           <span>add reference</span>
         </label>
-        <input name="image" id="image" type="file" accept="image/*"
+        <input name="image" id="image" type="file" multiple accept="image/*"
           className="bg-gray-200 border-gray-300 outline-primary w-full py-1 focus:bg-blue-50 file:bg-violet-50 file:text-primary file:border-0 file:rounded file:px-3 file:py-2 file:font-bold  bg-transparent border-0 hidden"  onChange={handelImage} />
       </div>
       <div>
