@@ -73,7 +73,7 @@ const ChatHome = () => {
                 setUserSelected={setUserSelected}
               />
             ) : (
-              <ClassPersonList onlineUsers={onlineUser} back={() => setTab('messaged')} />
+              <ClassPersonList onlineUsers={onlineUser} myId={user?._id} back={() => setTab('messaged')} />
             )}
           </div>
 

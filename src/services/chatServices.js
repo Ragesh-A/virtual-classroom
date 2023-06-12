@@ -21,6 +21,8 @@ const chatServices = {
   getChats: async () => chatServices.makeRequest(BASE_URL + '/chat', 'GET'),
   getMessages: async (chatId) => chatServices.makeRequest(`${BASE_URL}/message/${chatId}`, "GET"),
   sendMessage: async (chatId, message) => chatServices.makeRequest(BASE_URL + '/message', 'POST', { chatId, message }),
+  accessChat: async (classId, receiverId) => chatServices.makeRequest(`${BASE_URL}/classes/${classId}/chat`, 'POST', { receiverId }),
+  createGroupChat: async (classId, payload) => chatServices.makeRequest(`${BASE_URL}/classes/${classId}/chat`, 'Post')
 }
 
 export default chatServices;

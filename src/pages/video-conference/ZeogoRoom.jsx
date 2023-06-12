@@ -46,6 +46,9 @@ const ZeogoRoom = () => {
       }
     };
     setMyMeeting(meeting);
+    return ()=>{
+      setMyMeeting(false)
+    }
   }, [meetupId, navigate, user?._id]);
 
   return (
