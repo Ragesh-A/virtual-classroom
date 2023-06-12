@@ -13,7 +13,6 @@ const AssignmentManagement = () => {
   useEffect(()=>{
     lectureServices.allAssignments(classId).then(res=>{
       if(res?.success){
-        
         setAssignments(res?.success?.assignments)
       }
     })
@@ -22,7 +21,7 @@ const AssignmentManagement = () => {
   const addNewAssignment = (assignment) => {
     setAssignments([...assignments, assignment])
   }
- 
+ console.log(assignments);
   return (
    <div className="relative grid gap-2">
 

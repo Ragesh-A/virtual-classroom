@@ -8,7 +8,7 @@ const Div = ({className, id, children, activeClass, unActiveClass}) => {
     }, 1000)
   }, [])
   return(
-    <div className={`${className} ${active ? `opacity-100 ${activeClass}` : `opacity-0 ${unActiveClass}`} transition-all bg-red-500`} id={id}>
+    <div className={`${className} ${active ? `opacity-100 ${activeClass}` : `opacity-0 ${unActiveClass}`} transition-all`} id={id}>
       {children}
     </div>
   )

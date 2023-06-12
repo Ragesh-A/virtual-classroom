@@ -20,6 +20,12 @@ const assignmentService = {
   createBulkAssignment: async () => {
     setAxiosToken();
     return 
+  },
+  getAssignments: async (classId, q) => {
+    setAxiosToken()
+    return axios.get(`${BASE_URL}/classes/${classId}/assignments?q=${q}`).then((res)=>{
+      return res.data;
+    }).catch((error)=>{})
   }
 };
 

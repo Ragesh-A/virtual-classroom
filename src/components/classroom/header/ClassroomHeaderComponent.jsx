@@ -33,7 +33,7 @@ const ClassroomHeaderComponent = () => {
           </button>
         </li>
         {user?.subscriber?.status && <NavLink
-          to="/organization"
+          to="/organization/"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
           <i className="ri-building-fill md:hidden text-xl"></i>

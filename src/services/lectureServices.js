@@ -94,7 +94,8 @@ const lectureServices = {
     return axios.get(BASE_URL + `/classes/${classId}/assignments/${assignmentId}/submissions`).then(res=>{
       return res.data;
     })
-  }
-};
+  },
+  getTodayAttendance: async (classId) => lectureServices.makeRequest(`${BASE_URL}/classes/${classId}/attendance`, 'GET')
+}; 
 
 export default lectureServices;

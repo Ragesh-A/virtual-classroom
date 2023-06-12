@@ -117,6 +117,7 @@ body::-webkit-scrollbar{
 }
 .SideBar-tab{
   transition: .2s ease;
+  background-color: #fff;
 }
 .SideBar-tab.active{
   background: rgb(99 102 241);
@@ -291,5 +292,48 @@ body::-webkit-scrollbar{
   }
   100% {
     width: 100%;
+  }
+}
+
+/* slider */
+
+/* .inputs input#absent:checked ~ .slider {
+  left: 0;
+}
+
+.inputs input#present:checked ~ .slider {
+  left: 60px;
+}
+
+.inputs:nth-child(){
+  background-color: red;
+  width: 50px;
+  height: 20px;
+} */
+
+.slide-absent {
+  background-color: red;
+  height: 100%;
+  left: 0;
+}
+
+.slide-present {
+  background-color: #000;
+  height: 100%;
+  left: 0;
+  width: 20px;
+  left: 10px;
+}
+
+.inputs input[type="radio"]:checked ~ .slider {
+  animation: slideEffect 0.3s linear forwards;
+}
+
+@keyframes slideEffect {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

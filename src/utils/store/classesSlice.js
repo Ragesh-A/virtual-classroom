@@ -19,6 +19,7 @@ const classesSlice = createSlice({
       state.currentClass = action.payload;
     },
     setAssignment: (state, action)=>{
+      console.log(action, "action");
       state.assignments = action.payload;
     }
   }

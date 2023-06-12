@@ -72,7 +72,7 @@ const CreateClass = ({ visible, setVisible }) => {
               {isJoin ? (
                 <JoinClassInput setVisible={setVisible} />
               ) : (
-                <Form onSubmit={formik.handleSubmit} className="flex flex-col" e>
+                <Form onSubmit={formik.handleSubmit} className="flex flex-col">
                   <CreateClassInput
                     name="name"
                     onChange={formik.handleChange}

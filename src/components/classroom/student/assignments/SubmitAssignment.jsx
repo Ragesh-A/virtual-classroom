@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import assignmentService from "../../../../services/assignmentServices";
 import { useParams } from "react-router-dom";
 import { IMAGE_PATH } from "../../../../constant/constant";
 import SelectImages from "../../../common/SelectImages";
+import { setNotification } from "../../../../utils/store/uiSlice";
 
 const SubmitAssignment = ({assignmentId, close}) => {
     const {assignments} = useSelector(store=>store.classes);
+    const dispatch = useDispatch()
     const {classId} = useParams()
     const [err, setErr] = useState()
     const [succ, setSucc] = useState()
@@ -29,8 +31,10 @@ const SubmitAssignment = ({assignmentId, close}) => {
         assignmentService.submitAssignment(classId, assignmentId, {answer, image: [...files]}).then(res=>{
           if(res?.success){
             setSucc('submitted')
+            dispatch(setNotification({ success: true, message: 'submitted'}))
             close();
           }else{
+            dispatch(setNotification({ success: false, message: res.error}))
             setErr(res?.error)
           }
           setTimeout(()=>{
@@ -46,11 +50,11 @@ const SubmitAssignment = ({assignmentId, close}) => {
       <div className={`bg-tileColor rounded-md py-8 px-8 overflow-hidden transition mb-2 hover:shadow hover:shadow-shadow relative`}>
         {err&&<p className="uppercase text-red-500 mb-2">{err}</p>}
         {succ&&<p className="uppercase text-green-500 mb-2">{succ}</p>}
-      <div className="flex justify-between mb-8">
+      <div className="flex justify-between mb-2">
         <p className="font-bold text-textColor">{selected[0]?.title}</p>
         <p className="text-gray-500 font-semibold">Due: {selected[0]?.dueDate?.split('T')[0]}</p>
       </div>
-      <p className="mb-5">{selected[0]?.description}</p>
+      <p className="mb-2">{selected[0]?.description}</p>
       <label htmlFor="answer" className={`${error ? 'text-red-500': ''}`}>Answer</label>{error&&<span className="text-red-500">{error}</span>}
       {/* <textarea name="answer" id="answer" rows="10" className="w-full rounded-md mt-1 p-3 outline-none" required ref={ans}></textarea> */}
       <div className="flex gap-2 flex-col-reverse md:flex-row">
@@ -77,7 +81,7 @@ const SubmitAssignment = ({assignmentId, close}) => {
           cancel
         </button>
         <button type="button" onClick={submitAnswer} className="btn overflow-hidden bg-indigo-500 hover:bg-primary rounded-full text-white">
-          Assign
+          submit
         </button>
       </div>
     </div>

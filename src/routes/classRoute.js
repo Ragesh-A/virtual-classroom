@@ -8,6 +8,7 @@ import ClassLayoutWithSidebar from '../components/layouts/ClassLayoutWithSidebar
 import lectureRoute from './lectureRoute';
 import PendingAssignments from '../components/classroom/student/assignments/PendingAssignments';
 import ChatHome from '../pages/chat/ChatHome';
+import Works from '../components/classroom/student/assignments/Works';
 
 export const allClassRoute = {
   path: '/',
@@ -40,7 +41,11 @@ export const classRoute = {
     {
       path: 'works',
       element: <ClassLayoutWithSidebar />,
-      children: [{ path: '', element: <PendingAssignments /> }],
+      children: [
+        { path: '', element: <PendingAssignments /> },
+        { path: 'completed', element: <Works filter='completed' /> },
+        { path: 'missed', element: <Works filter='missed' /> },
+      ],
     },
     lectureRoute,
     {
