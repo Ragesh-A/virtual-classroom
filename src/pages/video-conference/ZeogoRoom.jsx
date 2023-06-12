@@ -46,7 +46,7 @@ const ZeogoRoom = () => {
       }
     };
     setMyMeeting(meeting);
-  }, []);
+  }, [meetupId, navigate, user?._id]);
 
   return (
     <div className="flex justify-center items-center h-[100vh]">

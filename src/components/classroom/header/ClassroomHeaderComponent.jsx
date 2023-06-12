@@ -1,13 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import CreateClass from '../common/CreateClass';
 import { useState } from 'react';
-import { decodeUser } from '../../../utils/storageHelper';
 import { useSelector } from 'react-redux';
 
 const ClassroomHeaderComponent = () => {
   const [popIsVisible, setPopIsVisible] = useState(false);
   const {user} = useSelector(store=>store.user)
-  console.log(user?.subscriber.status);
 
   const popHandle = () => {
     setPopIsVisible(popIsVisible ? false : true);
