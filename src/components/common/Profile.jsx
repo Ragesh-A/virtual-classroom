@@ -1,7 +1,33 @@
 import Section from '../layouts/Section';
 import profile from '../../assets/images/pexels-pixabay-415829.jpg';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import authServices from '../../services/authService';
+import Shimmer from './Shimmer';
+import { useDispatch } from 'react-redux';
+import { userLogOut } from '../../utils/store/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+
+  const [me, setMe] = useState()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    authServices.getMe().then(res=>{
+      console.log( res,'me');
+      setMe(res?.success?.user)
+    })
+  }, [])
+
+  const logout = () => {
+    dispatch(userLogOut())
+    localStorage.clear();
+    navigate('/home')
+  }
+
+  console.log(me, "dddd");
   return (
     <Section>
       <div className="bg-blue-50 p-1 rounded-md grid gap-5">
@@ -31,21 +57,25 @@ const Profile = () => {
           </div>
         </div>
         <div className="grid md:grid-cols-2 gap-10">
+          {!me ? <Shimmer /> : 
           <div className="border-2 border-white p-2 px-5 rounded-md grid gap-2">
-            <div className=' flex items-center'>
-              <label htmlFor="name" className='w-20 font-bold md:text-xl text-slate-800'>name:</label>
-              <p className='font-bold text-slate-600'>name</p>
+            <div className=' flex flex-col xl:flex-row items-center'>
+              <label htmlFor="name" className='w-20 xl:w-36 font-bold xl:text-xl text-slate-800'>name:</label>
+              <p className='font-bold text-slate-600'>{me?.name}</p>
             </div>
-            <div className=' flex items-center'>
-              <label htmlFor="name" className='w-20 font-bold md:text-xl text-slate-800'>name:</label>
-              <p className='font-bold text-slate-600'>name</p>
+            <div className=' flex flex-col xl:flex-row items-center'>
+              <label htmlFor="name" className='w-20 xl:w-36 font-bold xl:text-xl text-slate-800'>email:</label>
+              <p className='font-bold text-slate-600'>{me?.emailOrPhone}</p>
             </div>
-            <div className=' flex items-center'>
-              <label htmlFor="name" className='w-20 font-bold md:text-xl text-slate-800'>name:</label>
-              <p className='font-bold text-slate-600'>name</p>
+            <div className=' flex flex-col xl:flex-row items-center'>
+              <label htmlFor="name" className='w-20 xl:w-36 font-bold xl:text-xl text-slate-800'>subscription:</label>
+              <p className='font-bold text-slate-600'>{me.subscriber.status ? 'ends ' + me.subscriber.expire.split('T')[0] : 'no subscription'}</p>
             </div>
-          </div>
-          <div className="border-2 border-white p-2 px-5 rounded-md ">ghf</div>
+            <div className="">
+              <button className='btn overflow-hidden bg-primary text-white rounded-md' onClick={logout}>Logout</button>
+            </div>
+          </div> }
+          <div className="border-2 border-white p-2 px-5 rounded-md "></div>
         </div>
       </div>
     </Section>

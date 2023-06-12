@@ -51,7 +51,7 @@ const SingleClassHeaderComponent = () => {
 
       {isLecture && (
         <NavLink
-          to={`/class/${classId}/dashboard`}
+          to={`/class/${classId}/dashboard/`}
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
           <i className="ri-dashboard-fill md:hidden text-xl"></i>
