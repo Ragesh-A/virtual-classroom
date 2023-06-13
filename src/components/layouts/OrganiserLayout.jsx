@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 import logo from '../../assets/images/logo-dark.png'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Notification from '../common/Notification'
 
 const OrganizerLayout = () => {
@@ -39,7 +39,9 @@ const OrganizerLayout = () => {
       <div className="fixed top-4 w-full md:px-10">
         <div className="bg-white rounded p-4 box">
         <div className="max-w-[5rem]">
+          <Link to='/home'>
           <img src={logo} alt="" />
+          </Link>
         </div>
         </div>
       </div>
