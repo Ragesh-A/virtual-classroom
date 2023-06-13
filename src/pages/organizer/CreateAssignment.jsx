@@ -12,9 +12,10 @@ const CreateAssignment = ({close}) => {
   const [succ, setSucc] = useState()
   const {classes} = useSelector(store=>store.organizer)
   const {errors, values, handleChange, handleSubmit} = useFormik({
-    initialValues: assignmentInitialValue,
+    initialValues: {...assignmentInitialValue, classId: [] },
     validationSchema: assignmentSchema,
     onSubmit: (values)=>{
+      console.log(values);
       services.createBulkAssignment(classId, values).then(res=>{
         if (res?.error) {
           setErr(res?.error)
@@ -45,8 +46,8 @@ const CreateAssignment = ({close}) => {
         </div>
         <div className="flex flex-wrap gap-3">
         {classes&&classes.map(single=>(
-          <div className="flex gap-1 items-center">
-          <input type="checkbox" name="classes" id={single.name} value={single.name} />
+          <div className="flex gap-1 items-center" key={single._id}>
+          <input type="checkbox" name='classId' id={single.name} value={single._id} checked={values.classId.includes(single._id)} onChange={handleChange}/>
           <label htmlFor={single.name}>{single.name}</label>
         </div>
         ))}

@@ -17,9 +17,11 @@ const assignmentService = {
       return res.data;
     })
   },
-  createBulkAssignment: async () => {
+  createBulkAssignment: async (classId, values) => {
     setAxiosToken();
-    return 
+    return axios.post(`${BASE_URL}/classes/${classId}/assignments/`, values).then((res)=>{
+      return res.data;
+    })
   },
   getAssignments: async (classId, q) => {
     setAxiosToken()
