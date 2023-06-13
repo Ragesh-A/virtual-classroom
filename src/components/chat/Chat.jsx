@@ -23,12 +23,12 @@ const Chat = ({user, message}) => {
   return (
     
     <div className="px-2 mb-1">
-   <div className={`flex ${ user === message?.senderId && 'justify-end'}`}>
-      <div className={`${ user === message?.senderId ? "bg-gradient-to-r from-lightPrimary to-primary text-white rounded-s-xl rounded-ee-xl" : "bg-white border text-textColor rounded-e-xl  rounded-es-xl"} text-sm px-4 py-3 max-w-[70%]`}>
-        <p className="">{message?.message}</p>
+   <div className={`flex ${ user === message?.sender?._id && 'justify-end'}`}>
+      <div className={`${ user === message?.sender?._id  ? "bg-gradient-to-r from-lightPrimary to-primary text-white rounded-s-xl rounded-ee-xl" : "bg-white border text-textColor rounded-e-xl  rounded-es-xl"} text-sm px-4 py-3 max-w-[70%]`}>
+        <p className="">{message?.content?.text}</p>
       </div>
     </div> 
-      <span className={`flex ${ user === message?.senderId && 'justify-end'} p-2 text-[8px]`}>{getRelativeTime(message?.createdAt)}</span>
+      <span className={`flex ${ user === message?.sender?._id && 'justify-end'} p-2 text-[8px]`}>{getRelativeTime(message?.createdAt)}</span>
     </div>
   
   )

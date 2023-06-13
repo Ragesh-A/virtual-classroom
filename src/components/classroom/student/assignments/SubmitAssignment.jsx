@@ -62,18 +62,18 @@ const SubmitAssignment = ({assignmentId, close}) => {
           rounded outline-none border-b-2 border-b-primary text-slate-600"`} required ref={ans}></textarea>
         { selected[0]?.image && <div className="pt-2">
           <p className="font-bold text-gray-800 mb-1">REFERENCE</p>
-          <img src={`${IMAGE_PATH}assignments/${selected[0].image}`} alt="reference" className='max-w-[350px] overflow-hidden rounded-md' />
+          <img src={`${IMAGE_PATH}assignments/${selected[0].image}`} alt="reference" className='max-w-[350px] overflow-hidden rounded-md max-h-[400px]' />
         </div>}
       </div>
       <div className="flex flex-col md:flex-row mt-1  justify-between">
       <div className="flex items-center">
-        <button htmlFor="image"
+        {/* <button htmlFor="image"
           className="bg-lightPrimary text-white p-2 px-5  rounded-full gap-3 my-1  flex items-center justify-center min-h-[40px] min-w-[40px]"
           onClick={()=> setAddImage(true)}
           >
           <i className="ri-image-add-line"></i>
           <span>add reference</span>
-        </button>
+        </button> */}
       
       </div>
       <div className="">

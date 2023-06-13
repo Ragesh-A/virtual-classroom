@@ -4,6 +4,7 @@ import classesSlice from "./classesSlice";
 import adminSlice from "./adminSlice";
 import organizerSlice from "./organizerSlice";
 import uiSlice from "./uiSlice";
+import chatSlice from "./chatSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     'classes': classesSlice,
     'admin': adminSlice,
     'organizer': organizerSlice,
+    'chatMate': chatSlice,
   }
 });
 

@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import Shimmer from "../common/Shimmer";
 import chatServices from "../../services/chatServices";
 import SelectUser from "./SelectUser";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { SetChats, setSelectedChat } from "../../utils/store/chatSlice";
 
-const MessagedUsersLIst = ({usersList = [], currentPerson, setPerson, setConversation, onlineUsers, setUserSelected}) => {
+const MessagedUsersLIst = ({usersList = [], onlineUsers}) => {
   // const [usersList,setUsersList] = useState()
   const [filtered, setFiltered] = useState(1)
-  const [users, setUsers] = useState()
-  const [chats, setChats] = useState()
+  const { classId } = useParams()
+
+  const dispatch = useDispatch()
+  const { chats, selectedChat } = useSelector(store=>store.chatMate)
 
   const filterUsers = (search) => {
     if (usersList?.length !== 0 ){
@@ -15,25 +20,23 @@ const MessagedUsersLIst = ({usersList = [], currentPerson, setPerson, setConvers
       setFiltered(filteredUser)
     }
   }
-  console.log(currentPerson, "current users");
-  useEffect(()=>{
-    const response = chatServices.getChats()
-    response.then(res=>{
-      // const filteredCurrentUser = res?.success.chats.filter(user=> user?._id !== currentPerson)
-      setChats(res?.success?.chats)
-      const us = res?.success?.chats?.map(e=>(
-        e?.members?.find(s=>s._id !== currentPerson)
-      ))
-      setUsers(us)
-    })
-  },[currentPerson])
+ 
 
-  const handleSelection = (chatId, index)=>{
-    setConversation(chatId);
-    setPerson(users[index])
-    setUserSelected(true)
+  const handleSelection = (chat)=>{
+    dispatch(setSelectedChat(chat))
   }
 
+  useEffect(()=>{
+    if (!chats) {
+      const promise = chatServices.allChats(classId);
+      promise.then(res=> {
+        if (res.success) {
+          dispatch(SetChats(res?.success?.chats))
+        }
+      })
+      promise.catch(res=> console.log(res))
+    }
+  }, [classId])
 
 
   if (!filtered) return <Shimmer count={3}/>
@@ -54,8 +57,8 @@ const MessagedUsersLIst = ({usersList = [], currentPerson, setPerson, setConvers
       <p className="font-mono text-sm font-bold tracking-widest py-2">CHAT</p>
       <div className="flex flex-col overflow-y-scroll scroll h-full relative">
         {chats &&
-          chats?.map((chat, index) => (
-            <div key={chat._id} className="" onClick={()=>handleSelection(chat._id, index)}>
+          chats?.map((chat) => (
+            <div key={chat._id} className={chat?._id === selectedChat?._id ? 'bg-gray-200' : ''} onClick={()=>handleSelection(chat)}>
               <SelectUser chat={chat} key={chat?._id} />
             </div>
           ))}

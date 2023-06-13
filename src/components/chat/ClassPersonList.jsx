@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import Avatar from '../common/Avatar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Shimmer from '../common/Shimmer';
 import chatServices from '../../services/chatServices';
 import { useParams } from 'react-router-dom';
+import { addChats, setSelectedChat } from '../../utils/store/chatSlice';
+import CreateGroup from './CreateGroup';
 
 const ClassPersonList = ({ back, onlineUsers, myId }) => {
   const { currentClass } = useSelector(store=>store.classes)
   const [filtered, setFiltered ] = useState();
   const [activeForm, setActiveForm ] = useState(false);
   const { classId } = useParams();
+  const dispatch = useDispatch()
 console.log(activeForm);
   useEffect(()=> {
     if (myId){
@@ -24,19 +27,15 @@ console.log(activeForm);
     
   }, [currentClass, myId])
 
-  const makeConnection = async (userId) => {
-    //function to create the new connection between the users
-    const promise = chatServices.createConnection(currentClass?.class?._id, userId)
-    promise.catch(error=>{console.log(error)})
-    promise.then(res=>{
-      console.log(res);
-    })
-  }
 
   // new chat data with new chat model
   const v2MakeConnection = async (userId) => {
     const promise = chatServices.accessChat(classId, userId)
-    promise.then(res=> console.log(res, "response v2"))
+    promise.then(res=> {
+      dispatch(addChats(res?.success))
+      dispatch(setSelectedChat(res.success))
+      back()
+    })
     promise.catch(error => console.log(error, "error"))
   } 
 
@@ -97,10 +96,8 @@ console.log(activeForm);
           ))}
         
       </div>
-      {activeForm && <div className='absolute bg-green-500 top-0 left-0 w-full h-full z-[5]'>
-      <form>
-        
-      </form>
+      {activeForm && <div className='absolute top-0 left-0 w-full h-full z-[5]'>
+            <CreateGroup back={back}/>
         </div>}
     </div>
   );

@@ -1,22 +1,30 @@
-import { useRef } from "react";
-import chatServices from "../../services/chatServices";
+import { useRef } from 'react';
+import chatServices from '../../services/chatServices';
+import { useDispatch } from 'react-redux';
+import { setNotification } from '../../utils/store/uiSlice';
 
-const SendBottomBar = ({ friend, chatId, sendedMessage }) => {
+const SendBottomBar = ({ socket, chatId, sendedMessage }) => {
   const mes = useRef();
-  const sendMessage = async(e) => {
-    e.preventDefault()
+  const dispatch = useDispatch();
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
     const text = mes.current.value.trim();
     if (text) {
       console.log(chatId);
-      chatServices.sendMessage(chatId, text).then((res)=>{
-        
-        if (res.success){
+      chatServices.sendMessage(chatId, text).then((res) => {
+        if (res.success) {
+          socket?.current?.emit('new-message', res.success.isSended) 
           mes.current.value = '';
           sendedMessage(res.success.isSended);
+        } else {
+          dispatch(
+            setNotification({ success: false, message: res.error.message })
+          );
         }
-      })
+      });
     }
-  }
+  };
   return (
     <div className="rounded absolute bottom-3 w-full left-0 px-3">
       <form onSubmit={sendMessage} className="w-full flex gap-1 ">
@@ -39,6 +47,5 @@ const SendBottomBar = ({ friend, chatId, sendedMessage }) => {
     </div>
   );
 };
-
 
 export default SendBottomBar;

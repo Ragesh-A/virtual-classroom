@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react';
 import Avatar from '../common/Avatar';
 import { useSelector } from 'react-redux';
 
-const SelectUser = ({ chat, setPerson }) => {
+const SelectUser = ({ chat }) => {
   const { user } = useSelector((store) => store.user);
   const [friend, setUser] = useState();
+
   useEffect(() => {
-    const singleUser = chat?.members?.find((s) => s?._id !== user?._id);
-    setUser(singleUser, 'single');
+    if (!chat.isGroup) {
+      const singleUser = chat?.users?.find((s) => s?._id !== user?._id);
+      setUser(singleUser);
+    }else{
+      setUser({name: chat.chatName, _id: chat._id})
+    }
   }, []);
 
   return (
