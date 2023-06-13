@@ -22,10 +22,12 @@ const TakeAttendance = () => {
     attendanceService.getTodayAttendance(classId).then((res)=>{
       if (res.success.attendance === null){
         lectureServices.allStudents(classId).then((res)=>{
-          if (res?.success) setStudents(res.success?.enrolledStudents.students)
+          console.log(res,"here");
+          if (res?.success?.enrolledStudents) setStudents(res.success?.enrolledStudents?.students)
+          else setStudents([])
         })
       }else if (res.success.attendance){
-        const filtered = filterTheAttendance(res?.success?.attendance.students)
+        const filtered = filterTheAttendance(res?.success?.attendance?.students)
         setStudents(filtered)
       }
     })
@@ -52,6 +54,7 @@ const TakeAttendance = () => {
 
 
   if (!students) return <Shimmer count={2} />
+  if (students && students.length < 1 ) return <div className="h-full flex items-center font-bold bg-tileColor justify-center xl:text-2xl text-gray-400">No students</div>
   return (
     <div>
       <div className="grid grid-cols-2 gap-2">
@@ -61,10 +64,10 @@ const TakeAttendance = () => {
           students?.map(student => (
             <div className="flex items-center gap-3 bg-tileColor p-2 rounded justify-between" key={student?._id}>
               <div className="flex gap-3 items-center">
-              <Avatar name={student.name} image={student.image} />
-              <span>{student.name}</span>
+              <Avatar name={student?.name} image={student?.image} />
+              <span>{student?.name}</span>
               </div>
-              <button className={`${student.status ? 'bg-primary text-white' : 'text-textColor bg-white'} present rounded p-3 py-1 `} onClick={()=>handleAttendance(student._id)}>{student.status ? 'Present' : 'Absent'}</button>
+              <button className={`${student.status ? 'bg-primary text-white' : 'text-textColor bg-white'} present rounded p-3 py-1 `} onClick={()=>handleAttendance(student?._id)}>{student?.status ? 'Present' : 'Absent'}</button>
             </div>
           ))
           
