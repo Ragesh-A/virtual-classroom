@@ -90,7 +90,7 @@ console.log(activeForm);
               <p className="text-textColor font-bold font-mono capitalize">
                 {user?.name}
               </p>
-              {isUserOnline(user?._id) ? <p className='text-[10px] text-green-500'>online</p>: <p className='text-[10px] text-red-500'>offline</p>}
+              {/* {isUserOnline(user?._id) ? <p className='text-[10px] text-green-500'>online</p>: <p className='text-[10px] text-red-500'>offline</p>} */}
               </div>
             </div>
           ))}

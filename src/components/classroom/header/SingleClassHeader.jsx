@@ -41,7 +41,7 @@ const SingleClassHeaderComponent = () => {
       </NavLink>
       {!isLecture && (
         <NavLink
-          to={`/class/${classId}/works`}
+          to={`/class/${classId}/works/`}
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
           <i className="ri-calendar-todo-fill md:hidden text-xl"></i>

@@ -30,7 +30,7 @@ const ChatRight = ({setUserSelected, socket, myId}) => {
                       <p className="uppercase">
                         {chatName}
                       </p>
-                      {!selectedChat.isGroup && <p className={`text-[10px] text-green-500`}>online</p>}
+                      {/* {!selectedChat.isGroup && <p className={`text-[10px] text-green-500`}>online</p>} */}
                     </div>
                   </div>
                   <div className="rounded h-[92%] relative">

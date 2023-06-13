@@ -22,13 +22,18 @@ const SubmitAssignment = ({assignmentId, close}) => {
 
     const submitAnswer = () =>{
       const answer = ans.current.value.trim()
-      console.log(fileRef.current.files);
+
       const files = fileRef.current.files
       if(!answer && [...files].length === 0){
         setError(' should not empty')
         setTimeout(()=>{setError(false)}, 2000)
       }else{
-        assignmentService.submitAssignment(classId, assignmentId, {answer, image: [...files]}).then(res=>{
+        const formData = new FormData()
+        for (let i = 0; i < files.length; i++) {
+          formData.append('images',files[i])
+        }
+        formData.append('answer', answer)
+        assignmentService.submitAssignment(classId, assignmentId, formData).then(res=>{
           if(res?.success){
             setSucc('submitted')
             dispatch(setNotification({ success: true, message: 'submitted'}))
@@ -67,13 +72,13 @@ const SubmitAssignment = ({assignmentId, close}) => {
       </div>
       <div className="flex flex-col md:flex-row mt-1  justify-between">
       <div className="flex items-center">
-        {/* <button htmlFor="image"
+        <button htmlFor="image"
           className="bg-lightPrimary text-white p-2 px-5  rounded-full gap-3 my-1  flex items-center justify-center min-h-[40px] min-w-[40px]"
           onClick={()=> setAddImage(true)}
           >
           <i className="ri-image-add-line"></i>
           <span>add reference</span>
-        </button> */}
+        </button>
       
       </div>
       <div className="">

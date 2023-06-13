@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CreateAssignment from "../../components/classroom/Lecture/CreateAssignment";
 import lectureServices from "../../services/lectureServices";
 import { Link, useParams } from "react-router-dom";
+import { IMAGE_PATH } from "../../constant/constant";
 
 const Submissions = () => {
 
@@ -30,6 +31,13 @@ const Submissions = () => {
         <p className="text-gray-500 font-semibold">{assignment?.dueDate}</p>
       </div>
       <p>{assignment?.answer}</p>
+      <div className="flex flex-wrap ">
+                {
+                  assignment?.image?.map(x => (
+                    <img src={`${IMAGE_PATH}submissions/${x}`} alt="" key={x}  loading="lazy"/>
+                  ))
+                }
+              </div>
     </div>
     ))}
     

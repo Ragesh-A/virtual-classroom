@@ -41,12 +41,12 @@ const LayoutWithSidebar = () => {
             {toggle && <span className="side-bar-title">Attendance</span>}
         </NavLink>
         </li>
-        {/* <li>
+        <li>
         <NavLink className={`flex gap-5 items-center py-3 px-8 rounded shadow bg-white text-textColor font-bold  w-full text-left hover:bg-indigo-500 hover:text-white  SideBar-tab h-[3rem]`} to={`/class/${classId}/dashboard/announcements`}>
             <i className="fa-solid fa-bullhorn"></i>
             {toggle && <span className="side-bar-title">Announcement</span>}
         </NavLink>
-        </li>      */}
+        </li>     
         <li>
         <NavLink className={`flex gap-5 items-center py-3 px-8 rounded shadow bg-white text-textColor font-bold  w-full text-left hover:bg-indigo-500 hover:text-white  SideBar-tab h-[3rem]`} to={`/class/${classId}/dashboard/settings`}>
         <i className="fa-solid fa-gear"></i>

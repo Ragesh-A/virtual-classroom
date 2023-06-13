@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Shimmer from "../../../common/Shimmer";
 import { useDispatch } from "react-redux";
 import { setAssignment } from "../../../../utils/store/classesSlice";
+import { IMAGE_PATH } from "../../../../constant/constant";
 
 const Works = ({filter}) => {
 
@@ -33,7 +34,7 @@ const Works = ({filter}) => {
     <>
       {
         assignments?.map(assignment=>(
-          <div className={`bg-tileColor rounded-md py-3 px-8 overflow-hidden transition mb-2 cursor-pointer hover:shadow hover:shadow-shadow ${selected === assignment?._id ? 'h-full' :  'h-12'}`} onClick={()=>setSelected(assignment?._id)} key={assignment?._id}>
+          <div className={`bg-tileColor rounded-md py-3 px-8 overflow-hidden transition mb-2 cursor-pointer hover:shadow hover:shadow-shadow ${selected === assignment?._id ? 'h-full' :  'h-12'} flex flex-col`} onClick={()=>setSelected(assignment?._id)} key={assignment?._id}>
             <div className="flex justify-between mb-3">
               <p className="font-bold text-textColor">
                 {filter === 'completed' ? assignment?.assignmentId?.title : assignment?.title }
@@ -43,7 +44,16 @@ const Works = ({filter}) => {
               </p>
              </div>
             <p>{filter === 'completed' ? assignment?.assignmentId?.description : assignment?.description}</p>
-            {filter === 'completed' && <p className="bg-white p-2 text-green-500">{assignment?.answer}</p>}
+            {filter === 'completed' && assignment?.answer && <p className="bg-white p-2 text-green-500">{assignment?.answer}</p>}
+            {
+              filter === 'completed' && <div className="flex flex-wrap ">
+                {
+                  assignment?.image?.map(x => (
+                    <img src={`${IMAGE_PATH}submissions/${x}`} alt="" key={x}  loading="lazy"/>
+                  ))
+                }
+              </div>
+            }
           </div>
         )
       )

@@ -26,13 +26,13 @@ const Home = () => {
   const socket = useRef();
   const { user } = useSelector((store) => store.user);
 
-  useEffect(() => {
-    socket.current = io(MEETUP_SOCKET_IP);
-    socket.current.emit('login', { user: user?.emailOrPhone });
-    return () => {
-      socket.current.disconnect();
-    };
-  }, [user]);
+  // useEffect(() => {
+  //   socket.current = io(MEETUP_SOCKET_IP);
+  //   socket.current.emit('login', { user: user?.emailOrPhone });
+  //   return () => {
+  //     socket.current.disconnect();
+  //   };
+  // }, [user]);
 
   const openMediaDevices = async (config) => {
     return await navigator.mediaDevices.getUserMedia(config);
@@ -80,7 +80,7 @@ const Home = () => {
                 <span>Conferencing</span>
               </h3>
               <div className="flex flex-col text-center md:flex-row  gap-5 mt-10">
-                <div className="">
+                {/* <div className="">
                   <p className="text-gray-400 text-sm text-center mb-1">
                     create new meetup
                   </p>
@@ -91,7 +91,7 @@ const Home = () => {
                     <i className="ri-add-fill"></i>
                     <span>create</span>
                   </button>
-                </div>
+                </div> */}
                 <div className="">
                   <p className="text-gray-400 text-sm mb-1">
                     to join a class meetup
@@ -105,7 +105,7 @@ const Home = () => {
                     onChange={(e)=>setRoomCode(e.target.value)}
                     className="border-2 m-auto mt-2 tracking-wider focus:border-primary focus:shadow focus:shadow-primary outline-none font-bold text-primary  text-center p-3 rounded-md"
                     placeholder="enter the code"
-                  /> <button>Join</button>
+                  /> <button className='bg-primary text-white w-[3rem] h-[3rem]'>Join</button>
                   </form>
                   
                 </div>
