@@ -9,12 +9,14 @@ const Attendance = () => {
 
   const {classId} = useParams()
   const date = new Date().toDateString()
-  const [todayAttendance, setTodyAttendance] = useState()
+  const [todayAttendance, setTodyAttendance] = useState(null)
   const [takeAttendance, setTakeAttendance] = useState();
 
   useEffect(()=>{
     lectureServices.getTodayAttendance(classId).then((res)=>{
-      if (res?.success) setTodyAttendance(res.success.attendance.students);
+      if (res?.success.attendance){
+        setTodyAttendance(res.success?.attendance?.students);
+      }
     })
   }, [classId])
 
