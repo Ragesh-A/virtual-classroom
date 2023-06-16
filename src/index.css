@@ -18,6 +18,9 @@
 .nav.active{
   border-top-color: white !important;
 }
+.ellipsis{
+  text-overflow: ellipsis;
+}
 @media (max-width: 768px) {
   .nav{
     border-radius: 50%;
@@ -118,6 +121,7 @@ body::-webkit-scrollbar{
 .SideBar-tab{
   transition: .2s ease;
   background-color: #fff;
+  color: #474747;
 }
 .SideBar-tab.active{
   background: rgb(99 102 241);
@@ -264,15 +268,32 @@ body::-webkit-scrollbar{
     margin-bottom: 4rem;
   }
   .sidebar.active ~ .main-content{
-    width: 100%;
-    margin-left: 0px;
+    width: calc(100% - 200px);
+    margin-left: 200px;
   }
   .sidebar ~ .main-content{
-    width: 100%;
-    margin-left: 0px;
+    width: calc(100% - 70px);
+    margin-left: 70px;
   }
   table{
     font-size: 12px;
+  }
+}
+@media (max-width: 428px) {
+  .sidebar{
+    left: 8px;
+    width: calc(100% - 16px);
+  }
+  .sidebar.active{
+    left: -100%;
+  }
+  .sidebar ~ .main-content{
+    width: 100%;
+    margin-left: 0;
+  }
+  .sidebar.active ~ .main-content{
+    width: 100%;
+    margin-left: 0;
   }
 }
 

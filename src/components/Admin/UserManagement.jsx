@@ -21,27 +21,28 @@ const UserManagement = () => {
   },[dispatch, users])
 
   return (
-    <div className="box p-5">
-      <p className="text-center text-primary underline font-extrabold text-xl mb-5">User management</p>
-      <table className="w-full">
-        <thead>
+    <div className="box rounded-md p-2 md:p-5 overflow-x-scroll text-[10px]">
+      <p className="text-center text-primary underline font-extrabold text-md md:text-xl my-2 md:mb-5">User management</p>
+      <table className="w-full overflow-x-scroll">
+        <thead className="text-[10px] md:text-xl rounded-full overflow-hidden bg-primary text-white">
           <tr>
-            <th className="text-white "><span className="bg-primary block rounded p-2">ID</span></th>
-            <th className="text-white "><span className="bg-primary block rounded p-2">User Name</span></th>
-            <th className="text-white "><span className="bg-primary block rounded p-2">Email</span></th>
-            <th className="text-white "><span className="bg-primary block rounded p-2">Status</span></th>
-            <th className="text-white "><span className="bg-primary block rounded p-2">Action</span></th>
+            <th className="p-1 md:p-2">ID</th>
+            <th className="p-1 md:p-2"><span className="hidden md:inline">User </span> Name</th>
+            <th className="p-1 md:p-2">Email</th>
+            <th className="p-1 md:p-2">Status</th>
+            <th className="p-1 md:p-2">Action</th>
           </tr>
         </thead>
-        <tbody className="text-center">
+        <tbody className="text-center md:mt-1">
           {users && users?.map((user, index)=>(
-            <tr key={user._id}>
-            <td><span className="py-2 bg-indigo-50 block rounded">{index + 1}</span></td>
-            <td><span className="py-2 bg-indigo-50 block rounded">{user.name}</span></td>
-            <td><span className="py-2 bg-indigo-50 block rounded">{user.emailOrPhone}</span></td>
-            <td><span className={`py-2 block rounded font-bold border-2 ${user.isBlocked ? 'bg-red-100 border-red-500 text-red-500': 'bg-green-100 border-green-500 text-green-500'} `}>{user?.isBlocked ? 'blocked' : 'unBlocked'}</span></td>
-            <td className="flex">
-              <button className="bg-lightPrimary hover:bg-primary text-white px-2 py-2 rounded w-full" onClick={()=>handleBlock(user._id)}>Block</button>
+            <tr key={user._id} className={`text-[10px] md:text-[16px] font-mono ${index % 2 !== 0 && 'bg-gray-100'}`}>
+            <td>{index + 1}</td>
+            <td className="capitalize">{user.name}</td>
+            <td>{user.emailOrPhone}</td>
+            {/* clas{` md:py-2 text-[10px] block `} */}
+            <td><span className={`rounded block m-auto w-20 md:w-32 py-1 font-bold ${user.isBlocked ? 'bg-red-100 text-red-500': 'bg-green-100 text-green-500'}  uppercase`}>{user?.isBlocked ? 'Blocked' : 'Un Blocked'}</span></td>
+            <td>
+              <button className="bg-lightPrimary hover:bg-primary text-white p-1 font-bold md:p-2 rounded w-full" onClick={()=>handleBlock(user._id)}>Block</button>
             </td>
           </tr>
           ))}

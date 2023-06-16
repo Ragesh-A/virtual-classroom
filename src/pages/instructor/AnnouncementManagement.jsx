@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Box from '../../components/common/Box';
+import CreateAnnouncement from '../../components/instructor/CreateAnnouncemet';
 
 const AnnouncementManagement = () => {
 
@@ -33,6 +34,11 @@ const AnnouncementManagement = () => {
             delete
           </li>
         </ul>
+      </div>
+      <div className="">
+        {
+          tab === 'create' && <CreateAnnouncement />
+        }
       </div>
 
     </div>

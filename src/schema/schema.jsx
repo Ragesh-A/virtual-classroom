@@ -94,3 +94,26 @@ export const assignmentSchema = Yup.object({
   description: Yup.string().min(10, 'should be more detailed').required('is required'),
   image: Yup.mixed().nullable(),
 })
+
+export const announcementInitialValue = {
+  title: '',
+  description: '',
+  icon: '',
+  announceAt: (() => {
+    const currentDate = new Date();
+    const isoString = currentDate.toISOString();
+    const formattedDate = isoString.split('T')[0];
+    return formattedDate;
+  })(),
+  theme: 'black',
+  action: ''
+}
+
+export const announcementSchema = Yup.object({
+  title: Yup.string().required().min(5).max(20),
+  description: Yup.string().required().min(5).max(30),
+  announceAt: Yup.date().required(),
+  icon: Yup.string().required(),
+  theme: Yup.string().required(),
+  action: Yup.string(),
+})

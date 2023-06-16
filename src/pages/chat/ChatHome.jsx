@@ -24,6 +24,14 @@ const ChatHome = () => {
       socket.current = io(CHAT_SOCKET_IP);
       socket.current.emit('setup', user);
       socket.current.on('connection ', () => setSocketConnected(true));
+      socket.current.on('disconnect', () => setSocketConnected(false));
+    }
+    
+    return () => {
+      if (socket){
+        socket?.current?.off('disconnect');
+        socket?.current?.disconnect();
+      }
     }
   }, [currentClass?.class?._id, user]);
 
@@ -50,6 +58,7 @@ const ChatHome = () => {
               <MessagedUsersLIst
                 currentPerson={user?._id}
                 onlineUsers={onlineUser}
+                setUserSelected={setUserSelected}
               />
             ) : (
               <ClassPersonList
@@ -62,7 +71,7 @@ const ChatHome = () => {
           <ChatRight
             socket={socket}
             myId={user?._id}
-            setUserSelected={() => {}}
+            setUserSelected={setUserSelected}
           />
         </div>
       </Section>

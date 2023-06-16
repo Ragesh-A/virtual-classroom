@@ -9,6 +9,7 @@ const ChatRight = ({setUserSelected, socket, myId}) => {
   const { selectedChat } = useSelector(store=>store.chatMate)
   const {classId} = useParams()
   const [chatName, setChatName] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
   useEffect(()=>{
     if (selectedChat?.isGroup) {
       setChatName(selectedChat.chatName)
@@ -17,6 +18,11 @@ const ChatRight = ({setUserSelected, socket, myId}) => {
       setChatName(friend?.name)
     }
   }, [myId, selectedChat])
+
+  useEffect(()=>{
+    socket.current?.on('typing', ()=>{ setIsTyping(true)})
+    socket.current?.on('stop-typing', ()=> {setIsTyping(false)})
+  }, [socket])
 
   return (
     <>
@@ -31,6 +37,7 @@ const ChatRight = ({setUserSelected, socket, myId}) => {
                         {chatName}
                       </p>
                       {/* {!selectedChat.isGroup && <p className={`text-[10px] text-green-500`}>online</p>} */}
+                      {isTyping && <p className={`text-[10px] text-green-500`}>typing</p>}
                     </div>
                   </div>
                   <div className="rounded h-[92%] relative">

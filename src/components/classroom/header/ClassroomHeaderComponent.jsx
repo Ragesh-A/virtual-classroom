@@ -37,6 +37,13 @@ const ClassroomHeaderComponent = () => {
           <i className="ri-building-fill md:hidden text-xl"></i>
           <li className="hidden md:block">Organization</li>
         </NavLink>}
+        {user?.subscriber?.status && <NavLink
+          to="/admin/"
+          className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
+        >
+          <i className="ri-dashboard-fill md:hidden text-xl"></i>
+          <li className="hidden md:block">Dashboard</li>
+        </NavLink>}
         <NavLink
           to="/meetup"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"

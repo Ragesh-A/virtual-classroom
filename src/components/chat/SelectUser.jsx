@@ -24,9 +24,10 @@ const SelectUser = ({ chat }) => {
         >
           <Avatar name={`${friend.name}`} image={friend?.avatar} />
 
-          <p className="text-textColor font-bold font-mono capitalize">
-            {friend?.name}
-          </p>
+          <div className="">
+            <p className="text-textColor font-bold font-mono capitalize">{friend?.name}</p>
+            <p className='text-[12px] text-green-500'>{chat?.latestMessage?.content?.text}</p>
+          </div>
         </div>
       )}
     </>

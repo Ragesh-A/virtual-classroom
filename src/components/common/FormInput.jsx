@@ -6,12 +6,13 @@ const FormInput = ({
   icon,
   onChange,
   onBlur,
+  labelIsVisible = false
 }) => {
   return (
     <>
     
       <div className="mt-3 flex relative border-b-4 border-primary rounded p-2 shadow transition bg-white">
-        <label  htmlFor={name} className="absolute left-0 capitalize top-[-1rem] font-bold text-primary text-xs invisible" >
+        <label  htmlFor={name} className={`absolute left-0 capitalize top-[-1rem] font-bold text-primary text-xs ${labelIsVisible ? '' :'invisible'}`} >
           {label}
         </label>
         <span className="text-primary">{icon}</span>

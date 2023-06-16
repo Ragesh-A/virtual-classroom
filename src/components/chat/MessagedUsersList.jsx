@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { SetChats, setSelectedChat } from "../../utils/store/chatSlice";
 
-const MessagedUsersLIst = ({usersList = [], onlineUsers}) => {
+const MessagedUsersLIst = ({usersList = [], onlineUsers, setUserSelected}) => {
   // const [usersList,setUsersList] = useState()
   const [filtered, setFiltered] = useState(1)
   const { classId } = useParams()
@@ -23,6 +23,7 @@ const MessagedUsersLIst = ({usersList = [], onlineUsers}) => {
  
 
   const handleSelection = (chat)=>{
+    setUserSelected(true)
     dispatch(setSelectedChat(chat))
   }
 
