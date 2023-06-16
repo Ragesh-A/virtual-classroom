@@ -19,7 +19,7 @@ const AllClasses = () => {
       .getAllClasses()
       .then((res) => {
         if (res?.classes) {
-          dispatch(storeClasses(res.classes));
+          dispatch(storeClasses(res?.classes));
           setIsLoaded(true);
         }
       })

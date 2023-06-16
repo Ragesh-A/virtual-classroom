@@ -11,11 +11,11 @@ const Announcements = () => {
   useEffect(() => {
     const promise = announcementServices.getUserAnnouncement();
     promise.then((res) => {
-      console.log(res.success);
+      console.log(res?.success);
       if (res?.success) {
         setAnnouncements(res?.success?.announcements);
       } else {
-        dispatch(setNotification({ success: false, message: res.error }));
+        dispatch(setNotification({ success: false, message: res?.error || 'Network error' }));
       }
     });
   }, []);
