@@ -28,7 +28,7 @@ const Header = ({ page, isLecture = false }) => {
     <header className="flex justify-between pt-8 md:ps-16 pb-2 rounded-bl-xl">
       <div className="max-w-[4rem] flex items-center ms-4 md:ms-0">
         <Link to="/home">
-          <img src={logo} alt="logo" />
+          <img src={logo} draggable='false' alt="logo" />
         </Link>
       </div>
       <div className="flex fixed bottom-0 left-0 w-full z-50 bg-gradient-to-r from-lightPrimary to-primary items-center justify-between overflow-hidden md:relative md:rounded-s-[2rem] sm:ps-8 md:w-[70vw] max-w-[55rem]">

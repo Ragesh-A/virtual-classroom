@@ -67,7 +67,7 @@ const SubmitAssignment = ({assignmentId, close}) => {
           rounded outline-none border-b-2 border-b-primary text-slate-600"`} required ref={ans}></textarea>
         { selected[0]?.image && <div className="pt-2">
           <p className="font-bold text-gray-800 mb-1">REFERENCE</p>
-          <img src={`${IMAGE_PATH}assignments/${selected[0].image}`} alt="reference" className='max-w-[350px] overflow-hidden rounded-md max-h-[400px]' />
+          <img draggable='false' src={`${IMAGE_PATH}assignments/${selected[0].image}`} alt="reference" className='max-w-[350px] overflow-hidden rounded-md max-h-[400px]' />
         </div>}
       </div>
       <div className="flex flex-col md:flex-row mt-1  justify-between">

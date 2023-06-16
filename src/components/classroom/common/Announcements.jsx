@@ -24,7 +24,7 @@ const Announcements = () => {
   if (!announcements) return <></>;
 
   return (
-    <div className="flex flex-wrap overflow-x-scroll scroll gap-2 p-2 mb-2">
+    <div className="flex overflow-x-scroll scroll gap-2 p-2 mb-2 md:mb-5">
       {announcements?.map((announcement) => (
         <AnnouncementCard
           title={announcement?.title}

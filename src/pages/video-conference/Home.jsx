@@ -113,6 +113,7 @@ const Home = () => {
             </div>
             <div className="md:w-1/2 flex justify-center">
               <img
+                draggable='false'
                 src={bg}
                 alt="meet up"
                 className="max-w-[250px] xl:max-w-[500px]"

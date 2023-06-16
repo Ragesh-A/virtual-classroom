@@ -62,7 +62,7 @@ const Settings = () => {
       {succ&& <span className="text-green-500">{succ}</span>}
       <form onSubmit={handleSubmit} className="flex flex-col bg-tileColor max-w-md p-3 rounded ">
       <label className="font-bold text-slate-600 mb-1">Background {err&&<span className="text-red-500 text-sm font-mono">{err}</span>}</label>
-      <img src={ currentClass?.class?.image ? IMAGE_PATH + `/classroom/${image}` : image ? image : defaultImage} alt='class background' className="max-h-[8rem]"/>
+      <img draggable='false' src={ currentClass?.class?.image ? IMAGE_PATH + `/classroom/${image}` : image ? image : defaultImage} alt='class background' className="max-h-[8rem]"/>
       
       <label htmlFor="name" className="font-bold text-slate-600 mb-1">name</label>
       <input type="text" name="name" id="name" defaultValue={currentClass?.class?.name} ref={name} className="p-1 rounded shadow shadow-shadow border border-blue-400 mb-3"/>

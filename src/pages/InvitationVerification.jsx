@@ -25,7 +25,7 @@ const InvitationVerification = () => {
       {!verified ? <button className="btn bg-green-400 rounded text-white font-extrabold shadows shadow-green-400" onClick={joinHandle}>JOIN</button> : <>
       
       <div className="">
-      <img src={image} alt="verified"/>
+      <img draggable='false' src={image} alt="verified"/>
       <p className="uppercase text-primary font-bold">Verified</p>
       </div>
       </>}

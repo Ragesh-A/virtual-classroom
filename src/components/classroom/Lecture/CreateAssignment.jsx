@@ -76,7 +76,7 @@ const CreateAssignment = ({ close, addNew }) => {
           rounded outline-none border-b-2 border-b-primary text-slate-600"`} values={values.description}
           onChange={handleChange}></textarea>
         {addImage && addImage !== true && <div className="pt-2">
-          <img src={addImage  || exa} alt="reference" className='max-w-[350px] overflow-hidden rounded-md' />
+          <img draggable='false' src={addImage  || exa} alt="reference" className='max-w-[350px] overflow-hidden rounded-md' />
         </div>}
       </div>
     </div>

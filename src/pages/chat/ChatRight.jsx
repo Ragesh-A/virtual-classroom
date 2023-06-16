@@ -50,7 +50,7 @@ const ChatRight = ({setUserSelected, socket, myId}) => {
               ) : (
                 <div className="flex gap-2 h-full flex-col justify-center items-center">
                   <h2 className='text-primary font-bold text-4xl uppercase'>Chat mate</h2>
-                  <img src={bg} alt='chat-mate' />
+                  <img draggable='false' src={bg} alt='chat-mate' />
                   <p className='text-gray-400 font-bold'>select a person to communicate</p>
                 </div>
               )}

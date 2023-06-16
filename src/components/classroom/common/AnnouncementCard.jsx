@@ -25,7 +25,7 @@ const AnnouncementCard = (probs) => {
     setColor(c)
   }, [theme])
   return(
-    <div className="p-3 px-4 justify-between rounded-md flex max-w-[400px] shadow shadow-shadow">
+    <div className="p-3 px-4 justify-between min-w-[200px] md:min-w-[250px] rounded-md flex md:gap-3 max-w-[400px] shadow shadow-shadow">
       <div className="">
         <h4 className="font-bold md:text-2xl text-ellipsis max-w-[250px] max-h-[2.5rem] overflow-hidden">{title}</h4>
         <div className="md:max-w-[450px] max-h-[50px] overflow-hidden ellipsis">
@@ -34,7 +34,7 @@ const AnnouncementCard = (probs) => {
         {buttonName && <p className={`overflow-hidden whitespace-nowrap text-white px-2 py-1 mt-3 min-w-[100px] max-w-[2rem] rounded uppercase font-bold text-center bg-${color}-500`}><Link to={action}>{buttonName}</Link></p>}
       </div>
       <div className="flex justify-center items-center md:p-2">
-      <i className={`${icon} text-${color}-500 md:text-7xl`}></i>
+      <i className={`${icon} text-${color}-500 text-3xl md:text-5xl`}></i>
       </div>
     </div>
   )

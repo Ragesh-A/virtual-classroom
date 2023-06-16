@@ -34,7 +34,7 @@ const Submissions = () => {
       <div className="flex flex-wrap ">
                 {
                   assignment?.image?.map(x => (
-                    <img src={`${IMAGE_PATH}submissions/${x}`} alt="" key={x}  loading="lazy"/>
+                    <img draggable='false' src={`${IMAGE_PATH}submissions/${x}`} alt="" key={x}  loading="lazy"/>
                   ))
                 }
               </div>

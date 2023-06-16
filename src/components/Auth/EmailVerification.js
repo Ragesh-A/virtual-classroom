@@ -24,7 +24,7 @@ const EmailVerification = () => {
 
   return (
     <div className="relative w-full h-[100vh] flex items-center justify-center flex-col">
-      <img src={verified ? verifiedImg : loading} alt="verification"/> 
+      <img src={verified ? verifiedImg : loading} draggable='false' alt="verification"/> 
       <div className="">
       <p className="text-3xl text-center text-purple-400 font-bold">{ verified ? "email is verified successfully" : "waiting for email verification...."}</p>
       </div>

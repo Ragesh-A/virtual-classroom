@@ -40,7 +40,7 @@ const OrganizerLayout = () => {
         <div className="bg-white rounded p-4 box">
         <div className="max-w-[5rem]">
           <Link to='/home'>
-          <img src={logo} alt="" />
+          <img draggable='false' src={logo} alt="" />
           </Link>
         </div>
         </div>

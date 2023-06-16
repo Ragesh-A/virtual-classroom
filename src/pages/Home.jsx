@@ -61,7 +61,7 @@ return(
         <div className="md:flex-1 flex items-center justify-center">
           <div
             className="max-w-[300px] animate-pulse overflow-hidden triangle-shape flex justify-center items-center rounded-3xl">
-            <img src={image} alt="" className="w-full h-full" />
+            <img draggable='false' src={image} alt="" className="w-full h-full" />
           </div>
         </div>
       </Section>
@@ -70,7 +70,7 @@ return(
     <Section>
       <div className="min-h-[100vh] m-auto max-w-7xl grid md:grid-cols-2 items-center gap-28">
         <div id='features' className="items-center">
-          <img src={image2} alt="" />
+          <img draggable='false' src={image2} alt="" />
         </div>
         <div className="">
           <h2 className=" text-5xl mb-9 font-bold text-textColor">Features</h2>
@@ -116,7 +116,7 @@ return(
           </div>
         </div>
         <div className="items-center">
-          <img src={image2} alt="" />
+          <img draggable='false' src={image2} alt="" />
         </div>
       </div>
 
@@ -144,7 +144,7 @@ return(
           </form>
         </div>
         <div className="hidden md:flex">
-          <img src={contactImage} alt="" />
+          <img draggable='false' src={contactImage} alt="" />
         </div>
 
       </div>
@@ -157,42 +157,42 @@ return(
         <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
             <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
             <div className="">
-             <img src={image3} alt="" className="max-w-[20rem] relative"/>
+             <img draggable='false' src={image3} alt="" className="max-w-[20rem] relative"/>
             </div>
           <div className="relative">text</div>
         </div>
         <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
             <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
             <div className="">
-             <img src={image4} alt="" className="max-w-[20rem] relative"/>
+             <img draggable='false' src={image4} alt="" className="max-w-[20rem] relative"/>
             </div>
           <div className="relative">text</div>
         </div>
         <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
             <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
             <div className="">
-             <img src={image5} alt="" className="max-w-[20rem] relative"/>
+             <img draggable='false' src={image5} alt="" className="max-w-[20rem] relative"/>
             </div>
           <div className="relative">text</div>
         </div>
         <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
             <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
             <div className="">
-             <img src={image6} alt="" className="max-w-[20rem] relative"/>
+             <img draggable='false' src={image6} alt="" className="max-w-[20rem] relative"/>
             </div>
           <div className="relative">text</div>
         </div>
         <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
             <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
             <div className="">
-             <img src={image7} alt="" className="max-w-[20rem] relative"/>
+             <img draggable='false' src={image7} alt="" className="max-w-[20rem] relative"/>
             </div>
           <div className="relative">text</div>
         </div>
         <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
             <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
             <div className="">
-             <img src={image8} alt="" className="max-w-[20rem] relative"/>
+             <img draggable='false' src={image8} alt="" className="max-w-[20rem] relative"/>
             </div>
           <div className="relative">text</div>
         </div>

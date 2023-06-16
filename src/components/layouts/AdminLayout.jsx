@@ -20,7 +20,7 @@ const AdminLayout = () => {
     <div className="bg-[#fefefe] md:px-5 h-screen flex flex-col">
       <div className='p-4 flex  justify-between items-center'>
         <Link to='/home'>
-          <img src={logo} alt="logo" width='50px' />
+          <img draggable='false' src={logo} alt="logo" width='50px' />
         </Link>
       <i className="fa-solid fa-bars text-xl cursor-pointer" onClick={()=>handleToggle('doctor')} ></i>
       </div>

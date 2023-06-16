@@ -34,7 +34,7 @@ const Profile = () => {
         <div className="border-2 border-white bg-tileColor p-2  rounded-lg md:grid md:grid-cols-2 gap-2.5 md:p-10">
           <div className="flex flex-col md:flex-row gap-5">
             <div className='flex items-center gap-5'>
-              <img src={profile} alt="user profile" className="max-w-[10rem] rounded-xl border-2 border-white"/>
+              <img draggable='false' src={profile} alt="user profile" className="max-w-[10rem] rounded-xl border-2 border-white"/>
               <p className='font-bold text-primary text-9xl md:hidden'>B</p>
             </div>
             <div className="flex flex-col gap-5">
