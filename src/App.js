@@ -8,6 +8,7 @@ import verifyRoute from './routes/verification.routes';
 import meetUp from './routes/communication.routes';
 import VideoConference from './pages/video-conference/VideoConference';
 import ZeogoRoom from './pages/video-conference/ZeogoRoom';
+import PageNotFound from './components/common/PageNotFound';
 
 const App = createBrowserRouter([
   authRoute,
@@ -19,7 +20,7 @@ const App = createBrowserRouter([
   verifyRoute,
   meetUp,
   { path: '/meetup/:meetupId', element: <ZeogoRoom /> },
-  { path: '*', element: <>404</> },
+  { path: '*', element: <PageNotFound /> },
 ]);
 
 export default App;
