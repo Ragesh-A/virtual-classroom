@@ -19,5 +19,6 @@ const announcementServices = {
   }, 
   createAnnouncement: async (data) => announcementServices.makeRequest(`${BASE_URL}/announcement`, 'POST', data),
   getUserAnnouncement: async () => announcementServices.makeRequest(`${BASE_URL}/announcement?by=user `, 'GET'),
+  getAllAnnouncement: async () => announcementServices.makeRequest(`${BASE_URL}/announcement/all`, 'GET')
 }
 export default announcementServices;

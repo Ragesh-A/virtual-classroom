@@ -11,7 +11,7 @@ const OrganizerLayout = () => {
        <ul className='mt-40'>
         <li className=' rounded-sideBar-tab ps-3'>
           <NavLink to='/organization/' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold sidebar-tab`}>
-          <i className="fa-solid fa-chalkboard-user"></i>
+          <i className="ri-dashboard-fill"></i>
             <span>Dashboard</span>
           </NavLink>
         </li>
@@ -29,9 +29,14 @@ const OrganizerLayout = () => {
         </li>
         <li className=' rounded-sideBar-tab ps-3'>
           <NavLink to='/organization/assignments/' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold sidebar-tab`}>
-          {/* <i className="fa-solid fa-bullhorn"></i> */}
           <i className="fa-solid fa-calendar-check"></i>
             <span>Assignments</span>
+          </NavLink>
+        </li>
+        <li className=' rounded-sideBar-tab ps-3'>
+          <NavLink to='/organization/announcements/' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold sidebar-tab`}>
+            <i className="fa-solid fa-bullhorn"></i>
+            <span>Announcements</span>
           </NavLink>
         </li>
        </ul>

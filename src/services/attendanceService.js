@@ -18,7 +18,8 @@ const attendanceService = {
     }
   },
   getTodayAttendance: async (classId) => attendanceService.makeRequest(`${BASE_URL}/classes/${classId}/attendance`, 'GET'),
-  submitAssignment: async (classId, attendance) => attendanceService.makeRequest(`${BASE_URL}/classes/${classId}/attendance/`, 'POST', { attendance })
+  submitAssignment: async (classId, attendance) => attendanceService.makeRequest(`${BASE_URL}/classes/${classId}/attendance/`, 'POST', { attendance }),
+  getAttendances: async (classId) => attendanceService.makeRequest(`${BASE_URL}/classes/${classId}/attendance/class`, 'GET')
 }
 
 export default attendanceService;

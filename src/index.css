@@ -158,7 +158,7 @@ body::-webkit-scrollbar{
   transition: 1s ease-in-out;
 }
 .sidebar.active{
-  width: 200px;
+  width: 250px;
 }
 .main-content{
   transition: 1s ease-in-out;
@@ -166,8 +166,8 @@ body::-webkit-scrollbar{
   margin-left: 60px;
 }
 .sidebar.active ~ .main-content{
-  width: calc(100% - 200px);
-  margin-left: 200px;
+  width: calc(100% - 250px);
+  margin-left: 250px;
 }
 .slider{
   right: -100%;

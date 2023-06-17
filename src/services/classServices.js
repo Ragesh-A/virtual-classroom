@@ -54,6 +54,13 @@ const ClassServices = {
         return res.data;
       })
   },
+  getClasses: async (classId) => {
+    const token = localStorage.getItem('authentication');
+    axios.defaults.headers.common['Authorization'] = token;
+    return axios.get(`${BASE_URL}/classes/as-student`).then(res =>{
+      return res.data
+    })
+  }
 };
 
 export default ClassServices;

@@ -7,6 +7,7 @@ import Shimmer from './Shimmer';
 import { useDispatch } from 'react-redux';
 import { userLogOut } from '../../utils/store/userSlice';
 import { useNavigate } from 'react-router-dom';
+import CalenderChart from './CalenderChart';
 
 const Profile = () => {
 
@@ -16,7 +17,6 @@ const Profile = () => {
 
   useEffect(()=>{
     authServices.getMe().then(res=>{
-      console.log( res,'me');
       setMe(res?.success?.user)
     })
   }, [])
@@ -27,7 +27,6 @@ const Profile = () => {
     navigate('/home')
   }
 
-  console.log(me, "dddd");
   return (
     <Section>
       <div className="bg-blue-50 p-1 rounded-md grid gap-5">
@@ -75,7 +74,9 @@ const Profile = () => {
               <button className='btn overflow-hidden bg-primary text-white rounded-md' onClick={logout}>Logout</button>
             </div>
           </div> }
-          <div className="border-2 border-white p-2 px-5 rounded-md "></div>
+          <div className="border-2 border-white flex justify-center items-center rounded-md ">
+            <CalenderChart />
+          </div>
         </div>
       </div>
     </Section>

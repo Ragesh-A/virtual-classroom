@@ -1,6 +1,7 @@
-import OrganizerLayout from "../components/layouts/OrganiserLayout";
+import OrganizerLayout from "../components/layouts/OrganizerLayout";
 import ClassManagement from "../components/organizer/ClassManagement";
 import InstructorManagement from "../components/organizer/InstructorManagement";
+import AnnouncementManagement from "../pages/organizer/AnnouncementManagement";
 import AssignmentManagement from "../pages/organizer/AssignmentManagement";
 
 const organizerRoute = {
@@ -18,6 +19,10 @@ const organizerRoute = {
     {
       path: 'assignments',
       element: <AssignmentManagement />
+    },
+    {
+      path: 'announcements',
+      element: <AnnouncementManagement />
     },
   ]
 };
