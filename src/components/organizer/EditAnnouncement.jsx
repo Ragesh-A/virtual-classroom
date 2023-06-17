@@ -50,7 +50,7 @@ const EditAnnouncement = () => {
     validationSchema: announcementSchema,
 
     onSubmit: (values) => {
-      // setIsLoading(true);
+      setIsLoading(true);
       values.classes = filterClassIds(values.classes)
       console.log(values);
       const { _id, ...data } = values
@@ -109,22 +109,7 @@ const EditAnnouncement = () => {
     const currentDate = new Date().toISOString().split('T')[0];
     return currentDate;
   };
-  
 
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden') {
-        alert('hey')
-        // Handle tab switching here (e.g., show a message)
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, []);
 
 
 
