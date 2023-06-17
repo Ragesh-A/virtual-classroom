@@ -34,7 +34,7 @@ const OrganizerLayout = () => {
           </NavLink>
         </li>
         <li className=' rounded-sideBar-tab ps-3'>
-          <NavLink to='/organization/announcements/' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold sidebar-tab`}>
+          <NavLink to='/organization/announcements' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold sidebar-tab`}>
             <i className="fa-solid fa-bullhorn"></i>
             <span>Announcements</span>
           </NavLink>
