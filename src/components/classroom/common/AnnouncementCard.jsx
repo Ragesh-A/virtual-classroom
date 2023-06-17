@@ -24,6 +24,9 @@ const AnnouncementCard = (probs) => {
     }
     setColor(c)
   }, [theme])
+
+  if (!color) return <div className="p-3 px-4 h-[100px] shimmer min-w-[200px] md:min-w-[250px] rounded-md max-w-[400px] shadow shadow-shadow"></div>
+
   return(
     <div className="p-3 px-4 justify-between min-w-[200px] md:min-w-[250px] rounded-md flex md:gap-3 max-w-[400px] shadow shadow-shadow">
       <div className="">

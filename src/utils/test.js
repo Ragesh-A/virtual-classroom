@@ -11,3 +11,7 @@ export const FormSubmissionHandle = (...params) => {
   })
   return error;
 }
+
+export const filterClassIds = (classes) => {
+  return classes.map(({ _id }) => _id);
+}

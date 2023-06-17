@@ -30,7 +30,7 @@ const AnnouncementCard = ({ announcement }) => {
         <p className="capitalize font-bold text-md text-textColor">{title}</p>
         <p className="text-gray-500 text">{description}</p>
         </div>
-        <div className="flex flex-wrap py-2">
+        <div className="flex flex-wrap gap-3 py-2">
         {classes &&
           classes?.map((single) => (
             <div className="bg-primary text-white p-1 px-2 text-sm rounded flex items-center justify-center" key={single?._id} >
