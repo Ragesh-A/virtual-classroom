@@ -14,7 +14,7 @@ const PageNotFound = () => {
     }, 1000);
 
     setTimeout(() => {
-      navigate('/');
+      navigate(-1);
       clearInterval(interval);
     }, 10000);
 
