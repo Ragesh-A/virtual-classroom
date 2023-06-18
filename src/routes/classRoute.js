@@ -9,6 +9,7 @@ import lectureRoute from './lectureRoute';
 import PendingAssignments from '../components/classroom/student/assignments/PendingAssignments';
 import ChatHome from '../pages/chat/ChatHome';
 import Works from '../components/classroom/student/assignments/Works';
+import CompletedWork from '../components/classroom/student/assignments/CompletedWork';
 
 export const allClassRoute = {
   path: '/',
@@ -43,7 +44,7 @@ export const classRoute = {
       element: <ClassLayoutWithSidebar />,
       children: [
         { path: '', element: <PendingAssignments /> },
-        { path: 'completed', element: <Works filter='completed' /> },
+        { path: 'completed', element: <CompletedWork/> },
         { path: 'missed', element: <Works filter='missed' /> },
       ],
     },

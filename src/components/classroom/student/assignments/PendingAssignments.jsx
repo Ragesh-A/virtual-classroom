@@ -18,7 +18,6 @@ const PendingAssignments = () => {
    if (!selectedAssignment) {
     assignmentService.getAssignments(classId, 'pending').then((res)=>{
       if (res?.success){
-        console.log('times');
         setPending(res.success.assignments)
         dispatch(setAssignment(res.success.assignments))
       }

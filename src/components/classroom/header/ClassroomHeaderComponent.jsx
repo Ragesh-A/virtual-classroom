@@ -13,43 +13,43 @@ const ClassroomHeaderComponent = () => {
 
   return (
     <>
-      <ul className="flex items-center justify-evenly md:justify-start w-full">
+      <ul className="flex items-center justify-evenly lg:justify-start w-full">
         <NavLink
           to="/"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="ri-home-2-fill md:hidden"></i>
-          <li className="hidden md:block">My class</li>
+          <i className="ri-home-2-fill lg:hidden"></i>
+          <li className="hidden lg:block">My class</li>
         </NavLink>
         <li>
           <button
             className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
             onClick={popHandle}
           >
-            <i className="ri-add-fill md:hidden"></i>
-            <span className="hidden md:block">Add | Join</span>
+            <i className="ri-add-fill lg:hidden"></i>
+            <span className="hidden lg:block">Add | Join</span>
           </button>
         </li>
         {user?.subscriber?.status && <NavLink
           to="/organization/"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="ri-building-fill md:hidden text-xl"></i>
-          <li className="hidden md:block">Organization</li>
+          <i className="ri-building-fill lg:hidden text-xl"></i>
+          <li className="hidden lg:block">Organization</li>
         </NavLink>}
         {user?.subscriber?.status && <NavLink
           to="/admin/"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="ri-dashboard-fill md:hidden text-xl"></i>
-          <li className="hidden md:block">Dashboard</li>
+          <i className="ri-dashboard-fill lg:hidden text-xl"></i>
+          <li className="hidden lg:block">Dashboard</li>
         </NavLink>}
         <NavLink
           to="/meetup"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >
-          <i className="ri-vidicon-fill md:hidden"></i>
-          <li className="hidden md:block">Meet Up</li>
+          <i className="ri-vidicon-fill lg:hidden"></i>
+          <li className="hidden lg:block">Meet Up</li>
         </NavLink>
       </ul>
       <CreateClass visible={popIsVisible} setVisible={setPopIsVisible} />

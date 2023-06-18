@@ -351,21 +351,19 @@ body::-webkit-scrollbar{
   }
 }
 
-/* slider */
+/* students work sidebar */
+.side-bar{
 
-/* .inputs input#absent:checked ~ .slider {
-  left: 0;
 }
-
-.inputs input#present:checked ~ .slider {
-  left: 60px;
+@media (max-width: 647px) {
+  .side-bar{
+    width: 4rem;
+    left: 0;
+  }
+  .side-bar.active{
+    width: 100%;
+  }
 }
-
-.inputs:nth-child(){
-  background-color: red;
-  width: 50px;
-  height: 20px;
-} */
 
 .slide-absent {
   background-color: red;
