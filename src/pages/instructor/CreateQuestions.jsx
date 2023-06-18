@@ -8,9 +8,7 @@ const CreateQuestion = () => {
   const [quizTitle, setQuizTitle] = useState('');
   const [time, setTime] = useState('');
   const [quizDescription, setQuizDescription] = useState('');
-  const [questions, setQuestions] = useState([
-    { questionText: '', type: 'radio', options: [{ id: 1, option: '' }, { id: 2, option: '' }] }
-  ]);
+  const [questions, setQuestions] = useState([]);
   const dispatch = useDispatch();
   const { classId } = useParams();
   const navigate = useNavigate()
@@ -79,6 +77,11 @@ const CreateQuestion = () => {
   const handleSubmit = () => {
     if (!quizDescription || !quizTitle) {
       dispatch(setNotification({ success: false, message: 'Please fill the question title and description.' }));
+      return;
+    }
+
+    if (questions.length < 1) {
+      dispatch(setNotification({ success: false, message: 'At least one question should be needed.' }));
       return;
     }
     
