@@ -38,7 +38,7 @@ const CreateAnnouncement = () => {
   });
 
   return (
-    <div className="md:p-3">
+    <div className="md:pt-3 px-1">
       <AnnouncementCard
         title={values.title}
         description={values.description}
@@ -152,7 +152,7 @@ const CreateAnnouncement = () => {
             </div>
           </div>
         </div>
-        <Button className='bg-primary float-right text-white rounded mt-2' type="submit" loading={isLoading}>
+        <Button className='bg-primary w-full text-white rounded mt-2' type="submit" loading={isLoading}>
           create
         </Button>
       </form>

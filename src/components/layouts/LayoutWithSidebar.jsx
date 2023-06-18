@@ -60,7 +60,7 @@ const LayoutWithSidebar = () => {
         </NavLink>
         </li>     
       </ul>
-      <div className={`transition ${toggle ? 'active' : ''} rounded sidebar-body h-full`}>
+      <div className={`transition ${toggle ? 'active' : ''} rounded sidebar-body h-full overflow-y-scroll scroll`}>
         <Notification />
       <Outlet />
       </div>

@@ -7,7 +7,7 @@ const AnnouncementManagement = () => {
   const [tab, setTab] = useState('create');
 
   return (
-    <div className="h-full rounded-md">
+    <div className="h-full rounded-md mb-10">
       
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 mb-2">
         <Box className="bg-gradient-to-br from-lightPrimary to-primary text-white p-2">
@@ -22,8 +22,8 @@ const AnnouncementManagement = () => {
         <Box className="bg-tileColor">hi</Box>
       </div>
 
-      <div className="box xl:pt-1 xl:px-3">
-        <ul className='flex gap-5 uppercase text-sm font-bold text-textColor'>
+      <div className="box xl:pt-1 xl:px-3 mb-2">
+        <ul className='flex md:gap-5 uppercase text-sm font-bold text-textColor'>
           <li className={`cursor-pointer border-4 border-transparent px-2 py-1 ${tab === 'create' ? 'border-b-primary' : 'border-red-500'}`} onClick={()=>setTab('create')}>
             create
           </li>
