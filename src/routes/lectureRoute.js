@@ -6,8 +6,9 @@ import AssignmentManagement from "../pages/instructor/AssignmentManagement";
 import Attendance from "../pages/instructor/Attendance";
 import Dashboard from "../pages/instructor/Dashboard";
 import EditAssignment from "../pages/instructor/EditAssignment";
-import QuizManagement from "../pages/instructor/QuizManagement";
+import CreateQuestions from "../pages/instructor/CreateQuestions";
 import Submissions from "../pages/instructor/Submissions";
+import QuizManagement from "../pages/instructor/QuizManagement";
 
 const lectureRoute = {
   path: 'dashboard',
@@ -42,8 +43,12 @@ const lectureRoute = {
       element: <Attendance />,
     },
     {
-      path: 'quizzes-and-exams',
+      path: 'quizzes-and-exams/create',
       element: <QuizManagement />,
+    },
+    {
+      path: 'quizzes-and-exams/create',
+      element: <CreateQuestions />,
     },
     {
       path: 'settings',

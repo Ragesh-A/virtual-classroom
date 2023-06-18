@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Box from '../../components/common/Box';
-import CreateAnnouncement from '../../components/instructor/CreateAnnouncemet';
+import CreateAnnouncement from '../../components/instructor/CreateAnnouncement';
 
 const AnnouncementManagement = () => {
 
