@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setNotification } from "../../utils/store/uiSlice";
 import quizServices from "../../services/quizServices";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CreateQuestion = () => {
   const [quizTitle, setQuizTitle] = useState('');
@@ -13,6 +13,7 @@ const CreateQuestion = () => {
   ]);
   const dispatch = useDispatch();
   const { classId } = useParams();
+  const navigate = useNavigate()
 
   const newQuestion = (type) => {
     let question = { questionText: '', options: [{ id: 1, option: '' }, { id: 2, option: '' }] };
@@ -94,7 +95,9 @@ const CreateQuestion = () => {
 
     quizServices.createQuiz({ classId: [classId], date: time, title: quizTitle, description: quizDescription, questions })
       .then(res => {
-        console.log(res);
+        if (res?.success) {
+          navigate(-1)
+        }
         if (res?.error) {
           dispatch(setNotification({ success: false, message: res?.error }));
         }

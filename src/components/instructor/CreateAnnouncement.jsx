@@ -144,7 +144,7 @@ const CreateAnnouncement = () => {
                 name="announceAt"
                 id="announceAt"
                 value={values.announceAt}
-                min={() => new Date().toISOString().split('T')[0]}
+                min={(() => new Date().toISOString().split('T')[0])()}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="outline-none ps-3 w-full bg-white"

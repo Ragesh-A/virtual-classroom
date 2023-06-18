@@ -11,13 +11,14 @@ const quizServices = {
   makeRequest: async (url, method, data) => {
     try {
       setAxiosToken()
-      const response = await axios({url, method, data})
+      const response = await axios({url:`${BASE_URL}/${url}`, method, data})
       return response.data;
     } catch (error) {
       console.log("%c server " + error.message, "color: green; font-weight:bold;");
     }
   },
-  createQuiz: (data) => quizServices.makeRequest(`${BASE_URL}/questions`, 'POST', data)
+  createQuiz: (data) => quizServices.makeRequest(`questions`, 'POST', data),
+  getQuizzes: (classId) => quizServices.makeRequest(`questions?classId=${classId}`, 'GET')
 }
 
 export default quizServices;

@@ -43,7 +43,7 @@ const lectureRoute = {
       element: <Attendance />,
     },
     {
-      path: 'quizzes-and-exams/create',
+      path: 'quizzes-and-exams',
       element: <QuizManagement />,
     },
     {
