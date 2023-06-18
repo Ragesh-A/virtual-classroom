@@ -127,6 +127,9 @@ body::-webkit-scrollbar{
   background: rgb(99 102 241);
   color: white;
 }
+.sidebar-body{
+  margin-left: 7.5rem;
+}
 .sidebar-body.active{
   margin-left: 16rem;
 }
@@ -135,6 +138,38 @@ body::-webkit-scrollbar{
   transition: .5s ease;
   /* animation: fades 5s linear infinite; */
 
+}
+@media (max-width: 767px) {
+  .sidebar-body{
+    margin-left: 3.5rem;
+  } 
+  .sidebar-body.active{
+    margin-left: 0rem;
+  } 
+  .lecture-sidebar {
+    left: 0;
+    width: 62px;
+  }
+  .lecture-sidebar.active {
+    left: 0;
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .sidebar-body{
+    margin-left: 3.5rem;
+  } 
+  .sidebar-body.active{
+    margin-left: 0rem;
+  } 
+  .lecture-sidebar {
+    left: 0;
+    width: 62px;
+  }
+  .lecture-sidebar.active {
+    left: 0;
+    width: 100%;
+  }
 }
 
 @keyframes fades{
