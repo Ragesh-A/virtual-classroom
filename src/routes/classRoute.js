@@ -14,6 +14,7 @@ import CompletedWork from '../components/classroom/student/assignments/Completed
 import AttendQuestion from '../pages/student/AttendQuestion';
 import ErrorElement from '../components/common/ErrorElement';
 import Shimmer from '../components/common/Shimmer';
+import ErrorBoundary from '../pages/ErrorBoundary';
 
 const ChatHome = lazy(()=> import('../pages/chat/ChatHome'));
 
@@ -36,9 +37,11 @@ export const allClassRoute = {
 export const classRoute = {
   path: '/class/:classId',
   element: (
+    <ErrorBoundary>
     <PrivateRoute>
       <ClassroomLayout />
     </PrivateRoute>
+  </ErrorBoundary>
   ),
   children: [
     {
