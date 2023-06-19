@@ -1,9 +1,11 @@
-import OrganizerLayout from "../components/layouts/OrganizerLayout";
-import ClassManagement from "../components/organizer/ClassManagement";
-import EditAnnouncement from "../components/organizer/EditAnnouncement";
-import InstructorManagement from "../components/organizer/InstructorManagement";
-import AnnouncementManagement from "../pages/organizer/AnnouncementManagement";
-import AssignmentManagement from "../pages/organizer/AssignmentManagement";
+import { lazy } from "react";
+
+const OrganizerLayout = lazy(()=> import("../components/layouts/OrganizerLayout")) ;
+const ClassManagement = lazy(()=> import("../components/organizer/ClassManagement")) ;
+const EditAnnouncement = lazy(()=> import("../components/organizer/EditAnnouncement"));
+const InstructorManagement = lazy(()=> import("../components/organizer/InstructorManagement"));
+const AnnouncementManagement = lazy(()=> import( "../pages/organizer/AnnouncementManagement"));
+const AssignmentManagement = lazy(()=> import( "../pages/organizer/AssignmentManagement"));
 
 const organizerRoute = {
   path: '/organization',

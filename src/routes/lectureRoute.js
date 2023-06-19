@@ -1,18 +1,21 @@
-import LectureStudentsManagement from "../components/classroom/Lecture/LectureStudentsManagement";
-import Settings from "../components/classroom/Lecture/Settings";
-import LayoutWithSidebar from "../components/layouts/LayoutWithSidebar";
-import AnnouncementManagement from "../pages/instructor/AnnouncementManagement";
-import AssignmentManagement from "../pages/instructor/AssignmentManagement";
-import Attendance from "../pages/instructor/Attendance";
-import Dashboard from "../pages/instructor/Dashboard";
-import EditAssignment from "../pages/instructor/EditAssignment";
-import CreateQuestions from "../pages/instructor/CreateQuestions";
-import Submissions from "../pages/instructor/Submissions";
-import QuizManagement from "../pages/instructor/QuizManagement";
+import { Suspense, lazy } from "react";
+import Shimmer from "../components/common/Shimmer";
+
+const  LectureStudentsManagement = lazy(()=> import("../components/classroom/Lecture/LectureStudentsManagement"));
+const  Settings = lazy(()=> import("../components/classroom/Lecture/Settings"));
+const  LayoutWithSidebar = lazy(()=> import("../components/layouts/LayoutWithSidebar"));
+const  AnnouncementManagement = lazy(()=> import("../pages/instructor/AnnouncementManagement"));
+const  AssignmentManagement = lazy(()=> import("../pages/instructor/AssignmentManagement"));
+const  Attendance = lazy(()=> import("../pages/instructor/Attendance"));
+const  Dashboard = lazy(()=> import("../pages/instructor/Dashboard"));
+const  EditAssignment = lazy(()=> import("../pages/instructor/EditAssignment"));
+const  CreateQuestions = lazy(()=> import("../pages/instructor/CreateQuestions"));
+const  Submissions = lazy(()=> import("../pages/instructor/Submissions"));
+const  QuizManagement = lazy(()=> import("../pages/instructor/QuizManagement"));
 
 const lectureRoute = {
   path: 'dashboard',
-  element: <LayoutWithSidebar />,
+  element: <Suspense fallback={<Shimmer />}><LayoutWithSidebar /></Suspense>,
   children: [
     {
       path: '',

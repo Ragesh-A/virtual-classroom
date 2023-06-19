@@ -1,3 +1,5 @@
+
+import { Suspense, lazy } from 'react';
 import PrivateRoute from '../components/PrivateRoute';
 import AllClasses from '../components/classroom/common/AllClasses';
 import DiscussionPanel from '../components/classroom/common/DiscussionPanel';
@@ -7,13 +9,13 @@ import ClassroomLayout from '../components/layouts/ClassroomLayout';
 import ClassLayoutWithSidebar from '../components/layouts/ClassLayoutWithSidebar';
 import lectureRoute from './lectureRoute';
 import PendingAssignments from '../components/classroom/student/assignments/PendingAssignments';
-import ChatHome from '../pages/chat/ChatHome';
 import Works from '../components/classroom/student/assignments/Works';
 import CompletedWork from '../components/classroom/student/assignments/CompletedWork';
 import AttendQuestion from '../pages/student/AttendQuestion';
 import ErrorElement from '../components/common/ErrorElement';
-import { Suspense } from 'react';
 import Shimmer from '../components/common/Shimmer';
+
+const ChatHome = lazy(()=> import('../pages/chat/ChatHome'));
 
 export const allClassRoute = {
   path: '/',

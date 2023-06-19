@@ -1,16 +1,18 @@
-import InvitationVerification from "../pages/InvitationVerification";
-import VerifySubscription from "../pages/verification/VerifySubscription";
+import { Suspense, lazy } from "react";
+
+const InvitationVerification = lazy(()=> import("../pages/InvitationVerification"));
+const VerifySubscription = lazy(()=> import("../pages/verification/VerifySubscription"));
 
 const verifyRoute = {
   path:'/verify',
   children: [
     {
       path: 'instructor/:uuid/join/:organizationId',
-      element: <InvitationVerification />
+      element: <Suspense><InvitationVerification /></Suspense>
     },
     {
       path: 'subscription',
-      element: <VerifySubscription />
+      element:<Suspense><VerifySubscription /></Suspense>
     }
   ]
 };
