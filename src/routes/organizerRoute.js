@@ -1,4 +1,6 @@
-import { lazy } from "react";
+import { Suspense, lazy } from "react";
+import ErrorBoundary from "../pages/ErrorBoundary";
+import Shimmer from "../components/common/Shimmer";
 
 const OrganizerLayout = lazy(()=> import("../components/layouts/OrganizerLayout")) ;
 const ClassManagement = lazy(()=> import("../components/organizer/ClassManagement")) ;
@@ -9,7 +11,13 @@ const AssignmentManagement = lazy(()=> import( "../pages/organizer/AssignmentMan
 
 const organizerRoute = {
   path: '/organization',
-  element: <OrganizerLayout />,
+  element: (
+    <Suspense fallback={<Shimmer />}>
+      <ErrorBoundary>
+        <OrganizerLayout />
+      </ErrorBoundary>
+    </Suspense>
+  ),
   children: [
     {
       path: 'classes',

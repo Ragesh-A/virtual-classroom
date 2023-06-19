@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import Shimmer from "../components/common/Shimmer";
+import ErrorBoundary from "../pages/ErrorBoundary";
 
 const  LectureStudentsManagement = lazy(()=> import("../components/classroom/Lecture/LectureStudentsManagement"));
 const  Settings = lazy(()=> import("../components/classroom/Lecture/Settings"));
@@ -15,7 +16,13 @@ const  QuizManagement = lazy(()=> import("../pages/instructor/QuizManagement"));
 
 const lectureRoute = {
   path: 'dashboard',
-  element: <Suspense fallback={<Shimmer />}><LayoutWithSidebar /></Suspense>,
+  element:(
+    <Suspense fallback={<Shimmer />}>
+      <ErrorBoundary>
+        <LayoutWithSidebar />
+      </ErrorBoundary>
+    </Suspense>
+  ),
   children: [
     {
       path: '',
