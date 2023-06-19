@@ -1,4 +1,3 @@
-
 import { Suspense, lazy } from 'react';
 import PrivateRoute from '../components/PrivateRoute';
 import AllClasses from '../components/classroom/common/AllClasses';
@@ -12,21 +11,22 @@ import PendingAssignments from '../components/classroom/student/assignments/Pend
 import Works from '../components/classroom/student/assignments/Works';
 import CompletedWork from '../components/classroom/student/assignments/CompletedWork';
 import AttendQuestion from '../pages/student/AttendQuestion';
-import ErrorElement from '../components/common/ErrorElement';
 import Shimmer from '../components/common/Shimmer';
 import ErrorBoundary from '../pages/ErrorBoundary';
 
-const ChatHome = lazy(()=> import('../pages/chat/ChatHome'));
+const ChatHome = lazy(() => import('../pages/chat/ChatHome'));
 
 export const allClassRoute = {
   path: '/',
   element: (
-    <PrivateRoute>
-      <ClassesLayout />
-    </PrivateRoute>
+    <ErrorBoundary>
+      <PrivateRoute>
+        <ClassesLayout />
+      </PrivateRoute>
+    </ErrorBoundary>
   ),
   children: [
-    { path: '/', element: <AllClasses />, errorElement: <h1>5</h1>},
+    { path: '', element: <AllClasses /> },
     {
       path: 'profile',
       element: <Profile />,
@@ -38,10 +38,10 @@ export const classRoute = {
   path: '/class/:classId',
   element: (
     <ErrorBoundary>
-    <PrivateRoute>
-      <ClassroomLayout />
-    </PrivateRoute>
-  </ErrorBoundary>
+      <PrivateRoute>
+        <ClassroomLayout />
+      </PrivateRoute>
+    </ErrorBoundary>
   ),
   children: [
     {
@@ -53,17 +53,25 @@ export const classRoute = {
       element: <ClassLayoutWithSidebar />,
       children: [
         { path: '', element: <PendingAssignments /> },
-        { path: 'completed', element: <CompletedWork/> },
-        { path: 'missed', element: <Works filter='missed' /> },
-        { path: 'quizzes-and-exams', element: <Works filter='missed' /> },
-        
+        { path: 'completed', element: <CompletedWork /> },
+        { path: 'missed', element: <Works filter="missed" /> },
+        { path: 'quizzes-and-exams', element: <Works filter="missed" /> },
       ],
     },
-    { path: 'works/quizzes-and-exams/:questionId', element: <AttendQuestion /> },
+    {
+      path: 'works/quizzes-and-exams/:questionId',
+      element: <AttendQuestion />,
+    },
     lectureRoute,
     {
       path: 'chat-mate',
-      element: <Suspense fallback={<Shimmer />}><ChatHome /></Suspense>,
-    }
+      element: (
+        <Suspense fallback={<Shimmer />}>
+          <ErrorBoundary>
+            <ChatHome />
+          </ErrorBoundary>
+        </Suspense>
+      ),
+    },
   ],
 };

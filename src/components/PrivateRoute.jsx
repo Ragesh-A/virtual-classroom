@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getLocalStorage } from '../utils/storageHelper';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Shimmer from './common/Shimmer';
 import authServices from '../services/authService';
@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { userLogOut, userLogin } from '../utils/store/userSlice';
 import { BASE_URL } from '../constant/constant';
 import AccessDenied from './common/AccessDenied';
-import ErrorElement from './common/ErrorElement';
 
 const PrivateRoute = ({ children }) => {
   const [token, setToken] = useState(null);

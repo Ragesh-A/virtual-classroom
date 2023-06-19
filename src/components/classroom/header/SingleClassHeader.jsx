@@ -58,7 +58,7 @@ const SingleClassHeaderComponent = () => {
           <li className="hidden lg:block">Dashboard</li>
         </NavLink>
       )}
-      {currentClass && currentClass.class.subscription && (
+      {currentClass && currentClass?.class?.subscription && (
         <NavLink
           to={`/class/${classId}/chat-mate/`}
           className="border-4 border-transparent  hover:border-t-white text-white font-bold p-[15px] me-1 nav"

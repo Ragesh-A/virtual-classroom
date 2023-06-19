@@ -8,22 +8,18 @@ class ErrorBoundary extends Component {
   }
 
   static getDerivedStateFromError(error) {
-    return { hasError: true };
+    return { hasError: true, error };
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can log the error to an error reporting service here
-    this.setState({error })
+    this.setState({ hasError: true, error })
     console.log( error);
   }
 
   render() {
     if (this.state.hasError) {
-      // Render your fallback UI when an error occurs
       return <ErrorElement error={this.state.error}/>;
     }
-
-    // Render the children if no error occurred
     return this.props.children;
   }
 }
