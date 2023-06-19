@@ -28,7 +28,7 @@ const PageNotFound = () => {
     <div className='h-screen flex flex-col'>
     <Header page='allClass' />
     <div className="flex p-3 justify-center items-center flex-col text-gray-400 flex-grow text-center">
-      <img draggable="false" src={background} alt="page not found" className='max-w-[500px]' />
+      <img draggable="false" src={background} alt="page not found" className=' max-w-[300px] xl:max-w-[400px]' />
       <p>{error}</p>
       <p className="font-bold md:text-3xl mt-3 text-center">
         It seems like you've taken a wrong turn. Don't worry.
