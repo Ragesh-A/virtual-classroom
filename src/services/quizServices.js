@@ -17,8 +17,9 @@ const quizServices = {
       console.log("%c server " + error.message, "color: green; font-weight:bold;");
     }
   },
-  createQuiz: (data) => quizServices.makeRequest(`questions`, 'POST', data),
-  getQuizzes: (classId) => quizServices.makeRequest(`questions?classId=${classId}`, 'GET')
+  createQuiz: async (data) => quizServices.makeRequest(`questions`, 'POST', data),
+  getQuizzes: async (classId) => quizServices.makeRequest(`questions?classId=${classId}`, 'GET'),
+  getQuestion: async (questionId) => quizServices.makeRequest(`questions/${questionId}`, 'GET')
 }
 
 export default quizServices;

@@ -28,7 +28,7 @@ const AllClasses = () => {
       });
 
   }, []);
-
+  
   return (
     <>
       <Section>

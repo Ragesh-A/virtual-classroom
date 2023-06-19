@@ -10,6 +10,10 @@ import PendingAssignments from '../components/classroom/student/assignments/Pend
 import ChatHome from '../pages/chat/ChatHome';
 import Works from '../components/classroom/student/assignments/Works';
 import CompletedWork from '../components/classroom/student/assignments/CompletedWork';
+import AttendQuestion from '../pages/student/AttendQuestion';
+import ErrorElement from '../components/common/ErrorElement';
+import { Suspense } from 'react';
+import Shimmer from '../components/common/Shimmer';
 
 export const allClassRoute = {
   path: '/',
@@ -19,7 +23,7 @@ export const allClassRoute = {
     </PrivateRoute>
   ),
   children: [
-    { path: '/', element: <AllClasses /> },
+    { path: '/', element: <AllClasses />, errorElement: <h1>5</h1>},
     {
       path: 'profile',
       element: <Profile />,
@@ -46,12 +50,15 @@ export const classRoute = {
         { path: '', element: <PendingAssignments /> },
         { path: 'completed', element: <CompletedWork/> },
         { path: 'missed', element: <Works filter='missed' /> },
+        { path: 'quizzes-and-exams', element: <Works filter='missed' /> },
+        
       ],
     },
+    { path: 'works/quizzes-and-exams/:questionId', element: <AttendQuestion /> },
     lectureRoute,
     {
       path: 'chat-mate',
-      element: <ChatHome />
+      element: <Suspense fallback={<Shimmer />}><ChatHome /></Suspense>,
     }
   ],
 };

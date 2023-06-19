@@ -1,13 +1,14 @@
-import UserManagement from '../components/Admin/UserManagement';
-import ErrorElement from '../components/common/ErrorElement';
-import AdminLayout from '../components/layouts/AdminLayout';
-import ClassManagement from '../pages/admin/ClassManagement';
-import Dashboard from '../pages/admin/Dashboard';
+import { Suspense, lazy } from 'react';
+import Shimmer from '../components/common/Shimmer';
+
+const  AdminLayout = lazy(()=> import ('../components/layouts/AdminLayout'));
+const Dashboard = lazy(()=> import('../pages/admin/Dashboard'));
+const UserManagement = lazy(()=> import('../components/Admin/UserManagement'));
+const ClassManagement = lazy(()=> import('../pages/admin/ClassManagement'));
 
 const adminRoute = {
   path: '/admin',
-  element: <AdminLayout />,
-  errorElement: <ErrorElement />,
+  element: <Suspense fallback={<Shimmer />}><AdminLayout /></Suspense>,
   children: [
     { path: '', element: <Dashboard /> },
     { path: 'users', element: <UserManagement /> },

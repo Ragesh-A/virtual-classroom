@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useRouteError } from 'react-router-dom';
 import background from '../../assets/images/page-found.jpg';
 import Header from '../classroom/header/Header';
 
@@ -7,6 +7,7 @@ const PageNotFound = () => {
   const [count, setCount] = useState(10);
   const navigate = useNavigate();
   let interval;
+  const error = useRouteError()
 
   useEffect(() => {
     interval = setInterval(() => {
@@ -28,7 +29,8 @@ const PageNotFound = () => {
     <Header page='allClass' />
     <div className="flex p-3 justify-center items-center flex-col text-gray-400 flex-grow text-center">
       <img draggable="false" src={background} alt="page not found" className='max-w-[500px]' />
-      <p className="font-bold md:text-3xl text-center">
+      <p>{error}</p>
+      <p className="font-bold md:text-3xl mt-3 text-center">
         It seems like you've taken a wrong turn. Don't worry.
       </p>
       <p>We take care of it.</p>

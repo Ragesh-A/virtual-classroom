@@ -30,6 +30,12 @@ const SideBar = ({ toggle, setToggle}) => {
           {toggle && <span className="side-bar-title">Missed Task</span>}
           </button>
       </NavLink>
+      <NavLink to={`/class/${classId}/works/quizzes-and-exams`} className="mt-2 SideBar-tab">
+          <button className={`flex gap-5 items-center py-3 px-4 md:px-8 rounded shadow font-bold  w-full text-left hover:bg-indigo-500 hover:text-white`} >
+          <i className="fa-solid fa-xmark"></i>
+          {toggle && <span className="side-bar-title">Quizzes</span>}
+          </button>
+      </NavLink>
       
     </ul> 
   )
