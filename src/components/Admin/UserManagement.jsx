@@ -1,15 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import adminServices from "../../services/admin.service";
 import { useDispatch, useSelector } from "react-redux";
 import { blockAndUnblock, setUser } from "../../utils/store/adminSlice";
+import ConfirmBox from "../common/ConfirmBox";
 
 const UserManagement = () => {
 
   const {users} = useSelector(store=>store.admin)
+  const [popup, setPopup] = useState(false)
+  const [selected, setSelected] = useState()
+  
+  const [title, setTitle] = useState('')
   const dispatch = useDispatch()
-  const handleBlock = (id) =>{
-    dispatch(blockAndUnblock(id))
-    adminServices.blockOrUnblock(id);
+
+  const handleBlock = (blocked, id) =>{
+    if (blocked) setTitle('Un block user');
+    else setTitle('Block user')
+    setSelected(id)
+    setPopup(true)
+  }
+
+  const blockAndUnblockUser = () => {
+    dispatch(blockAndUnblock(selected))
+    adminServices.blockOrUnblock(selected);
   }
 
   useEffect(()=>{
@@ -21,6 +34,8 @@ const UserManagement = () => {
   },[dispatch, users])
 
   return (
+    <>
+    <ConfirmBox visible={popup} setVisibleFn={setPopup} title={title} accepted={blockAndUnblockUser}/>
     <div className="box rounded-md p-2 md:p-5 overflow-x-scroll text-[10px]">
       <p className="text-center text-primary underline font-extrabold text-md md:text-xl my-2 md:mb-5">User management</p>
       <table className="w-full overflow-x-scroll">
@@ -42,13 +57,14 @@ const UserManagement = () => {
             {/* clas{` md:py-2 text-[10px] block `} */}
             <td><span className={`rounded block m-auto w-20 md:w-32 py-1 font-bold ${user.isBlocked ? 'bg-red-100 text-red-500': 'bg-green-100 text-green-500'}  uppercase`}>{user?.isBlocked ? 'Blocked' : 'Un Blocked'}</span></td>
             <td>
-              <button className="bg-lightPrimary hover:bg-primary text-white p-1 font-bold md:p-2 rounded w-full" onClick={()=>handleBlock(user._id)}>Block</button>
+              <button className="bg-lightPrimary hover:bg-primary text-white p-1 font-bold md:p-2 rounded w-full" onClick={()=>handleBlock(user?.isBlocked, user._id)}>Block</button>
             </td>
           </tr>
           ))}
         </tbody>
       </table>
     </div>
+    </>
   )
 };
 
