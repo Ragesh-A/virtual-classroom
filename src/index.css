@@ -299,7 +299,7 @@ body::-webkit-scrollbar{
     grid-template-rows: 1fr 1fr;
     background-color: red;
   }
-  body{
+  .body{
     margin-bottom: 4rem;
   }
   .sidebar.active ~ .main-content{
