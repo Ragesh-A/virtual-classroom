@@ -21,7 +21,6 @@ const InvitationVerification = () => {
     axios
       .patch(BASE_URL + '/organizer/instructor', { uuid, organizationId })
       .then((res) => {
-        console.log(res.data);
         setVerified(true);
       });
   };
