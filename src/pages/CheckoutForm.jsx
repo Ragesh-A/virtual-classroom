@@ -4,7 +4,7 @@ import { IP } from '../constant/constant';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../utils/store/uiSlice';
 
-const CheckoutForm = ({clientSecret,plan}) => {
+const CheckoutForm = ({clientSecret,plan, close}) => {
   const stripe = useStripe();
   const dispatch = useDispatch()
   const elements = useElements();
@@ -64,11 +64,12 @@ const CheckoutForm = ({clientSecret,plan}) => {
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='border-2 p-3 rounded shadow'>
       <LinkAuthenticationElement /> 
       <PaymentElement options={{layout: 'accordion'}} />
-      <button>Submit</button>
-      {message && <div id="payment-message">{message}</div>}
+      <button type='button' className='bg-black text-white rounded w-full mt-3 py-2' onClick={close}>cancel</button>
+      <button type='submit' className='bg-primary text-white rounded w-full mt-3 py-2'>Submit</button>
+      {message && <div id="payment-message" className='text-[12px]'>{message}</div>}
     </form>
   );
 };

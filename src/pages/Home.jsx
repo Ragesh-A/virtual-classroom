@@ -123,7 +123,7 @@ return(
 
     </Section>
 
-    {plan && <Subscription plan={plan} />}
+    {plan && <Subscription plan={plan} setPlan={setPlan}/>}
 
     <Section>
       <div className="md:grid md:grid-cols-2 gap-6" id="contact">

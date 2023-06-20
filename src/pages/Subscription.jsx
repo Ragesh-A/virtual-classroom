@@ -4,15 +4,15 @@ import subscriptionServices from '../services/subscriptionService';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../utils/store/uiSlice';
 import { useNavigate } from 'react-router-dom';
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
 
-const Subscription = ({plan}) => {
-  const [clientSecret, setClientSecret] = useState()
-  const [stripePromise, setStripePromise] = useState()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+const Subscription = ({ plan, setPlan}) => {
+  const [clientSecret, setClientSecret] = useState();
+  const [stripePromise, setStripePromise] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = decodeUser();
@@ -21,7 +21,7 @@ const Subscription = ({plan}) => {
         .createIndent(plan)
         .then((res) => {
           if (res?.success) {
-            setStripePromise(loadStripe(res.success.publicKey))
+            setStripePromise(loadStripe(res.success.publicKey));
             setClientSecret(res.success.clientSecret);
           } else {
             dispatch(setNotification({ success: false, message: res.error }));
@@ -38,26 +38,28 @@ const Subscription = ({plan}) => {
   console.log('times');
 
   const appearance = {
-    theme: 'stripe',
+    theme: 'flat',
+    variables: { colorPrimaryText: '#262626' }
   };
   const options = {
     clientSecret,
     appearance,
   };
 
-  return(
+  return (
     <>
-    {
-      clientSecret && stripePromise ?  <>
-      {console.log(clientSecret, 'key')}
-        <Elements options={options} stripe={stripePromise}>
-         <CheckoutForm clientSecret={clientSecret} plan={plan}/>
-        </Elements>
-        </> : null
-    }
-
+      {clientSecret && stripePromise ? (
+        <div className="fixed w-full h-full top-0 left-0 bg-white flex justify-center items-center z-[5]">
+          {console.log(clientSecret, 'key')}
+          <div className="max-w-[750px] m-auto">
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm clientSecret={clientSecret} plan={plan} close={()=>setPlan(false)}/>
+            </Elements>
+          </div>
+        </div>
+      ) : null}
     </>
-  )
+  );
 };
 
 export default Subscription;
