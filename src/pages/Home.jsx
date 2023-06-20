@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Notification from "../components/common/Notification";
 import Subscription from "./Subscription";
+import './homeAnimation';
 
 const Home = () => {
   const [plan, setPlan] = useState()
