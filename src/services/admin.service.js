@@ -28,6 +28,9 @@ const adminServices = {
   },
   blockAndUnblockClass: async (classId) => {
     return adminServices.makeRequest(BASE_URL + '/admin/classes', "PATCH", { classId })
+  },
+  getDashboard: async () => {
+    return adminServices.makeRequest(`${BASE_URL}/analytics/admin`, 'GET')
   }
 };
 

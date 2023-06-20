@@ -2,7 +2,8 @@ import { Suspense, lazy } from "react";
 import ErrorBoundary from "../pages/ErrorBoundary";
 import Shimmer from "../components/common/Shimmer";
 
-const OrganizerLayout = lazy(()=> import("../components/layouts/OrganizerLayout")) ;
+const OrganizerLayout = lazy(()=> import("../components/layouts/OrganizerLayout"));
+const Dashboard = lazy(()=> import("../pages/organizer/Dashboard"));
 const ClassManagement = lazy(()=> import("../components/organizer/ClassManagement")) ;
 const EditAnnouncement = lazy(()=> import("../components/organizer/EditAnnouncement"));
 const InstructorManagement = lazy(()=> import("../components/organizer/InstructorManagement"));
@@ -19,6 +20,10 @@ const organizerRoute = {
     </Suspense>
   ),
   children: [
+    {
+      path: '',
+      element: <Dashboard />
+    },
     {
       path: 'classes',
       element: <ClassManagement />

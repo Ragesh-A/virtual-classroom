@@ -60,7 +60,8 @@ const organizerServices = {
       console.log(err)
     })
   },
-  removeFromWaitingList: async (emailOrPhone) => organizerServices.makeRequest(BASE_URL + '/organizer/waiting', 'PATCH', { user: emailOrPhone })
+  removeFromWaitingList: async (emailOrPhone) => organizerServices.makeRequest(BASE_URL + '/organizer/waiting', 'PATCH', { user: emailOrPhone }),
+  getDashboard: async () => organizerServices.makeRequest(`${BASE_URL}/analytics/organization`, 'GET')
 };
 
 export default organizerServices;
