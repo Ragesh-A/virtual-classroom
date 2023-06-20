@@ -202,7 +202,7 @@ const CreateQuestion = () => {
           </li>
           <li
             className="rounded-full bg-tileColor w-8 h-8 flex justify-center items-center hover:bg-primary hover:text-white transition cursor-pointer"
-            onClick={() => newQuestion('checkList')}
+            onClick={() => newQuestion('checkbox')}
           >
             <i className="ri-checkbox-line"></i>
           </li>

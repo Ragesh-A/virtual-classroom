@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import {/*/ useEffect, useRef,*/ useState } from 'react';
 import bg from '../../assets/images/video-conference.png';
 import Header from '../../components/classroom/header/Header';
 import WaitingPlace from '../../components/video-conference/WaitingPlace';
-import { io } from 'socket.io-client';
-import { MEETUP_SOCKET_IP } from '../../constant/constant';
-import { useSelector } from 'react-redux';
+// import { io } from 'socket.io-client';
+// import { MEETUP_SOCKET_IP } from '../../constant/constant';
+// import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [tab, setTab] = useState('home');
-  const [newRoom, setNewRoom] = useState(false);
-  const [localStream, setLocalStream] = useState();
+  // const [newRoom, setNewRoom] = useState(false);
+  // const [localStream, setLocalStream] = useState();
 
-  let [peerConnection, setPeerConnection] = useState();
+  // let [peerConnection, setPeerConnection] = useState();
 
   // zeogo cloud 
   const [roomCode, setRoomCode] = useState()
@@ -23,8 +23,8 @@ const Home = () => {
   }
 
 
-  const socket = useRef();
-  const { user } = useSelector((store) => store.user);
+  // const socket = useRef();
+  // const { user } = useSelector((store) => store.user);
 
   // useEffect(() => {
   //   socket.current = io(MEETUP_SOCKET_IP);
@@ -34,9 +34,9 @@ const Home = () => {
   //   };
   // }, [user]);
 
-  const openMediaDevices = async (config) => {
-    return await navigator.mediaDevices.getUserMedia(config);
-  };
+  // const openMediaDevices = async (config) => {
+  //   return await navigator.mediaDevices.getUserMedia(config);
+  // };
 
   // const createNewCall = async () => {
   //   if (!newRoom) {

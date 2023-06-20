@@ -19,7 +19,8 @@ const quizServices = {
   },
   createQuiz: async (data) => quizServices.makeRequest(`questions`, 'POST', data),
   getQuizzes: async (classId) => quizServices.makeRequest(`questions?classId=${classId}`, 'GET'),
-  getQuestion: async (questionId) => quizServices.makeRequest(`questions/${questionId}`, 'GET')
+  getQuestion: async (questionId) => quizServices.makeRequest(`questions/${questionId}`, 'GET'),
+  submitAnswer: async (questionId, answer) => quizServices.makeRequest(`questions/${questionId}/submission`, 'POST', answer)
 }
 
 export default quizServices;
