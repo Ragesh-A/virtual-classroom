@@ -36,7 +36,7 @@ const UserManagement = () => {
   return (
     <>
     <ConfirmBox visible={popup} setVisibleFn={setPopup} title={title} accepted={blockAndUnblockUser}/>
-    <div className="box rounded-md p-2 md:p-5 overflow-x-scroll text-[10px]">
+    <div className="box rounded-md p-2 md:p-5 overflow-x-scroll scroll text-[10px]">
       <p className="text-center text-primary underline font-extrabold text-md md:text-xl my-2 md:mb-5">User management</p>
       <table className="w-full overflow-x-scroll">
         <thead className="text-[10px] md:text-xl rounded-full overflow-hidden bg-primary text-white">

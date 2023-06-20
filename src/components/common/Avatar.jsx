@@ -12,7 +12,7 @@ const Avatar = ({name=null, image=null, h='h-10', w='w-10', font}) => {
 
   return (
     <div className={`${color[num]} border-2 border-white ${w} ${h} rounded-full flex justify-center items-center overflow-hidden`}>
-      {image ? <img src={IMAGE_PATH+img} draggable='false' alt="avatar" /> : (
+      {image ? <img src={`${IMAGE_PATH}profiles/${image}`} draggable='false' alt="avatar" /> : (
         <p className={`uppercase ${font}`}>{name&&name[0]}</p>
       )}
       <div className="online-dot"></div>

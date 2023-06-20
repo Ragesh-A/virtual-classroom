@@ -25,10 +25,10 @@ const AdminLayout = () => {
       <i className="fa-solid fa-bars text-xl cursor-pointer" onClick={()=>handleToggle('doctor')} ></i>
       </div>
       <div className="bg-[#F4F7FE] inner-shadow rounded-md p-3 h-[90vh] overflow-y-scroll scroll relative">
-        <div className={`fixed sidebar md:max-w-[200px] box rounded overflow-hidden p-2 h-[87vh] ${toggle ? 'active' : ''}`}>
-          <AdminSidebar />
+        <div className={`fixed sidebar md:max-w-[300px] box rounded overflow-hidden p-2 h-[87vh] ${toggle ? 'active' : ''}`}>
+          <AdminSidebar toggle={toggle}/>
         </div>
-        <div className="main-content md:ps-4">
+        <div className={`main-content  md:ps-4 `}>
           <Outlet />
         </div>
       </div>

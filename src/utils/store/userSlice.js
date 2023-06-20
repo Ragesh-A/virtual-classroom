@@ -10,6 +10,7 @@ const userSlice = createSlice({
       state.user = action.payload
     },
     userLogOut: (state) => {
+      localStorage.clear()
       state.user = null
     },
     updateUser: (state, action) => {
