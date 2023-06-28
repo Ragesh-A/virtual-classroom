@@ -13,7 +13,7 @@ const ClassPersonList = ({ back, onlineUsers, myId }) => {
   const [activeForm, setActiveForm ] = useState(false);
   const { classId } = useParams();
   const dispatch = useDispatch()
-console.log(activeForm);
+
   useEffect(()=> {
     if (myId){
       const addLecture = [...currentClass?.students, currentClass.class.instructor]
@@ -21,7 +21,7 @@ console.log(activeForm);
         console.log(x, myId);
         return x._id !== myId
       })
-    console.log(filter, 'removed me');
+      
     setFiltered(filter)
     }
     
@@ -44,9 +44,7 @@ console.log(activeForm);
     setFiltered(filteredUser)
   }
 
-  const isUserOnline =  (userId) => {
-    return onlineUsers.some(online=> online.userId === userId)
-  }
+  
 
 
 
