@@ -1,48 +1,75 @@
 import { useEffect, useState } from "react";
-import CreateAssignment from "../../components/classroom/Lecture/CreateAssignment";
 import lectureServices from "../../services/lectureServices";
 import { Link, useParams } from "react-router-dom";
-import { IMAGE_PATH } from "../../constant/constant";
+import { useSelector } from "react-redux";
+import Avatar from "../../components/common/Avatar";
 
 const Submissions = () => {
 
-  const [selected, setSelected] = useState()
-  const [assignments, setAssignments] = useState()
-  const [newAssignment, setNewAssignment] = useState();
+  const [question, SetQuestion] = useState();
+  const [tab, setTab] = useState('completed')
   const {classId, assignmentId} = useParams();
+  const { currentClass } = useSelector(store => store.classes)
+  const [students, setStudents] = useState();
+
+  function filterStudents(students, submissions) {
+    const completed = students?.reduce((acc, student) => {
+      const studentSubmission = submissions.find(submission => submission.student._id === student._id);
+      if (studentSubmission) {
+        const studentWithSubmission = { ...student, submissionId: studentSubmission._id };
+        return [...acc, studentWithSubmission];
+      }
+      return acc;
+    }, []);
+  
+    const notCompleted = students.filter(student => !completed.some(completedStudent => completedStudent._id === student._id));
+    setStudents({
+      completed,
+      notCompleted
+    });
+  }
+  
+ 
   useEffect(()=>{
     lectureServices.allSubmissions(classId, assignmentId).then(res=>{
-      console.log(res);
       if(res?.success){
-
-        setAssignments(res?.success?.submissions)
+        filterStudents(currentClass?.students, res?.success?.submissions)
+        if (res?.success?.submissions.length > 0) {
+          SetQuestion(res?.success?.submissions[0]?.assignmentId)
+        }
       }
     })
-  },[])
- 
+  },[assignmentId, classId, currentClass?.students])
+
   return (
    <div className="relative grid gap-2">
-
-    
-    {assignments && assignments.map(assignment=>(
-      <div className={`bg-tileColor rounded-md p-3 overflow-hidden transition  ${selected === assignment?._id ? 'h-full' :  'h-12'}`} onClick={()=>setSelected(assignment?._id)} key={assignment._id}>
-      <div className="flex justify-between mb-2">
-        <p className="font-bold text-textColor">{assignment?.student.name}</p>
-        <p className="text-gray-500 font-semibold">{assignment?.dueDate}</p>
-      </div>
-      <p>{assignment?.answer}</p>
-      <div className="flex flex-wrap ">
-                {
-                  assignment?.image?.map(x => (
-                    <img draggable='false' src={`${IMAGE_PATH}submissions/${x}`} alt="" key={x}  loading="lazy"/>
-                  ))
-                }
-              </div>
+    <div className="bg-tileColor px-3 py-2">
+      <p className="font-bold text-textColor uppercase">{question?.title}</p>
+      <p className="text-gray-500 text-[12px] mt-1">{question?.description}</p>
     </div>
-    ))}
-    
-   
-    
+    <div className="box">
+      <ul className="flex text-[12px] font-mono gap-2">
+        <li className={`p-1 cursor-pointer border-2 border-transparent ${tab === 'completed' && 'border-b-primary'} font-bold text-textColor`} onClick={()=>setTab('completed')}>Completed</li>
+        <li className={`p-1 cursor-pointer border-2 border-transparent ${tab === 'notCompleted' && 'border-b-primary'} font-bold text-textColor`} onClick={()=>setTab('notCompleted')}>Not Completed</li>
+      </ul>
+    </div>
+
+    {
+      students && students[tab]?.map(student =>(
+        <div className="bg-tileColor transitions shadow-inner hover:shadow border-white border-2 p-1 md:p-3 flex justify-between items-center" key={student._id}>
+        <div className="flex items-center gap-5">
+          <Avatar image={student?.avatar} name={student.name}/>
+          <p className="font-bold  text-textColor">{student.name}</p>
+        </div>
+        { tab === 'completed' && <div className="flex gap-2 md:gap-4">
+          <Link to={student?.submissionId} className="bg-white text-textColor font-bold text-sm px-3 py-2 rounded hover:shadow hover:shadow-shadow">
+            <i className="fa-solid fa-eye md:me-2"></i>
+            <span>VIEW</span>
+          </Link>
+        </div>}
+      </div>
+      ))
+    }  
    </div>
   )
 };

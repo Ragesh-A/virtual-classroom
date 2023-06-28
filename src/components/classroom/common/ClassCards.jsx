@@ -38,7 +38,7 @@ return (
           className="w-full -full" />
       </div>
       <div className="px-5 py-1 relative before:absolute before:content-[''] before:w-[150%] before:h-[5rem] before:-top-4 before:-left-4 before:rotate-3 md:before:rotate-6 before:bg-white ">
-        <img draggable='false' src={singleClass?.createdBy?.avatar || defaultUser} alt="avatar" className="absolute right-8 top-[-3rem] rounded w-[80px] h-[80px] border-2 border-white " />
+        <img draggable='false' src={(singleClass?.createdBy?.avatar && `${IMAGE_PATH}profiles/${singleClass?.createdBy?.avatar}`) || defaultUser} alt="avatar" className="absolute right-8 top-[-3rem] rounded w-[80px] h-[80px] border-2 border-white bg-white" />
         <p className="font-bold text-textColor relative">
           {singleClass?.name}
         </p>

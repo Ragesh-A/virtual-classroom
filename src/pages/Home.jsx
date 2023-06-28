@@ -44,41 +44,42 @@ return(
 <>
   <div className="body">
         <Notification/>
-    <div className="main min-h-screen">
+    <div className="main min-h-screen 2xl:min-h-[600px]">
       <Header page='home' />
-      <Section className="flex flex-col-reverse md:flex-row min-h-screen md:min-h-[70vh] relative  items-center" id='home'>
+      <Section className="flex flex-col-reverse md:flex-row min-h-screen 2xl:min-h-[600px] md:min-h-[70vh] relative  items-center" id='home'>
         <div className="flex-1 text-center md:text-left">
-          <p className="text-2xl mt-5 md:mt-0 leading-10 md:text-3xl font-bold text-textColor md:leading-[3rem]">
+          <p className="text-xl lg:text-2xl mt-5 md:mt-0 lg:leading-10 md:text-xl font-bold text-textColor md:leading-[2rem] xl:leading-[3rem]">
             Unlock Your Potential Anywhere, Anytime: Experience the Future of Learning with our
           </p>
-          <p className="font-bold text-primary text-4xl sm:text-5xl md:text-6xl text-left mt-5 mb-14">Digital Classroom
+          <p className="font-bold text-center text-primary text-4xl sm:text-5xl lg:text-6xl md:text-4xl md:text-left mt-2 lg:mt-5 mb-10 lg:mb-14">Digital Classroom
           </p>
           <a htmlFor='features' href='#features'
             className="border-none rounded-md px-14 py-4  overflow-hidden bg-primary text-white">Explore</a>
           <div
-            className="absolute py-8 left-0 bottom-0 bg-gradient-to-r from-indigo-300 to-indigo-100 rounded-e-[10rem] w-1/2">
+            className="absolute z-0 py-8 left-0 bottom-40 md:bottom-0 bg-gradient-to-r from-indigo-300 to-indigo-100 rounded-e-[10rem] w-3/4 lg:w-1/2">
           </div>
         </div>
         <div className="md:flex-1 flex items-center justify-center">
           <div
-            className="max-w-[300px] animate-pulse overflow-hidden triangle-shape flex justify-center items-center rounded-3xl">
+            className="max-w-[125px] md:max-w-[300px] animate-pulse overflow-hidden triangle-shape flex justify-center items-center rounded-3xl">
             <img draggable='false' src={image} alt="" className="w-full h-full" />
           </div>
         </div>
       </Section>
     </div>
 
-    <Section>
-      <div className="min-h-[100vh] m-auto max-w-7xl grid md:grid-cols-2 items-center gap-28">
-        <div id='features' className="items-center">
+    <Section className="min-h-screen 2xl:min-h-[600px] flex flex-col items-center">
+      <h2 className="text-textColor text-4xl font-bold lg:hidden text-left">Features</h2>
+      <div className=" m-auto max-w-7xl grid xl:grid-cols-2 items-center gap-10 xl:gap-28" id='features'>
+        <div  className="items-center md:p-5 xl:p-0">
           <img draggable='false' src={image2} alt="" />
         </div>
         <div className="">
-          <h2 className=" text-5xl mb-9 font-bold text-textColor">Features</h2>
+          <h2 className=" text-5xl mb-9 font-bold text-textColor hidden lg:block">Features</h2>
           <div className="flex gap-2 flex-wrap">
             {
               BASIC_FEATURES.map(feature=>(
-                <div className="border-white border-2 bg-white bg-opacity-50 text-textColor  py-3 px-7 rounded-xl text-xl" key={feature.name}>
+                <div className="border-white border-2 bg-white bg-opacity-50 text-textColor  py-3 px-5 lg:px-7 rounded-xl text-sm md:text-xl flex-grow font-bold md:font-normal capitalize" key={feature.name}>
                   <i className={`${feature.class} mr-5`}></i>
                   <span>{feature.name}</span>
                 </div>
@@ -90,34 +91,36 @@ return(
 
     </Section>
     <Section>
-      <div className="min-h-[100vh] m-auto max-w-7xl md:grid md:grid-cols-2 items-center gap-28">
+      <div className="min-h-screen 2xl:min-h-[600px] m-auto max-w-7xl flex flex-col-reverse xl:grid md:grid-cols-2 items-center gap-10 xl:gap-28">
         <div className="">
-          <h2 className=" text-5xl mb-9 font-bold text-textColor"><i
+          <h2 className=" text-5xl mb-9 font-bold text-textColor hidden lg:block"><i
               className="fa-solid fa-fire-flame-curved text-primary mr-5 animate-pulse"></i>Features</h2>
           <div className="flex gap-2 flex-wrap">
             {
               PREMIUM_FEATURES.map(feature=>(
-                <div className="border-white border-2 bg-white bg-opacity-50 text-textColor  py-3 px-7 rounded-xl text-xl" key={feature.name}>
+                <div className="border-white border-2 bg-white bg-opacity-50 text-textColor  py-3 px-5 lg:px-7 rounded-xl text-sm md:text-xl flex-grow font-bold md:font-normal capitalize" key={feature.name}>
                   <i className={`${feature.class} mr-5`}></i>
                   <span>{feature.name}</span>
                 </div>
               ))
             }
           </div>
-          <div className="pt-5 flex gap-10">
-            <button className="btn overflow-hidden rounded bg-gradient-to-r from-slate-500 to-black text-white text-lg w-1/2 flex justify-between" onClick={()=>clickHandle('monthly')}>
+          <div className="pt-5 flex flex-col mt-5 md:flex-row gap-2 xl:gap-10 justify-between">
+            <button className="px-10 py-3 md:py-5 flex-1 overflow-hidden rounded bg-gradient-to-r from-slate-500 to-black text-white text-lg  flex justify-between md:max-w-[250px]" onClick={()=>clickHandle('monthly')}>
               <span className="text-2xl font-bold">₹10</span>
               <span>1 month</span>
             </button>
             
-          <button className="btn overflow-hidden rounded bg-gradient-to-r from-indigo-400 to-indigo-700 text-white text-lg w-1/2 flex justify-between" onClick={()=>clickHandle('yearly')}>
+          <button className="shim px-10 py-3 md:py-5 flex-1 overflow-hidden rounded bg-gradient-to-r from-indigo-400 to-indigo-700 text-white text-lg flex justify-between md:max-w-[250px]" onClick={()=>clickHandle('yearly')}>
             <span className="text-2xl font-bold">₹100</span>
             <span>12 month</span>
           </button>
           </div>
         </div>
         <div className="items-center">
-          <img draggable='false' src={image2} alt="" />
+        <h2 className=" text-4xl mb-9 font-bold text-textColor lg:hidden"><i
+              className="fa-solid fa-fire-flame-curved text-primary mr-5 animate-pulse"></i>Features</h2>
+          <img draggable='false' src={image2} alt="" className="md:p-5 xl:p-0"/>
         </div>
       </div>
 
@@ -126,8 +129,8 @@ return(
     {plan && <Subscription plan={plan} setPlan={setPlan}/>}
 
     <Section>
-      <div className="md:grid md:grid-cols-2 gap-6" id="contact">
-        <div className="border-2 border-white p-9 rounded-xl max-w-xl">
+      <div className="lg:grid md:grid-cols-2 gap-6" id="contact">
+        <div className="border-2 border-white p-9 rounded-xl w-full xl:max-w-xl m-auto">
           <h3 className="text-center text-primary font-bold text-2xl my-5">Contact</h3>
           <form>
             <div className="border-b-4 border-b-primary rounded-md flex px-5 py-2 gap-5 items-center mb-5">
@@ -144,8 +147,8 @@ return(
             <button type="button" className="w-full bg-gradient-to-r from-primary to-lightPrimary text-white btn rounded-xl overflow-hidden mt-5">connect</button>
           </form>
         </div>
-        <div className="hidden md:flex">
-          <img draggable='false' src={contactImage} alt="" />
+        <div className="hidden lg:flex justify-center items-center w-full">
+          <img draggable='false' src={contactImage} alt="" className="max-w-md h-auto"/>
         </div>
 
       </div>
@@ -153,7 +156,7 @@ return(
     
 
     <Section>
-      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-[2rem]">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-[2rem]">
         
         <div className="w-full relative flex flex-col md:flex-row items-center justify-center md:justify-start h-[350px] max-w-[530px] mx-auto animate-on-scroll">
             <div className="absolute bg-indigo-100 w-[85%] h-full shape top-0 right-0"></div>
@@ -198,7 +201,7 @@ return(
           <div className="relative">text</div>
         </div>
         
-      </div>
+      </div> */}
       <marquee behavior="" direction="left">
         <div className="flex gap-3">
         {

@@ -110,8 +110,8 @@ export const announcementInitialValue = {
 }
 
 export const announcementSchema = Yup.object({
-  title: Yup.string().required().min(5).max(20),
-  description: Yup.string().required().min(5).max(30),
+  title: Yup.string().required().min(5).max(25),
+  description: Yup.string().required().min(5).max(250),
   announceAt: Yup.date().required(),
   icon: Yup.string().required(),
   theme: Yup.string().required(),

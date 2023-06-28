@@ -57,9 +57,9 @@ const TakeAttendance = () => {
   if (students && students.length < 1 ) return <div className="h-full flex items-center font-bold bg-tileColor justify-center xl:text-2xl text-gray-400">No students</div>
   return (
     <div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="bg-primary text-white font-bold text-xl text-center py-2 rounded-md">Students</div>
-        <div className="bg-primary text-white font-bold text-xl text-center py-2 rounded-md">Students</div>
+        <div className="bg-primary text-white font-bold text-xl text-center py-2 rounded-md hidden md:block">Students</div>
         {
           students?.map(student => (
             <div className="flex items-center gap-3 bg-tileColor p-2 rounded justify-between" key={student?._id}>
@@ -75,8 +75,8 @@ const TakeAttendance = () => {
         
 
       </div>
-      <div className="fixed left-0 bottom-10 w-full flex pr-5 justify-end">
-      {<button className="btn rounded overflow-hidden bg-primary text-white" onClick={handleSubmit}>submit attendance</button>}
+      <div className="fixed left-0 bottom-20 md:bottom-10 w-full flex pr-5 justify-end">
+      {<button className="btn px-3 py-2 rounded overflow-hidden bg-primary text-white" onClick={handleSubmit}>submit attendance</button>}
     </div>
     </div>
   )

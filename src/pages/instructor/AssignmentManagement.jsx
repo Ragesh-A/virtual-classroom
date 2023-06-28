@@ -21,7 +21,7 @@ const AssignmentManagement = () => {
   const addNewAssignment = (assignment) => {
     setAssignments([...assignments, assignment])
   }
- console.log(assignments);
+ 
   return (
    <div className="relative grid gap-2">
 
@@ -33,15 +33,17 @@ const AssignmentManagement = () => {
         <p className="font-bold text-textColor">{assignment?.title}</p>
         <p className="text-gray-500 font-semibold">{assignment?.dueDate.split('T')[0]}</p>
       </div>
-      <p>{assignment?.description}</p>
-      <Link className="btn overflow-hidden bg-primary text-white mt-5 float-right" to={`${assignment?._id}/submissions`}>view submissions</Link>
-      <Link className="btn overflow-hidden bg-primary text-white mt-5 float-right mr-2" to={assignment?._id}>Edit assignment</Link>
+      <p className="text-[12px] md:text-sm">{assignment?.description}</p>
+      <div className="flex text-[10px] justify-between">
+      <Link className="btn overflow-hidden bg-primary text-white mt-5 float-right px-4 py-2 rounded-md md:text-sm" to={`${assignment?._id}/submissions`}>view submissions</Link>
+      <Link className="btn px-4 py-2 rounded-md md:text-sm overflow-hidden bg-primary text-white mt-5 float-right mr-2" to={assignment?._id}>Edit assignment</Link>
+      </div>
     </div>
     ))}
     
    
-    <div className="fixed left-0 bottom-10 w-full flex pr-5 justify-end">
-      {!newAssignment&&<button className="btn rounded overflow-hidden bg-primary text-white" onClick={()=>setNewAssignment(true)}>New Assignment</button>}
+    <div className="fixed bottom-24  left-0 xl:bottom-10 w-full flex pr-5 justify-end">
+      {!newAssignment&&<button className="btn rounded   bg-primary text-white px-5 py-3" onClick={()=>setNewAssignment(true)}>New Assignment</button>}
     </div>
    </div>
   )

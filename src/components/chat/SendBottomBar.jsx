@@ -87,7 +87,7 @@ const SendBottomBar = ({ socket, chatId, sendedMessage }) => {
     <div className="">{isTyping && 'typing...'}</div>
       <form onSubmit={sendMessage} className="w-full flex gap-1 ">
         <div className="flex px-4 gap-3 items-center w-full rounded-s-[2rem] shadow border-2 text-textColor bg-white">
-          <i className="fa-solid fa-face-smile-wink text-primary"></i>
+          {/* <i className="fa-solid fa-face-smile-wink text-primary"></i> */}
           <input
             type="text"
             placeholder=""

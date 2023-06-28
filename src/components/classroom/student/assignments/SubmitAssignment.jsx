@@ -82,10 +82,10 @@ const SubmitAssignment = ({assignmentId, close}) => {
       
       </div>
       <div className="">
-        <button type="button" className="btn overflow-hidden bg-gray-700 hover:bg-black rounded-full mr-5 text-white " onClick={close}>
+        <button type="button" className="btn overflow-hidden bg-gray-700 hover:bg-black rounded-full mr-5 text-white  px-4 py-1" onClick={close}>
           cancel
         </button>
-        <button type="button" onClick={submitAnswer} className="btn overflow-hidden bg-indigo-500 hover:bg-primary rounded-full text-white">
+        <button type="button" onClick={submitAnswer} className="btn overflow-hidden bg-indigo-500 hover:bg-primary rounded-full text-white px-4 py-1">
           submit
         </button>
       </div>

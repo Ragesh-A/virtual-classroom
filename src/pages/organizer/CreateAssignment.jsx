@@ -52,8 +52,8 @@ const CreateAssignment = ({close}) => {
         </div>
         ))}
         </div>
-        <button type="button" className="btn overflow-hidden bg-black rounded-md mr-5 text-white" onClick={close}>cancel</button>
-        <button type="submit" className="btn overflow-hidden bg-primary rounded-md text-white">submit</button>
+        <button type="button" className="btn overflow-hidden bg-black rounded-md mr-5 text-white mt-2 px-4 py-1" onClick={close}>cancel</button>
+        <button type="submit" className="btn overflow-hidden bg-primary rounded-md text-white mt-2 px-4 py-1">submit</button>
       </form>
      {/* <div className="box"></div> */}
     </div>

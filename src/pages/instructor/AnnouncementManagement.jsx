@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import Box from '../../components/common/Box';
 import CreateAnnouncement from '../../components/instructor/CreateAnnouncement';
+import ListAnnouncements from './ListAnnouncement';
 
 const AnnouncementManagement = () => {
 
-  const [tab, setTab] = useState('create');
+  const [tab, setTab] = useState('view');
 
   return (
     <div className="h-full rounded-md mb-10">
@@ -18,26 +19,26 @@ const AnnouncementManagement = () => {
             </span>
           </p>
         </Box>
-        <Box className="bg-tileColor">hi</Box>
-        <Box className="bg-tileColor">hi</Box>
+        <Box className="bg-tileColor"></Box>
+        <Box className="bg-tileColor"></Box>
       </div>
 
       <div className="box xl:pt-1 xl:px-3 mb-2">
         <ul className='flex md:gap-5 uppercase text-sm font-bold text-textColor'>
+          <li className={`cursor-pointer border-4  border-transparent px-2 py-1 ${tab === 'view' ? 'border-b-primary' : ''}`} onClick={()=>setTab('view')}>
+            View
+          </li>
           <li className={`cursor-pointer border-4 border-transparent px-2 py-1 ${tab === 'create' ? 'border-b-primary' : 'border-red-500'}`} onClick={()=>setTab('create')}>
             create
-          </li>
-          <li className={`cursor-pointer border-4  border-transparent px-2 py-1 ${tab === 'update' ? 'border-b-primary' : ''}`} onClick={()=>setTab('update')}>
-            update
-          </li>
-          <li className={`cursor-pointer border-4  border-transparent px-2 py-1 ${tab === 'delete' ? 'border-b-primary' : ''}`} onClick={()=>setTab('delete')}>
-            delete
           </li>
         </ul>
       </div>
       <div className="">
         {
           tab === 'create' && <CreateAnnouncement />
+        }
+        {
+          tab === 'view' && <ListAnnouncements />
         }
       </div>
 

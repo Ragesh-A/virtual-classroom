@@ -31,9 +31,9 @@ const AllClasses = () => {
   
   return (
     <>
-      <Section>
+      <Section className='mb-14'>
         {storeClass?.classes?.length === 0 && <div className="h-[50vh] grid place-items-center text-center md:text-5xl md:font-bold text-gray-200">Didn't Join any class?<br /> create new One </div>}
-        <Announcements />
+        
         <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {!isLoaded ? (
             Array(3)

@@ -95,7 +95,9 @@ const lectureServices = {
       return res.data;
     })
   },
-  getTodayAttendance: async (classId) => lectureServices.makeRequest(`${BASE_URL}/classes/${classId}/attendance`, 'GET')
+  getTodayAttendance: async (classId) => lectureServices.makeRequest(`${BASE_URL}/classes/${classId}/attendance`, 'GET'),
+  getDashboard: async (classId) => lectureServices.makeRequest(`${BASE_URL}/analytics/class?classId=${classId}`, 'GET'),
+  allQuestionSubmission: async (questionId) => lectureServices.makeRequest(`${BASE_URL}/questions/${questionId}/submission`)
 }; 
 
 export default lectureServices;

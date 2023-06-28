@@ -34,14 +34,14 @@ const AssignmentManagement = () => {
 
   return (
     <div className="relative">
-      <div className={`flex ${active? 'gap-3' : ''}`}>
-        <div className={`box p-5 rounded-md transitions ${active ? 'w-1/2' : 'w-full'}`} onClick={()=>setActive(true)}>
+      <div className={`flex flex-col md:flex-row ${active? 'gap-3' : ''}`}>
+        <div className={`box p-5 rounded-md transitions ${active ? 'md:w-1/2' : 'w-full'}`} onClick={()=>setActive(true)}>
         <table className="w-full">
           <thead>
             <tr>
               <th className="text-white"><span className="bg-primary block rounded p-2">ID</span></th>
               <th className="text-white"><span className="bg-primary block rounded p-2">Class Name</span></th>
-              <th className="text-white"><span className="bg-primary block rounded p-2">Class id</span></th>
+              <th className="text-white"><span className="bg-primary block rounded p-2">Class Id</span></th>
             </tr>
           </thead>
           <tbody className="text-center">
@@ -55,8 +55,8 @@ const AssignmentManagement = () => {
           </tbody>
           </table>
         </div>
-        <div className={`box transitions overflow-hidden ${active ? 'w-1/2 p-5' : 'w-0'}`}>
-          {loading? <Shimmer/> : assignments.map(assign=>(
+        <div className={`box transitions overflow-hidden ${active ? 'md:w-1/2 p-5' : 'w-0'}`}>
+          {loading? <Shimmer/> : assignments.length === 0 ? <div className="h-full flex justify-center items-center text-xl font-bold text-gray-400">No assignment created yet!</div> : assignments.map(assign=>(
             <div className="bg-tileColor p-2 mb-2 rounded">
               <div className="flex justify-between mb-2">
                 <p>{assign.title}</p>
@@ -71,7 +71,7 @@ const AssignmentManagement = () => {
       <CreateAssignment close={()=>setPopUp(false)}/>
       </div>}
       <div className="fixed w-full left-0 pr-10 bottom-10">
-        <button type="button" className="btn bg-primary overflow-hidden float-right rounded text-white" onClick={()=>setPopUp(popUp ? false : true)}>create new assignment</button>
+        <button type="button" className="btn px-4 py-2 bg-primary overflow-hidden float-right rounded text-white" onClick={()=>setPopUp(popUp ? false : true)}> <span className="hidden md:block">create new assignment</span> <span className="md:hidden">+</span></button>
       </div>
     </div>
   )

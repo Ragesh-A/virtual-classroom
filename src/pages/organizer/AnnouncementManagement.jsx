@@ -15,17 +15,16 @@ const AnnouncementManagement = () => {
       else dispatch(setNotification({ success: false, message: res?.error }));
     });
     promise.catch((err) => {
-      console.log(err);
     });
   }, [dispatch]); 
   return (
     <div className="">
       <div className="flex gap-2 flex-col">
         {announcements &&
-          announcements?.map((announcement) => (
+          announcements?.map((announcement, index) => (
             <AnnouncementCard
-              announcement={announcement}
               key={announcement?._id}
+              announcement={announcement}
             />
           ))}
       </div>

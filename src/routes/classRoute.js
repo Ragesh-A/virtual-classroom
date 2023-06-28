@@ -10,9 +10,11 @@ import lectureRoute from './lectureRoute';
 import PendingAssignments from '../components/classroom/student/assignments/PendingAssignments';
 import Works from '../components/classroom/student/assignments/Works';
 import CompletedWork from '../components/classroom/student/assignments/CompletedWork';
-import AttendQuestion from '../pages/student/AttendQuestion';
 import Shimmer from '../components/common/Shimmer';
 import ErrorBoundary from '../pages/ErrorBoundary';
+import ListQuestions from '../pages/student/ListQuestions';
+import EditProfile from '../components/common/EditProfile';
+import QuizOrExam from '../pages/student/QuizOrExam';
 
 const ChatHome = lazy(() => import('../pages/chat/ChatHome'));
 
@@ -30,6 +32,10 @@ export const allClassRoute = {
     {
       path: 'profile',
       element: <Profile />,
+    },
+    {
+      path: 'profile/edit',
+      element: <EditProfile />,
     },
   ],
 };
@@ -55,12 +61,12 @@ export const classRoute = {
         { path: '', element: <PendingAssignments /> },
         { path: 'completed', element: <CompletedWork /> },
         { path: 'missed', element: <Works filter="missed" /> },
-        { path: 'quizzes-and-exams', element: <Works filter="missed" /> },
+        { path: 'quizzes-and-exams', element: <ListQuestions /> },
       ],
     },
     {
       path: 'works/quizzes-and-exams/:questionId',
-      element: <AttendQuestion />,
+      element: <QuizOrExam />,
     },
     lectureRoute,
     {

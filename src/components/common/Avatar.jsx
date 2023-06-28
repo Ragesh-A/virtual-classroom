@@ -1,4 +1,3 @@
-import img from '../../assets/images/defaultUserProfile.png'
 import { IMAGE_PATH } from '../../constant/constant'
 
 const Avatar = ({name=null, image=null, h='h-10', w='w-10', font}) => {
@@ -11,9 +10,9 @@ const Avatar = ({name=null, image=null, h='h-10', w='w-10', font}) => {
 
 
   return (
-    <div className={`${color[num]} border-2 border-white ${w} ${h} rounded-full flex justify-center items-center overflow-hidden`}>
-      {image ? <img src={`${IMAGE_PATH}profiles/${image}`} draggable='false' alt="avatar" /> : (
-        <p className={`uppercase ${font}`}>{name&&name[0]}</p>
+    <div className={`${!image && color[num]} border-2 border-white ${w} ${h} rounded-full flex justify-center items-center overflow-hidden`}>
+      {image ? <img src={`${IMAGE_PATH}profiles/${image}`} className='w-full object-cover h-full' draggable='false' alt="avatar" /> : (
+        <p className={`uppercase ${font} font-bold`}>{name&&name[0]}</p>
       )}
       <div className="online-dot"></div>
     </div>

@@ -37,7 +37,7 @@ const ClassroomHeaderComponent = () => {
           <i className="ri-building-fill lg:hidden text-xl"></i>
           <li className="hidden lg:block">Organization</li>
         </NavLink>}
-        {user?.subscriber?.status && <NavLink
+        {user?.isAdmin && <NavLink
           to="/admin/"
           className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
         >

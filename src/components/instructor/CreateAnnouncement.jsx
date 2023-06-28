@@ -27,7 +27,6 @@ const CreateAnnouncement = () => {
       promise.then(res => {
        setIsLoading(false)
       if (res?.success){
-        
         dispatch(setNotification({ success: true, message: 'Created successfully' }))
       }else{
         dispatch(setNotification({ success: false, message: res?.error }))
@@ -42,7 +41,7 @@ const CreateAnnouncement = () => {
       <AnnouncementCard
         title={values.title}
         description={values.description}
-        buttonName="join"
+        buttonName="go"
         icon={values.icon}
         theme={values.theme}
       />
@@ -66,7 +65,7 @@ const CreateAnnouncement = () => {
           <div>
             <label htmlFor="description">Description{errors?.description&&<span className='text-red-500'> {errors?.description}</span>}</label>
             <div className="flex relative border-b-4 border-primary rounded p-2 shadow transition bg-white">
-              <input
+              <textarea
                 name="description"
                 id="description"
                 value={values.description}

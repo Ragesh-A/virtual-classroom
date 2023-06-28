@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import organizerServices from '../../services/organizerServices';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [totalClasses, setTotalClasses] = useState(0);
   const [organization, setOrganization] = useState()
+  const navigate = useNavigate()
 
   useEffect(() => {
+    navigate('instructors/')
     organizerServices.getDashboard().then((res) => {
       console.log(res);
       setTotalClasses(res?.success?.data?.totalClasses);

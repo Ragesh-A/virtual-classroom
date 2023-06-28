@@ -6,9 +6,7 @@ const SelectImages = ({close, open, fileRef}) => {
   const [files, setFiles] = useState([])
 
   const fileChangeHandle = (e) => {
-    console.log();
     const files = e.target.files
-    console.log(files);
     if (files) {
       setFiles([...files]);
     }
@@ -16,9 +14,9 @@ const SelectImages = ({close, open, fileRef}) => {
 
 
   return (
-    <Div className={`${open ? 'xl:w-[430px] xl:px-4 xl:py-4 opacity-100' : 'w-0 h-0 overflow-hidden opacity-0'} fixed top-[50%] left-[50%] transform-center bg-white shadow  rounded`}>
+    <Div className={`${open ? ' p-3 w-[250px] xl:w-[430px] xl:px-4 xl:py-4 opacity-100' : 'w-0 h-0 overflow-hidden opacity-0'} fixed top-[50%] left-[50%] transform-center bg-white shadow z-[3] rounded`}>
       <p>Choose the files</p>
-      <div action="#" className="border-dashed border-2 xl:h-28 flex justify-center items-center flex-col text-primary">
+      <div action="#" className="border-dashed border-2 h-20 xl:h-28 flex justify-center items-center flex-col text-primary">
         <input type="file" name="image" id="image" multiple accept="image/*" className="hidden" ref={fileRef} onChange={fileChangeHandle}/>
         <label htmlFor="image" className="text-center">
           <i className="ri-upload-cloud-2-fill xl:text-5xl"></i>

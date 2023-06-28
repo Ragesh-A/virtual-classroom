@@ -76,7 +76,7 @@ const CreateAssignment = ({ close, addNew }) => {
           rounded outline-none border-b-2 border-b-primary text-slate-600"`} values={values.description}
           onChange={handleChange}></textarea>
         {addImage && addImage !== true && <div className="pt-2">
-          <img draggable='false' src={addImage  || exa} alt="reference" className='max-w-[350px] overflow-hidden rounded-md' />
+          <img draggable='false' src={addImage  || exa} alt="reference" className='max-w-[250px] max-h-[250px] md:max-w-[350px] overflow-hidden rounded-md' />
         </div>}
       </div>
     </div>
@@ -87,22 +87,21 @@ const CreateAssignment = ({ close, addNew }) => {
           onClick={()=> setAddImage(true)}
           >
           <i className="ri-image-add-line"></i>
-          <span>add reference</span>
+          <span className='hidden md:block'>add reference</span>
         </label>
         <input name="image" id="image" type="file" accept="image/*"
           className="bg-gray-200 border-gray-300 outline-primary w-full py-1 focus:bg-blue-50 file:bg-violet-50 file:text-primary file:border-0 file:rounded file:px-3 file:py-2 file:font-bold  bg-transparent border-0 hidden"  onChange={handelImage} />
       </div>
-      <div className="">
-        <button type="button" className="btn overflow-hidden bg-gray-700 hover:bg-black rounded-full mr-5 text-white " onClick={close}>
+      <div className="mt-2">
+        <button type="button" className="btn overflow-hidden bg-gray-700 hover:bg-black rounded md:rounded-full mr-5 text-white  px-4 py-2" onClick={close}>
           cancel
         </button>
-        <button type="submit" className="btn overflow-hidden bg-indigo-500 hover:bg-primary rounded-full text-white">
+        <button type="submit" className="btn overflow-hidden bg-indigo-500 hover:bg-primary rounded md:rounded-full text-white px-4 py-2 float-right md:float-none">
           Assign
         </button>
       </div>
     </div>
   </form>
-  {/* <div className="box"></div> */}
 </div>
   );
 };

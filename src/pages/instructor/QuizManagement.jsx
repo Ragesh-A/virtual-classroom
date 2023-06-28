@@ -17,8 +17,8 @@ const QuizManagement = () => {
         setQuestions(res?.success?.questions)
       }
     }) 
-  }, [])
-  console.log(questions);
+  }, [classId])
+  
   if (!questions) return <Shimmer count={3} />
 
   return (
@@ -27,7 +27,7 @@ const QuizManagement = () => {
         questions?.map(question => (
           <div className={`bg-tileColor rounded-md p-3 overflow-hidden transition  ${selected === question?._id ? 'h-full' :  'h-12'}`} key={question?._id} onClick={()=>setSelected(question?._id)}>
             <div>
-              <p className="font-bold text-md capitalize text-primary">{question?.title}</p>
+              <p className="font-bold text-md capitalize text-primary">{question?.title} <span className="float-right">{question?.date}</span></p>
               <p className="italic text-gray-500 tracking-wider my-2">{question?.description}</p>
             </div>
             <div className="p-2 bg-white text-textColor">
@@ -43,7 +43,7 @@ const QuizManagement = () => {
                               singleQuestion.options?.map(option =>(
                                 <div className="px-3" key={option?.id}>
                                   {singleQuestion.type === 'radio' && <i className="ri-radio-button-line px-2"></i>}
-                                  {singleQuestion.type === 'checkList' && <i className="ri-checkbox-line"></i>}
+                                  {singleQuestion.type === 'checkbox' && <i className="ri-checkbox-line"></i>}
                                   <span>{option.option}</span>
                                 </div>
                               ))
@@ -56,10 +56,11 @@ const QuizManagement = () => {
                 }
               </div>
             </div>
+            <Link to={question?._id} className="mt-2 text-sm text-primary hover:underline float-right">view submissions</Link>
           </div>
         ))
       }
-      <Link to={'create'} className="btn">create</Link>
+      <Link to={'create'} className="bg-primary py-2 text-white px-2 rounded-md text-center">create</Link>
     </div>
   )
 };

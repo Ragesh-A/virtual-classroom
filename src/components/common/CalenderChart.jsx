@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import attendanceService from '../../services/attendanceService';
 import ClassServices from '../../services/classServices';
+import Shimmer from './Shimmer';
 
 function filterData(att, userId) {
   return att?.map(obj => {
@@ -26,8 +27,10 @@ const CalenderChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await attendanceService.getAttendances(selectedClass);
-      const filteredData = filterData(res?.success?.attendances, user?._id);
-      setAttendance(filteredData);
+      if (res?.success) {
+        const filteredData = filterData(res?.success?.attendances, user?._id);
+        setAttendance(filteredData);
+      }
     };
     fetchData();
   }, [selectedClass, user?._id]);
@@ -36,7 +39,9 @@ const CalenderChart = () => {
     if (!classes) {
       const fetchData = async () => {
         const res = await ClassServices.getClasses(user?._id);
-        setClasses(filterClass(res?.success?.classes));
+        if (res?.success) {
+          setClasses(filterClass(res?.success?.classes));
+        }
       };
       fetchData();
     } else {
@@ -53,12 +58,14 @@ const CalenderChart = () => {
     setSelectedClass(e.target.value);
   };
 
+  if (!classes) return <Shimmer />
+
   return (
     <div className="h-full w-full">
       {classes && (
         <select name="" id="" onChange={handleSelection}>
-          {classes.map(x => (
-            <option value={x?._id} key={x?._ix}>
+          {classes?.map(x => (
+            <option value={x?._id} key={x?._id}>
               {x?.name}
             </option>
           ))}
@@ -66,9 +73,9 @@ const CalenderChart = () => {
       )}
       <div className="calender-grid w-full h-full  gap-1">
         {attendances &&
-          attendances.map(x => (
+          attendances?.map(x => (
             <div
-              className={`${x?.status ? 'bg-primary border-2' : 'bg-gray-300 border-2'} flex justify-center items-center text-[12px]`}
+              className={`${x?.status ? 'bg-primary border-2 text-white' : 'bg-gray-300 border-2'} flex justify-center items-center text-[12px]`}
               key={x?._id}
             >
               {x?.createdAt}

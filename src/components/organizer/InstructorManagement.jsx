@@ -66,13 +66,7 @@ const InstructorManagement = () => {
   }
   
   if (!instructors) {
-  return (
-<>
-  <Shimmer />
-  <Shimmer />
-  <Shimmer />
-</>
-);
+  return <Shimmer count={3} />;
 }
 
 return (
@@ -130,7 +124,7 @@ return (
     <div className="fixed bottom-10 right-10">
     <button
      type="button"
-     className="btn overflow-hidden bg-primary text-white rounded-md mt-5"
+     className="btn px-4 py-2 overflow-hidden bg-primary text-white rounded-md mt-5"
      onClick={()=>setPopUp(true)}
       >
         <i className="fa-solid fa-plus md:hidden"></i>
@@ -185,7 +179,7 @@ return (
    <div className="fixed bottom-10 right-10">
    <button
      type="button"
-     className="btn overflow-hidden bg-primary text-white rounded-md mt-5"
+     className="btn px-4 py-2 overflow-hidden bg-primary text-white rounded-md mt-5"
      onClick={()=>setPopUp(true)}
       >
         <i className="fa-solid fa-plus md:hidden"></i>

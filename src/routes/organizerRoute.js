@@ -1,6 +1,8 @@
 import { Suspense, lazy } from "react";
 import ErrorBoundary from "../pages/ErrorBoundary";
 import Shimmer from "../components/common/Shimmer";
+import QuestionManagement from "../pages/organizer/QuestionManagement";
+import QuestionsForm from "../components/questions/QuestionsFrom";
 
 const OrganizerLayout = lazy(()=> import("../components/layouts/OrganizerLayout"));
 const Dashboard = lazy(()=> import("../pages/organizer/Dashboard"));
@@ -43,6 +45,14 @@ const organizerRoute = {
     {
       path: 'announcements/:announcementId',
       element: <EditAnnouncement />
+    },
+    {
+      path: 'questions',
+      element: <QuestionManagement />
+    },
+    {
+      path: 'questions/create',
+      element: <QuestionsForm />
     },
   ]
 };

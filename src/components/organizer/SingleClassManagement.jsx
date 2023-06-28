@@ -35,7 +35,7 @@ const SingleClassManagement = ({classid, setState}) => {
     setTimeout(()=>{
       setActive(true)
     }, 100)
-  },[])
+  },[classid])
 
   const handleSlider = () => { 
     setActive(false)
@@ -76,8 +76,8 @@ const SingleClassManagement = ({classid, setState}) => {
   
   return (
     <>
-      <div className={`absolute h-[90vh] w-[calc(100%-250px)]  slider top-0 right-60 pt-28 rounded ${active ? 'active': ''}`}>
-        <div className={`box relative overflow-y-scroll p-5 h-full`}>
+      <div className={`absolute h-[90vh] xl:w-[calc(100%-300px)] slider top-0 right-60 pt-28 rounded ${active ? 'active': ''}`}>
+        <div className={`box relative overflow-y-scroll scroll p-5 h-full`}>
           <div className="flex justify-end ">
           <i className="fa-solid fa-xmark hover:animate-spin cursor-pointer text-2xl" onClick={handleSlider}></i>
           </div>
@@ -129,15 +129,15 @@ const SingleClassManagement = ({classid, setState}) => {
                   <td>{'-'}</td>
                   <td>{student.emailOrPhone}</td>
                   <td>{'-'}</td>
-                  <td><button type="button" className="bg-lightPrimary w-full text-white hover:bg-primary  py-1" onClick={()=>removeHandle(student._id)}>remove</button></td>
+                  <td><button type="button" className="bg-lightPrimary w-full text-white hover:bg-primary  py-2 px-4" onClick={()=>removeHandle(student._id)}>remove</button></td>
                 </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          {editMode &&  <button type="button" className="btn overflow-hidden bg-black text-white rounded-md mt-5 mr-5" onClick={()=>setEditMode(false)}>cancel</button>}
-          {editMode &&  <button type="submit" className="btn bg-green-500 text-white rounded-md overflow-hidden mt-5" >save</button>}
-          {!editMode && <button type="button" className="btn overflow-hidden bg-primary text-white rounded-md mt-5" onClick={enableEditMode}>Edit</button>}
+          {editMode &&  <button type="button" className="btn overflow-hidden bg-black text-white rounded-md mt-5 mr-5 px-4 py-2" onClick={()=>setEditMode(false)}>cancel</button>}
+          {editMode &&  <button type="submit" className="btn bg-green-500 text-white rounded-md overflow-hidden mt-5 px-4 py-2" >save</button>}
+          {!editMode && <button type="button" className="btn overflow-hidden bg-primary text-white rounded-md mt-5 px-4 py-2" onClick={enableEditMode}>Edit</button>}
           </form>}
         </div>
       </div>

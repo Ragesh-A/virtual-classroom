@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 const AnnouncementCard = ({ announcement }) => {
-  const { _id, title, description, icon, createdBy, theme, action, classes } =
+  const { _id, title, description, icon,  theme, classes,} =
     announcement;
 
     const navigate = useNavigate();
@@ -21,12 +21,12 @@ const AnnouncementCard = ({ announcement }) => {
     }
 
   return (
-    <div className="border-2 rounded hover:shadow cursor-pointer p-2 md:px-5 flex w-full gap-5" onClick={()=>handleSelection(_id)}>
+    <div className="border-2 rounded hover:shadow cursor-pointer p-2 md:px-5 flex w-full gap-5" onClick={()=>handleSelection(_id)} >
       <div className="flex justify-center items-center">
         <i className={`${icon} text-${color}-500 text-3xl md:text-2xl`}></i>
       </div>
-      <div className="">
-        <div className="flex gap-5">
+      <div>
+        <div className="flex items-center gap-5">
         <p className="capitalize font-bold text-md text-textColor">{title}</p>
         <p className="text-gray-500 text">{description}</p>
         </div>

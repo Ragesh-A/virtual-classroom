@@ -59,7 +59,7 @@ const ClassServices = {
     axios.defaults.headers.common['Authorization'] = token;
     return axios.get(`${BASE_URL}/classes/as-student`).then(res =>{
       return res.data
-    })
+    }).catch(error=>console.log(error))
   }
 };
 

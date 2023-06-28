@@ -37,7 +37,7 @@ const AdminSidebar = ({toggle}) => {
       <div className="relative">
         <div className={`absolute hidden justify-center items-center overflow-hidden w-[80px] h-[80px] border-[4px] border-white bg-primary rounded-full left-[30%] -top-6 origin-center ${toggle && 'md:flex'}`}>
           {
-            user?.image ? <img src={`${IMAGE_PATH}profiles/${user?.image}`} draggable='false' alt="avatar"/> : <p className='text-2xl text-white font-bold'>{user?.name[0]}</p>
+            user?.avatar ? <img src={`${IMAGE_PATH}profiles/${user?.avatar}`} draggable='false' alt="avatar"/> : <p className='text-2xl text-white font-bold'>{user?.name[0]}</p>
           }
         </div>
         <div className="bg-gradient-to-b flex items-end justify-center p-3 from-lightPrimary to-primary text-white rounded-md md:h-[8rem]">

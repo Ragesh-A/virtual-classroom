@@ -4,44 +4,35 @@ import quizServices from '../../../services/quizServices';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../../../utils/store/uiSlice';
 import Shimmer from '../../common/Shimmer';
+import Section from '../../layouts/Section';
+import Quiz from './Quiz';
+import Notification from '../../common/Notification';
 
-const Question = () => {
+const Question = ({ data }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [question, setQuestion] = useState();
   const { questionId } = useParams();
   const [totalSeconds, setTotalSeconds] = useState(0);
   const [seconds, setSeconds] = useState(totalSeconds);
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState({});
   let interval;
 
   const startTimer = () => {
     interval = setInterval(() => {
       setSeconds((prevSeconds) => prevSeconds + 1);
     }, 1000);
-  }
+  };
 
   useEffect(() => {
-    quizServices.getQuestion(questionId).then((res) => {
-      console.log(res);
-      if (res?.success?.question) {
-        setQuestion(res?.success?.question);
-        startTimer()
-      }
-      if (res?.error) {
-        dispatch(
-          setNotification({ success: false, message: 'No such Questions' })
-        );
-        navigate(-1);
-      }
-    });
+    setQuestion(data);
+    startTimer()
     return () => {
-      if (interval){
-        clearInterval(interval)
+      if (interval) {
+        clearInterval(interval);
       }
-    }
-  }, [questionId]);
-
+    };
+  }, [data]);
 
 
   useEffect(() => {
@@ -52,7 +43,7 @@ const Question = () => {
 
       document.title = `Time Remaining: ${minutes}:${String(
         remainingSecondsFormatted
-      ).padStart(2, "0")}`;
+      ).padStart(2, '0')}`;
     }
   }, [seconds, totalSeconds]);
 
@@ -62,19 +53,32 @@ const Question = () => {
     });
 
     if (allQuestionAnswered) {
-      quizServices.submitAnswer(questionId, {answers, timeTaken : seconds}).then((res)=>{
-       if (res?.error) {
-        dispatch(setNotification({ success: false, message: res?.error }));
-       }
-      if (res?.success) {
-        dispatch(setNotification({ success: true, message: 'You are answer is submitted.'}))
-        navigate(-1);
-      }
-      })
-    }else{
-      dispatch(setNotification({success: false, message: 'Are you sure submit without attending all questions'}))
+      quizServices
+        .submitAnswer(questionId, { answers, timeTaken: seconds })
+        .then((res) => {
+          console.log(res);
+          if (res?.error) {
+            dispatch(setNotification({ success: false, message: res?.error }));
+          }
+          if (res?.success) {
+            dispatch(
+              setNotification({
+                success: true,
+                message: 'You are answer is submitted.',
+              })
+            );
+            navigate(-1);
+          }
+        });
+    } else {
+      dispatch(
+        setNotification({
+          success: false,
+          message: 'Are you sure submit without attending all questions',
+        })
+      );
     }
-  }
+  };
 
   const handleSelection = (e, ques, index) => {
     const selectedOptionId = e.target.value;
@@ -95,9 +99,7 @@ const Question = () => {
       }
     }
     setAnswers(newAnswers);
-  }
-
-  
+  };
 
   if (!question)
     return (
@@ -106,56 +108,79 @@ const Question = () => {
       </div>
     );
 
+  if (question?.type === 'quiz') return <Quiz data={question} />;
 
   return (
-    <div className="">
-    <p className='font-bold text-gray-500 text-right'>{`${Math.floor(seconds / 3600)
+    <Section className="mb-5">
+      <Notification />
+      <p className="font-bold text-gray-500 text-right">{`${Math.floor(
+        seconds / 3600
+      )
         .toString()
-        .padStart(2, "0")}:${Math.floor((seconds % 3600) / 60)
+        .padStart(2, '0')}:${Math.floor((seconds % 3600) / 60)
         .toString()
-        .padStart(2, "0")}:${(seconds % 60).toString().padStart(2, "0")}s`}</p>
-      <h2 className='text-center text-primary font-bold capitalize text-xl  mb-2 underline'>{question?.title}</h2>
-      <p className='text-gray-500 text-justify  mb-5'>{question.description}</p>
+        .padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}s`}</p>
+      <h2 className="text-center text-primary font-bold capitalize text-xl  mb-2 underline">
+        {question?.title}
+      </h2>
+      <p className="text-gray-500 text-justify  mb-5">{question.description}</p>
 
       <dl>
         {question?.questions?.map((ques, index) => (
           <div className="" key={ques?.type + index}>
-            <dt className='font-bold text-gray-600'>
-              <span className='text-md font-bold'>{index + 1}.</span>
+            <dt className="font-bold text-gray-600">
+              <span className="text-md font-bold">{index + 1}.</span>
               <span>{ques.questionText}</span>
             </dt>
-            
+
             {ques?.type === 'text' ? (
-              <dd className='px-4 py-2'>
-                <textarea type="text" className='w-full md:p-3 text-textColor outline-none rounded' name={index} id={index} onChange={(e) =>{
-                  const newAnswer = { ...answers };
-                  newAnswer[index] = e.target.value;
-                  setAnswers(newAnswer);
-                }}/>
+              <dd className="px-4 py-2">
+                <textarea
+                  type="text"
+                  className="w-full md:p-3 text-textColor outline-none rounded"
+                  name={index}
+                  id={index}
+                  onChange={(e) => {
+                    const newAnswer = { ...answers };
+                    newAnswer[index] = e.target.value;
+                    setAnswers(newAnswer);
+                  }}
+                />
               </dd>
-            ) : (<div className="grid grid-cols-2 md:grid-cols-4 px-4 py-2 mb-2">
-              {ques?.options?.map((option, i) => (
-                <dd key={option?.id + ques?.type} className='flex items-center gap-2'>
-                  <input
-                    type={ques.type}
-                    name={`${index}-${ques?.type}`}
-                    id={`${index}-${ques?.type}-${option?.id}`}
-                    value={option?.id}
-                    onChange={(e)=>handleSelection(e, ques, index)}
-                  />
-                  <label htmlFor={`${index}-${ques?.type}-${option?.id}`} className='cursor-pointer min-w-[50px] text-[1rem] '>
-                    {option?.option}
-                  </label>
-                </dd>
-              ))}
-            </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-4 px-4 py-2 mb-2">
+                {ques?.options?.map((option, i) => (
+                  <dd
+                    key={option?.id + ques?.type}
+                    className="flex items-center gap-2"
+                  >
+                    <input
+                      type={ques.type}
+                      name={`${index}-${ques?.type}`}
+                      id={`${index}-${ques?.type}-${option?.id}`}
+                      value={option?.id}
+                      onChange={(e) => handleSelection(e, ques, index)}
+                    />
+                    <label
+                      htmlFor={`${index}-${ques?.type}-${option?.id}`}
+                      className="cursor-pointer min-w-[50px] text-[1rem] "
+                    >
+                      {option?.option}
+                    </label>
+                  </dd>
+                ))}
+              </div>
             )}
-            
           </div>
         ))}
       </dl>
-      <button className='w-full text-white bg-primary py-1 rounded mt-3' onClick={handleSubmit}>Submit</button>
-    </div>
+      <button
+        className="w-full text-white bg-primary py-1 rounded mt-3"
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    </Section>
   );
 };
 

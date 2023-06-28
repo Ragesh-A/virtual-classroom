@@ -7,7 +7,7 @@ const handleRequest = async (requestFn) => {
     const response = await requestFn();
     return response.data;
   } catch (error) {
-    return error;
+    console.log(error.message);
   }
 };
 
@@ -44,6 +44,17 @@ const authServices = {
       const token = localStorage.getItem('authentication');
       axios.defaults.headers.common['Authorization'] = token;
       return axios.get(BASE_URL + '/auth/find-me')
+    })
+  },
+  updateProfile: async (values) => {
+    return handleRequest(() => {
+      const token = localStorage.getItem('authentication');
+      axios.defaults.headers.common['Authorization'] = token;
+      return axios.patch(BASE_URL + '/profile', values, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
     })
   }
 };

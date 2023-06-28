@@ -41,7 +41,7 @@ const PendingAssignments = () => {
               <p className="text-gray-500 font-semibold">{assignment?.dueDate.split('T')[0]}</p>
              </div>
             <p>{assignment?.description}</p>
-            <button className="btn bg-primary overflow-hidden float-right rounded-md text-white" onClick={()=>setSelectedAssignment(assignment._id)}>solve task</button>
+            <button className="btn px-4 py-1 bg-primary overflow-hidden float-right rounded-md text-white" onClick={()=>setSelectedAssignment(assignment._id)}>solve task</button>
           </div>
         )
       )

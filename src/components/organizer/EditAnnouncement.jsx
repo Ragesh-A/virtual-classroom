@@ -63,6 +63,7 @@ const EditAnnouncement = () => {
           );
         } else {
           dispatch(setNotification({ success: false, message: res?.error }));
+          navigate(-1)
         }
       });
     },
@@ -289,7 +290,7 @@ const EditAnnouncement = () => {
           </div>
         </div>
         <Button
-          className="bg-primary float-right text-white rounded mt-2"
+          className="bg-primary float-right text-white rounded mt-2 px-4 py-2"
           type="submit"
           loading={isLoading}
         >

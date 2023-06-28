@@ -19,8 +19,11 @@ const announcementServices = {
   }, 
   createAnnouncement: async (data) => announcementServices.makeRequest(`${BASE_URL}/announcement`, 'POST', data),
   getUserAnnouncement: async () => announcementServices.makeRequest(`${BASE_URL}/announcement?by=user `, 'GET'),
-  getAllAnnouncement: async () => announcementServices.makeRequest(`${BASE_URL}/announcement/all`, 'GET'),
+  getClassAnnouncement: async (classId) => announcementServices.makeRequest(`${BASE_URL}/announcement?by=class&value=${classId} `, 'GET'),
+  getAllClassAnnouncement: async (classId) => announcementServices.makeRequest(`${BASE_URL}/announcement/class/${classId}/all`, 'GET'),
   getAnnouncement: async (announcementId) => announcementServices.makeRequest(`${BASE_URL}/announcement/${announcementId}`, 'GET'),
-  updateAnnouncement: async (values, announcementId) => announcementServices.makeRequest(`${BASE_URL}/announcement/${announcementId}`, 'PATCH', values)
+  updateAnnouncement: async (values, announcementId) => announcementServices.makeRequest(`${BASE_URL}/announcement/${announcementId}`, 'PATCH', values),
+  deleteAnnouncement: async (announcementId) => announcementServices.makeRequest(`${BASE_URL}/announcement/${announcementId}`, 'DELETE'),
+  getAllAnnouncement: async () => announcementServices.makeRequest(`${BASE_URL}/announcement?by=organization`, 'GET')
 }
 export default announcementServices;

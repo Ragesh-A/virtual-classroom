@@ -24,7 +24,7 @@ const ClassManagement = () => {
         if (res?.error) dispatch(setNotification({ success: false, message: res.error})) 
     })
     }
-  }, [])
+  }, [classes, dispatch])
 
   const handleSection = (classId) =>{
     setSlider(true)
@@ -33,9 +33,7 @@ const ClassManagement = () => {
 
   if(!classes){
     return <>
-    <Shimmer />
-    <Shimmer />
-    <Shimmer />
+    <Shimmer count={3}/>
     </>
   }
 
@@ -60,7 +58,7 @@ const ClassManagement = () => {
             <td><span className="py-2 bg-indigo-50 block rounded">{singleClass?.name}</span></td>
             <td><span className="py-2 bg-indigo-50 block rounded">{singleClass?.instructor?.name}</span></td>    
             <td className="flex">
-              <button className="bg-lightPrimary hover:bg-primary text-white px-2 py-2 rounded w-full" onClick={()=>handleSection(singleClass?._id)}>Select</button>
+              <button className="bg-lightPrimary hover:bg-primary text-white px-4 py-2 rounded w-full" onClick={()=>handleSection(singleClass?._id)}>Select</button>
             </td>
           </tr>
           ))}

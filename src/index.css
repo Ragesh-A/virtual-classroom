@@ -4,7 +4,10 @@
 *{
   scroll-behavior: smooth;
 }
-
+#root{
+  max-width: 1620px;
+  margin: 0 auto;
+}
 .nav{
   transition: 1s ease;
 }
@@ -43,9 +46,8 @@ body::-webkit-scrollbar{
   display: none;
 }
 .btn {
-  padding: 0.75rem 2rem;
+  overflow: hidden;
   position: relative;
-  font-size: 1rem;
   font-weight: 600;
   border: 1px solid white;
   transition: 1s ease;
