@@ -24,4 +24,4 @@ yarn-error.log*
 coverage
 
 # constant
-/src/constant/
+# /src/constant/
