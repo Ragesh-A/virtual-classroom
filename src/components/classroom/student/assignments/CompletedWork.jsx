@@ -23,7 +23,6 @@ const CompletedWork = () => {
         dispatch(setAssignment(res.success.assignments))
       }
     })
-  console.log('working');
    return () =>{
     setAssignment()
    }

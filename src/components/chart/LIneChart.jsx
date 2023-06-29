@@ -52,10 +52,7 @@ const LineChart = ({text = '', arrayOfData = []}) => {
         },
       },
     };
-  
 
-
-  console.log(data, 'data');
 
   return (
     <>

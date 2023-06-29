@@ -17,7 +17,6 @@ const Announcements = () => {
   useEffect(() => {
     const promise = announcementServices.getClassAnnouncement(classId);
     promise.then((res) => {
-      console.log(res?.success);
       if (res?.success) {
         setAnnouncements(res?.success?.announcements);
       } else {

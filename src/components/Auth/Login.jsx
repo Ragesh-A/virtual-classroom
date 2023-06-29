@@ -62,7 +62,7 @@ const Login = () => {
             onBlur={handleBlur}
             label="Email or Phone"
             id="emailOrPhone"
-            type="text"
+            type="email"
             name="emailOrPhone"
             placeholder="enter phone or email"
             icon={<i className="ri-mail-settings-line font-bold text-xl"></i>}

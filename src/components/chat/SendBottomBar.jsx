@@ -43,7 +43,6 @@ const SendBottomBar = ({ socket, chatId, sendedMessage }) => {
     socket?.current?.emit('stop-typing', chatId)
     const text = mes.current.value.trim();
     if (text) {
-      console.log(chatId);
       chatServices.sendMessage(chatId, text).then((res) => {
         if (res.success) {
           socket?.current?.emit('new-message', res.success.isSended) 

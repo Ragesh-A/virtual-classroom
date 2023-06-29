@@ -21,8 +21,6 @@ const WaitingPlace = () => {
           };
 
           const stream = await openMediaDevices(constraints);
-          console.log('called', videoInp.current);
-          console.log('ted', cameraActive);
           if (videoInp.current) {
             videoInp.current.srcObject = stream;
           }

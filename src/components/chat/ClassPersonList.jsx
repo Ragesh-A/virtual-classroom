@@ -18,7 +18,6 @@ const ClassPersonList = ({ back, onlineUsers, myId }) => {
     if (myId){
       const addLecture = [...currentClass?.students, currentClass.class.instructor]
        const filter = addLecture.filter(x => {
-        console.log(x, myId);
         return x._id !== myId
       })
       

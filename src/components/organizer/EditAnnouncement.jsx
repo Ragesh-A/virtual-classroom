@@ -33,7 +33,6 @@ const EditAnnouncement = () => {
         );
         navigate(-1);
       }
-      console.log(res);
       if (res?.success?.announcement) {
         setAnnouncement(res?.success?.announcement);
       }
@@ -52,7 +51,6 @@ const EditAnnouncement = () => {
     onSubmit: (values) => {
       setIsLoading(true);
       values.classes = filterClassIds(values.classes)
-      console.log(values);
       const { _id, ...data } = values
       const promise = announcementServices.updateAnnouncement(data, _id);
       promise.then((res) => {

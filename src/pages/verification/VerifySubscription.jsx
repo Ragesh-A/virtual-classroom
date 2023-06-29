@@ -8,10 +8,8 @@ const VerifySubscription = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  console.log('location.search:', location.search);
 
   const searchParams = new URLSearchParams(location.search);
-  console.log('searchParams:', searchParams);
 
   const plan = searchParams.get('plan')
   const paymentIntent = searchParams.get('payment_intent')
@@ -20,7 +18,7 @@ const VerifySubscription = () => {
 
   useEffect(()=>{
     subscriptionServices.createSubscription({plan, paymentIntent, paymentIntentClientSecret, redirectStatus}).then(res=>{
-      console.log(res);
+
       if (res.success) {
         dispatch(setNotification({success:  true, message: 'subscribed'}))
         navigate('/')

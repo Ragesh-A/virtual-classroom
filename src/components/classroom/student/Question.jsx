@@ -56,7 +56,6 @@ const Question = ({ data }) => {
       quizServices
         .submitAnswer(questionId, { answers, timeTaken: seconds })
         .then((res) => {
-          console.log(res);
           if (res?.error) {
             dispatch(setNotification({ success: false, message: res?.error }));
           }

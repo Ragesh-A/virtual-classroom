@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import Section from "../../layouts/Section"
 import './DiscussionPanel.css'
 import { useEffect, useState } from "react";
-import classServices from "../../../services/classServices";
 import Announcements from "./Announcements";
 import Avatar from "../../common/Avatar";
 import Shimmer from "../../common/Shimmer";
@@ -14,7 +13,6 @@ const DiscussionPanel = () => {
   const [messages, setMessgaes] = useState();
 
   useEffect(()=>{
-    // classServices.getClass(classId)
   }, [classId])
   
   return(

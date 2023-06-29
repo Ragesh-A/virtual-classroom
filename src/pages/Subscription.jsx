@@ -35,7 +35,6 @@ const Subscription = ({ plan, setPlan}) => {
     }
   }, []);
 
-  console.log('times');
 
   const appearance = {
     theme: 'flat',
@@ -49,9 +48,8 @@ const Subscription = ({ plan, setPlan}) => {
   return (
     <>
       {clientSecret && stripePromise ? (
-        <div className="fixed w-full h-full top-0 left-0 bg-white flex justify-center items-center z-[5]">
-          {console.log(clientSecret, 'key')}
-          <div className="max-w-[750px] m-auto">
+        <div className="fixed w-full h-full top-0 left-0 bg-white flex justify-center items-center z-[5] ">
+          <div className="max-w-[750px] m-auto mb-20 md:mb-0">
             <Elements options={options} stripe={stripePromise}>
               <CheckoutForm clientSecret={clientSecret} plan={plan} close={()=>setPlan(false)}/>
             </Elements>

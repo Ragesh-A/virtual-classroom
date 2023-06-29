@@ -4,10 +4,10 @@ import { IMAGE_PATH } from '../../constant/constant';
 import { useState } from 'react';
 import * as Yup from 'yup';
 import authServices from '../../services/authService';
-import Notification from './Notification';
 import { setNotification } from '../../utils/store/uiSlice';
 import { userLogin } from '../../utils/store/userSlice';
 import defaultUser from '../../assets/images/defaultUserProfile.png'
+import Button from './Button';
 
 const validationSchema = Yup.object({
   name: Yup.string().required(),
@@ -18,17 +18,19 @@ const EditProfile = () => {
   const { user } = useSelector((store) => store.user);
   const [profilePic, setProfilePic] = useState();
   const dispatch = useDispatch()
-  const { values, errors, touched, handleSubmit, handleChange, setFieldValue } =
+  const [loading, setLoading] = useState(false)
+  const { values, errors, handleSubmit, handleChange, setFieldValue } =
     useFormik({
       enableReinitialize: true,
       initialValues: user,
       validationSchema: validationSchema,
       onSubmit: (values) => {
-        console.log(values);
+        setLoading(true)
         authServices.updateProfile(values).then((res) => {
-          console.log(res);
+          setLoading(false)
           if (res?.success.user) {
             dispatch(userLogin(res?.success?.user))
+            dispatch(setNotification({ success: true, message: 'Updated successfully'}))
           }
         });
       },
@@ -42,9 +44,7 @@ const EditProfile = () => {
     }
   };
 
-  console.log(values);
   if (errors?.name) {
-    console.log(errors, 'error');
     dispatch(setNotification({ success: false, message: errors?.name }))
   }
 
@@ -52,7 +52,7 @@ const EditProfile = () => {
     <div className="flex w-full min-h-[80vh] justify-center items-center">
       <div className="shadow rounded-md p-2">
         {user && (
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="relative">
               <img
                 src={
@@ -98,12 +98,7 @@ const EditProfile = () => {
             <label htmlFor="emailOrPhone">Email</label>
             <input name="emailOrPhone" id="emailOrPhone" type="text" value={values?.emailOrPhone} onChange={handleChange} className="ml-3 outline-none"/>
           </div> */}
-            <button
-              type="submit"
-              className="w-full text-white bg-primary py-1 rounded-md mt-3"
-            >
-              Update
-            </button>
+            <Button type='submit' className='bg-primary text-white w-full rounded' loading={loading} >Update</Button>
           </form>
         )}
       </div>

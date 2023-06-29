@@ -51,7 +51,6 @@ const QuestionsForm = () => {
   const handleRemoveQuestion = (id) => {
     if (questions.length < 2) return;
     setQuestions((prev) => {
-      console.log(prev);
       const updated = [...prev];
       const t = updated.filter((ques) => ques.id !== id);
       return t;
@@ -179,7 +178,6 @@ const QuestionsForm = () => {
         ...examTime,
       })
       .then((res) => {
-        console.log(res, 'response');
         if (res?.success) {
           navigate(-1);
         }

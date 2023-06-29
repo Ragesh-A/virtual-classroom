@@ -40,7 +40,7 @@ const Header = ({ page, isLecture = false }) => {
           </Link> :  
           
           <Link className="text-primary font-bold bg-white p-3 px-6 ps-8 rounded-s-[2rem] uppercase" to='/'>
-            <i className="fa-solid fa-user sm:hidden"></i>
+            <i className="fa-solid fa-people-roof sm:hidden"></i>
             <span className="hidden sm:block">MY Class</span>
           </Link> :
           <Link className="text-primary font-bold bg-white p-3 px-6 ps-8 rounded-s-[2rem] uppercase" to='/auth/login'>

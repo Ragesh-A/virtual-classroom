@@ -15,7 +15,6 @@ const CreateAssignment = ({close}) => {
     initialValues: {...assignmentInitialValue, classId: [] },
     validationSchema: assignmentSchema,
     onSubmit: (values)=>{
-      console.log(values);
       services.createBulkAssignment(classId, values).then(res=>{
         if (res?.error) {
           setErr(res?.error)

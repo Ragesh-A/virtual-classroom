@@ -11,7 +11,6 @@ const Dashboard = () => {
   useEffect(() => {
     navigate('instructors/')
     organizerServices.getDashboard().then((res) => {
-      console.log(res);
       setTotalClasses(res?.success?.data?.totalClasses);
       setOrganization(res?.success?.data?.organization)
     });

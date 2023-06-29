@@ -18,8 +18,6 @@ const AttendQuestion = ({ selected, back }) => {
         selected.startTime <= convertedCurrentTime &&
         convertedCurrentTime <= selected.endTime;
 
-      console.log(isBetweenTimes);
-
       if (isBetweenTimes) {
         setStart(true);
       } else {

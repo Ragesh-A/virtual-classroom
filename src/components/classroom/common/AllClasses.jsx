@@ -5,14 +5,11 @@ import classServices from '../../../services/classServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeClasses } from '../../../utils/store/classesSlice';
 import { setNotification } from '../../../utils/store/uiSlice';
-import announcementServices from '../../../services/announcementService';
-import Announcements from './Announcements';
 
 const AllClasses = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const storeClass = useSelector((store) => store.classes);
-  const [announcemets, setAnnouncements] = useState()
 
   useEffect(() => {
     classServices

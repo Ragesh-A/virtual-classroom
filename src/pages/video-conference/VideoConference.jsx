@@ -35,8 +35,6 @@ const VideoConference = () => {
     return await navigator.mediaDevices.getUserMedia(constraints);
   };
 
-  console.log('hdh');
-
   useEffect(() => {
     const initStream = async () => {
       try {

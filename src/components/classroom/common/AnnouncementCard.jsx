@@ -12,7 +12,6 @@ const AnnouncementCard = (props) => {
   } = props;
   const [color, setColor] = useState();
   useEffect(()=>{
-    console.log('theme is changed');
     let c = 'gray'
     switch(theme) {
       case 'black': c = 'gray'; break;

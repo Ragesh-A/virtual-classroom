@@ -47,7 +47,10 @@ const SingleClassManagement = ({classid, setState}) => {
 
   const removeHandle = (studentId) => {
     organizerServices.removeFromClass(classid, studentId).then(res=>{
-      console.log(res)
+      if (res?.success) {
+        dispatch(setNotification({ success: true, message: res?.success?.message}))
+        handleSlider()
+      }
     })
   };
 

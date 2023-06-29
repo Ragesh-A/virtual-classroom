@@ -27,7 +27,6 @@ const InvitationVerification = () => {
 
   useEffect(()=>{
     if (!token) {
-      console.log(token);
       navigate('/auth/login')
     } 
   })

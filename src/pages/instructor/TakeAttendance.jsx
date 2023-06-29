@@ -22,7 +22,6 @@ const TakeAttendance = () => {
     attendanceService.getTodayAttendance(classId).then((res)=>{
       if (res.success.attendance === null){
         lectureServices.allStudents(classId).then((res)=>{
-          console.log(res,"here");
           if (res?.success?.enrolledStudents) setStudents(res.success?.enrolledStudents?.students)
           else setStudents([])
         })

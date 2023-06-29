@@ -20,7 +20,6 @@ const CreateAnnouncement = () => {
     initialValues: announcementInitialValue,
     validationSchema: announcementSchema,
     onSubmit: (values) => {
-      console.log(values);
       setIsLoading(true)
       values.classes = [classId]
       const promise =  announcementServices.createAnnouncement(values)

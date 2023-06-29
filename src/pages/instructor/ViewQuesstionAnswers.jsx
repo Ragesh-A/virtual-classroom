@@ -13,7 +13,6 @@ const ViewQuestionAnswers = () => {
 
   useEffect(() => {
     lectureServices.allQuestionSubmission(questionId).then((res) => {
-      console.log(res);
       setSubmissions(res?.success?.submissions);
     });
   }, [classId, questionId]);

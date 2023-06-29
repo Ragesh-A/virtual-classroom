@@ -24,9 +24,7 @@ const ChatBody = ({ classId, friend, socket }) => {
   }, [selectedChat]);
 
   useEffect(() => {
-    console.log('this is socket', socket);
     socket.current?.on('message-received', (newMessage) => {
-      console.log('new messages is reached');
       if (selectedChat?._id === newMessage?.chat?._id) {
             setMessages([...messages, newMessage]);
           }

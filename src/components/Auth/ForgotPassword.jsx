@@ -27,7 +27,6 @@ const ForgotPassword = () => {
       validationSchema: forgotPasswordSchema[currentStep],
       onSubmit: async (values) => {
         setLoading(true);
-        console.log(load);
         await testValidation(values);
       },
     });
@@ -41,7 +40,6 @@ const ForgotPassword = () => {
 
   useEffect(() => {
     if (message) {
-      console.log('times');
       dispatch(setNotification({ success: false, message }));
     }
   }, [dispatch, message, touched]);
@@ -63,7 +61,6 @@ const ForgotPassword = () => {
       case 2:
         data = { ...data, otp: value.otp };
         authServices.verifyOtp(data.emailOrPhone, data.otp).then((res) => {
-          console.log(res);
           setLoading(false);
           if (res?.success) {
             setCurrentStep(3);
@@ -141,9 +138,9 @@ const ForgotPassword = () => {
               onChange={handleChange}
               values={values.emailOrPhone}
               onBlur={handleBlur}
-              label="Email or Phone"
+              label="Email"
               id="emailOrPhone"
-              type="text"
+              type="email"
               name="emailOrPhone"
               placeholder="enter phone or email"
               icon={<i className="ri-mail-lock-fill text-xl"></i>}

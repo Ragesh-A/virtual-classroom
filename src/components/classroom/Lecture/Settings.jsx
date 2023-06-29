@@ -29,7 +29,6 @@ const Settings = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(bgImage.current.value);
     const nameValue = name.current.value.trim()
     const descriptionValue = description.current.value.trim()
     if (nameValue === ''){

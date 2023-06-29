@@ -27,7 +27,6 @@ const ClassManagement = () => {
   useEffect(()=>{
     if(!classes){
       adminServices.findAllClasses().then(res=>{
-        console.log(res);
         dispatch(setClasses(res?.success?.classes))
       })
     }

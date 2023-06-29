@@ -18,10 +18,8 @@ const QuestionManagement = () => {
         dispatch(setNotification({ success: false, message: res?.error }));
       }
     });
-    console.log('dis');
   }, [dispatch]);
 
-  console.log(questions);
   if (!questions) return <Shimmer count={3} />;
   return (
     <>
