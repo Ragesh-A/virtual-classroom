@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://43.207.146.13:8000/api';
+export const BASE_URL = 'https://virtualclassroomserver.online/api';
 
 export const BASIC_FEATURES = [
   { class: 'fa-solid fa-people-roof', name: 'class' },
@@ -17,11 +17,11 @@ export const PREMIUM_FEATURES = [
   { class: 'fa-solid fa-square-poll-vertical', name: 'Analytics and report' },
 ];
 
-export const IP = 'http://localhost:3000';
+export const IP = 'https://virtual-classroom-nine.vercel.app';
 
-export const IMAGE_PATH = 'http://43.207.146.13:8000/images/';
+export const IMAGE_PATH = 'https://virtualclassroomserver.online/images/';
 
-export const CHAT_SOCKET_IP = 'http://43.207.146.13:8000/';
+export const CHAT_SOCKET_IP = 'https://virtualclassroomserver.online/';
 export const MEETUP_SOCKET_IP = 'http://localhost:9090';
 
 export const ZEGO_SERVER_SECRET = '64772d6e1d1fd8bed531f0e9b6fb0659';
