@@ -44,7 +44,7 @@ const ChatRight = ({ setUserSelected, socket, myId, onlineUsers }) => {
 
   return (
     <>
-      <div className="bg-tileColor w-full md:w-[calc(100%-25rem)] border-2 border-white rounded-xl shadow py-2 md:p-4 relative">
+      <div className="bg-tileColor w-full md:w-[calc(100%-25rem)] border-2 border-white rounded-xl shadow py-2 px-1 md:p-4 relative">
         {selectedChat ? (
           <>
             <div className="pb-2 flex gap-3 items-center">

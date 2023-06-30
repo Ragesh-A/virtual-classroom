@@ -44,7 +44,7 @@ const ChatHome = () => {
 
   return (
     <>
-      <Section className="p-0 md:px-[16px] md:p-5">
+      <section className="p-0 md:px-[16px] md:p-5">
         <Notification />
         <div className=" rounded h-[72vh] md:h-[80vh] relative flex gap-3">
           <div
@@ -81,7 +81,7 @@ const ChatHome = () => {
             setUserSelected={setUserSelected}
           />
         </div>
-      </Section>
+      </section>
     </>
   );
 };
