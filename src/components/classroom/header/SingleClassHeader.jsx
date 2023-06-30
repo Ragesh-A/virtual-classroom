@@ -36,8 +36,9 @@ const SingleClassHeaderComponent = () => {
         to={`/class/${classId}/`}
         className="border-4 border-transparent hover:border-t-white text-white font-bold p-[15px] me-1 nav"
       >
-        <i className="ri-discuss-fill lg:hidden text-xl"></i>
-        <li className="hidden lg:block">Discussion panel</li>
+        {/* <i className="ri-discuss-fill lg:hidden text-xl"></i> */}
+        <i className="fa-solid fa-bullhorn lg:hidden text-xl"></i>
+        <li className="hidden lg:block">Announcements</li>
       </NavLink>
       {!isLecture && (
         <NavLink
