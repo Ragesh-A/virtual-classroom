@@ -4,7 +4,7 @@ const chatMateSlice = createSlice({
   name: 'chatMate',
   initialState: {
     selectedChat: null,
-    chats: null
+    chats: []
   },
   reducers: {
     setSelectedChat: (state, action) => {

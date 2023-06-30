@@ -1,39 +1,45 @@
 import { useEffect, useRef } from 'react';
 import Section from '../../components/layouts/Section';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import { CHAT_SOCKET_IP } from '../../constant/constant';
 import ClassPersonList from '../../components/chat/ClassPersonList';
 import MessagedUsersLIst from '../../components/chat/MessagedUsersList';
 import Notification from '../../components/common/Notification';
 import ChatRight from './ChatRight';
+import { setSelectedChat } from '../../utils/store/chatSlice';
 
 const ChatHome = () => {
   const [userSelected, setUserSelected] = useState(false);
   const [onlineUser, setOnlineUsers] = useState([]);
-  const [socketConnected, setSocketConnected] = useState(false);
   const [tab, setTab] = useState('messaged');
   const { user } = useSelector((store) => store.user);
   const { currentClass } = useSelector((store) => store.classes);
   const socket = useRef();
+  const dispatch = useDispatch()
 
   // socket connections
   useEffect(() => {
     if (user && currentClass?.class) {
       socket.current = io(CHAT_SOCKET_IP);
-      socket.current.emit('setup', user);
-      socket.current.on('connection ', () => setSocketConnected(true));
-      socket.current.on('disconnect', () => setSocketConnected(false));
+      socket.current.emit('setup', {...user, classId: currentClass?.class?._id});
+      socket.current.on('online-users', (online) => {
+        const classOnlineUser = online.filter(onlineSingleUser => {
+          return onlineSingleUser.class === currentClass?.class?._id
+        })
+        setOnlineUsers(classOnlineUser)
+      })
     }
     
     return () => {
       if (socket){
-        socket?.current?.off('disconnect');
+        socket?.current?.off('disconnect', {user: user?._id});
         socket?.current?.disconnect();
       }
+      dispatch(setSelectedChat(null))
     }
-  }, [currentClass?.class?._id, user]);
+  }, [currentClass?.class, currentClass?.class?._id, dispatch, user]);
 
 
   return (
@@ -70,6 +76,7 @@ const ChatHome = () => {
           </div>
           <ChatRight
             socket={socket}
+            onlineUsers={onlineUser}
             myId={user?._id}
             setUserSelected={setUserSelected}
           />
