@@ -12,7 +12,6 @@ export const PREMIUM_FEATURES = [
   { class: 'fa-solid fa-people-roof', name: 'Unlimited classes' },
   { class: 'fa-solid fa-chart-line', name: 'Track Progress' },
   { class: 'fa-solid fa-message', name: 'Private and group chat' },
-  { class: 'fa-regular fa-circle-dot', name: 'Class recording' },
   { class: 'fa-solid fa-bell', name: 'Notifications' },
   { class: 'fa-solid fa-square-poll-vertical', name: 'Analytics and report' },
 ];
