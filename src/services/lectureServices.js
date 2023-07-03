@@ -38,7 +38,6 @@ const lectureServices = {
         classId: classId,
       })
       .then((res) => {
-        console.log(res.data);
         return res.data;
       })
       .catch((err) => {
@@ -50,7 +49,6 @@ const lectureServices = {
     return axios
       .delete(`${BASE_URL}/classes/join?class=${classId}&&student=${studentId}`)
       .then((res) => {
-        console.log(res.data);
         return res.data;
       })
       .catch((err) => {

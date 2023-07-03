@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import logo from '../../assets/images/logo-dark.png'
 import AdminSidebar from '../Admin/AdminSidebar';
-import { Link, Navigate, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { decodeUser } from '../../utils/storageHelper';
+import PageNotFound from '../common/PageNotFound';
 
 const AdminLayout = () => {
 
   const [toggle, setToggle] = useState(true)
   const user  = decodeUser()
   if (!user || !user?.isAdmin){
-    return <Navigate to='/home' />
+    return <PageNotFound />
   }
 
   const handleToggle = () =>{

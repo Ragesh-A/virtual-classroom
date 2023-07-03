@@ -50,7 +50,6 @@ const ClassServices = {
     const token = localStorage.getItem('authentication');
       axios.defaults.headers.common['Authorization'] = token;
       return axios.patch(BASE_URL + '/classes/'+ classId, {name, description, instructor}).then((res)=>{
-        console.log(res.data);
         return res.data;
       })
   },

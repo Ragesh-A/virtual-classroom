@@ -49,7 +49,6 @@ const organizerServices = {
   removeInstructor: async (instructor) => {
     setAxiosToken();
     return axios.delete(BASE_URL + `/organizer/instructor?instructor=${instructor}`).then(res=>{
-      console.log(res.data)
     })
   },
   removeFromClass: async (classId, studentId) => {

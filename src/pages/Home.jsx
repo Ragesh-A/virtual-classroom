@@ -130,7 +130,7 @@ return(
             <div className="border-b-4 border-b-primary rounded-md flex px-5 py-2 gap-5">
               <textarea name="message" id="message" className="w-full bg-transparent outline-none" rows="10"></textarea>
             </div>
-            <button type="button" className="w-full bg-gradient-to-r from-primary to-lightPrimary text-white btn rounded-xl overflow-hidden mt-5">connect</button>
+            <button type="button" className="w-full py-3 bg-gradient-to-r from-primary to-lightPrimary text-white btn rounded-xl overflow-hidden mt-5">connect</button>
           </form>
         </div>
         <div className="hidden lg:flex justify-center items-center w-full">

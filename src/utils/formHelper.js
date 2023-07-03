@@ -8,7 +8,6 @@ const useForm = (initialValues, validationSchema, onSubmit) => {
     initialValues,
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
-      console.log(values)
       setIsSubmitting(true);
       await onSubmit(values);
       setIsSubmitting(false);

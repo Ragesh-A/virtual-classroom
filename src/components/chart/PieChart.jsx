@@ -10,7 +10,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = ({labelAndValue, text}) => {
 
   const [labels, values] = labelAndValue;
-  console.log(labels, values);
   const data = {
     labels: labels,
     datasets: [
