@@ -23,5 +23,5 @@ export const IMAGE_PATH = 'https://virtualclassroomserver.online/images/';
 export const CHAT_SOCKET_IP = 'https://virtualclassroomserver.online/';
 export const MEETUP_SOCKET_IP = 'http://localhost:9090';
 
-export const ZEGO_SERVER_SECRET = '64772d6e1d1fd8bed531f0e9b6fb0659';
-export const zegoAppId = 421812598;
+export const ZEGO_SERVER_SECRET = 'a156f502c0a69d7c56eb74c72d862014';
+export const zegoAppId = 160329471;

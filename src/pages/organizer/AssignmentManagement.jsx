@@ -33,6 +33,7 @@ const AssignmentManagement = () => {
   
 
   return (
+    <>
     <div className="relative">
       <div className={`flex flex-col md:flex-row ${active? 'gap-3' : ''}`}>
         <div className={`box p-5 rounded-md transitions ${active ? 'md:w-1/2' : 'w-full'}`} onClick={()=>setActive(true)}>
@@ -70,10 +71,12 @@ const AssignmentManagement = () => {
       {popUp&&<div className="fixed top-0 left-0 h-full w-full grid place-items-center bg-black bg-opacity-25">
       <CreateAssignment close={()=>setPopUp(false)}/>
       </div>}
-      <div className="fixed w-full left-0 pr-10 bottom-10">
-        <button type="button" className="btn px-4 py-2 bg-primary overflow-hidden float-right rounded text-white" onClick={()=>setPopUp(popUp ? false : true)}> <span className="hidden md:block">create new assignment</span> <span className="md:hidden">+</span></button>
-      </div>
+      
     </div>
+    <div className="absolute w-full left-0 pr-10 bottom-10">
+      <button type="button" className="btn px-4 py-2 bg-primary overflow-hidden float-right rounded text-white" onClick={()=>setPopUp(popUp ? false : true)}> <span className="hidden md:block">create new assignment</span> <span className="md:hidden">+</span></button>
+    </div>
+    </>
   )
 }
 

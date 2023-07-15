@@ -73,7 +73,7 @@ const LectureStudentsManagement = () => {
         </button>:null}
       </div>
       
-      {!students || students?.length === 0  ? <div className="grid place-items-center h-[50vh] font-bold text-3xl text-gray-400">it seems empty here</div> : ''
+      {!showRequest && (!students || students?.length === 0)  ? <div className="grid place-items-center h-[50vh] font-bold text-3xl text-gray-400">it seems empty here</div> : ''
       
       }
 

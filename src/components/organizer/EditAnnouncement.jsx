@@ -39,7 +39,7 @@ const EditAnnouncement = () => {
     });
     classesPromise.then(res => {
       setClasses(res?.success?.classes)
-      setFilteredClasses(res?.success?.classes)
+      // setFilteredClasses(res?.success?.classes)
     })
   }, [announcementId]);
 
@@ -100,6 +100,9 @@ const EditAnnouncement = () => {
   };
 
   const filterClass = (search) => {
+    // if (!search.trim()) {
+    //   return setFilteredClasses([])
+    // }
     const filtered = classes.filter(single => single?.name.toLowerCase().includes(search.trim().toLowerCase()))
     setFilteredClasses(filtered)
   }
@@ -272,8 +275,8 @@ const EditAnnouncement = () => {
                   <input type="text" onChange={e=> filterClass(e.target.value)} className='flex-grow outline-none'/>
                   <i className="fa-solid fa-magnifying-glass text-gray-400"></i>
                 </div>
-                <div className="relative">
-                  <ul className='flex flex-col gap-1 mt-1 absolute w-full'>
+                <div className="relative bg-green-500">
+                  <ul className='flex flex-col gap-1 mt-1 w-full'>
                    {!filteredClasses && <li className='max-h-[50px] overflow-hidden'><Shimmer /></li>}
                    {!filteredClasses && <li className='max-h-[50px] overflow-hidden'><Shimmer /></li>}
                    {
@@ -286,14 +289,16 @@ const EditAnnouncement = () => {
               </div>
             </div>
           </div>
-        </div>
-        <Button
-          className="bg-primary float-right text-white rounded mt-2 px-4 py-2"
+       <div className="flex items-center justify-center">
+       <Button
+          className="bg-primary text-white rounded mt-2 px-4 py-2 max-w-[150px]"
           type="submit"
           loading={isLoading}
         >
           update
         </Button>
+       </div>
+        </div>
       </form>
     </div>
   );

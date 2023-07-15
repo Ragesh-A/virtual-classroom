@@ -9,7 +9,7 @@ const OrganizerLayout = () => {
   
   return (
     <div className="min-h-[100vh] relative bg-gray-100">
-      <div className={`sidebar ${active && 'active'} z-[2] shadow top-0 bg-primary left-[-250px] md:left-0  fixed h-full overflow-hidden`}>
+      <div className={`sidebar ${active && 'active'} z-[2] shadow top-0 bg-primary left-[-250px] md:left-0  absolute h-full overflow-hidden`}>
        <ul className='mt-40'>
         {/* <li className=' rounded-sideBar-tab ps-3'>
           <NavLink to='/organization/' className={`flex w-full px-5 gap-5 items-center py-3 rounded-s-md font-bold sidebar-tab`}>

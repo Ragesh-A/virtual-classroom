@@ -21,7 +21,7 @@ const Attendance = () => {
 
   if (todayAttendance === null && !takeAttendance) return (<div className='h-full grid place-items-center bg-tileColor'>
     <span className="font-bold md:text-2xl text-textColor">Today attendance not taken</span>
-      <div className="fixed left-0 bottom-24 w-full flex pr-20 justify-end">
+      <div className="absolute left-0 bottom-24 w-full flex pr-20 justify-end">
       {<button className="btn px-3 py-2 rounded overflow-hidden bg-primary text-white" onClick={()=>setTakeAttendance(true)}>Take Attendance</button>}
     </div>
     </div>)

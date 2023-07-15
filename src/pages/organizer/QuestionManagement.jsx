@@ -52,7 +52,7 @@ const QuestionManagement = () => {
       </div>
       <Link
         to="create"
-        className="px-4 rounded fixed bottom-10 right-10 border-2 py-2 overflow-hidden text-white bg-primary "
+        className="px-4 rounded absolute bottom-10 right-10 border-2 py-2 overflow-hidden text-white bg-primary "
       >
         <span className="md:hidden">+</span>{' '}
         <span className="hidden md:flex">create new question</span>

@@ -54,7 +54,7 @@ const lectureRoute = {
       path: 'assignments',
       element: (
         <Suspense fallback={<Shimmer />}>
-          <AssignmentManagement />
+          <AssignmentManagement /> 
         </Suspense>
       ),
     },

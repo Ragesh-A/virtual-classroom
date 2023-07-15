@@ -34,7 +34,7 @@ return (
     <Link to={`/class/${singleClass?._id}/`} className="h-72" >
     <div className="overflow-hidden shadow shadow-shadow max-w-[500px] h-full relative">
       <div className="flex h-3/5">
-        <img draggable='false' src={ (singleClass.image && `${IMAGE_PATH}/classroom/${singleClass.image}`) || defaultBg } alt="background"
+        <img draggable='false' src={ (singleClass.image && `${IMAGE_PATH}classroom/${singleClass.image}`) || defaultBg } alt="background"
           className="w-full -full" />
       </div>
       <div className="px-5 py-1 relative before:absolute before:content-[''] before:w-[150%] before:h-[5rem] before:-top-4 before:-left-4 before:rotate-3 md:before:rotate-6 before:bg-white ">

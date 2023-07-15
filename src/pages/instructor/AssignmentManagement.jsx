@@ -23,6 +23,7 @@ const AssignmentManagement = () => {
   }
  
   return (
+    <>
    <div className="relative grid gap-2">
 
     { newAssignment&& <CreateAssignment addNew={addNewAssignment} close={()=>setNewAssignment(false)}/>}
@@ -40,12 +41,12 @@ const AssignmentManagement = () => {
       </div>
     </div>
     ))}
-    
-   
-    <div className="fixed bottom-24  left-0 xl:bottom-10 w-full flex pr-5 justify-end">
+     
+   </div>
+   <div className="absolute bottom-24  left-0 xl:bottom-10 w-full flex pr-5 justify-end">
       {!newAssignment&&<button className="btn rounded   bg-primary text-white px-5 py-3" onClick={()=>setNewAssignment(true)}>New Assignment</button>}
     </div>
-   </div>
+    </>
   )
 };
 

@@ -104,7 +104,7 @@ const LayoutWithSidebar = () => {
       <div
         className={`transition ${
           toggle ? 'active' : ''
-        } rounded sidebar-body h-full overflow-y-scroll scroll`}
+        } rounded sidebar-body h-full overflow-y-scroll scroll relative`}
       >
         <Notification />
         <Outlet />

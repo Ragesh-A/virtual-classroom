@@ -121,7 +121,7 @@ return (
         ))}
       </tbody>
     </table>
-    <div className="fixed bottom-10 right-10">
+    <div className="absolute bottom-10 right-10">
     <button
      type="button"
      className="btn px-4 py-2 overflow-hidden bg-primary text-white rounded-md mt-5"
@@ -176,7 +176,7 @@ return (
        ))}
      </tbody>
    </table>
-   <div className="fixed bottom-10 right-10">
+   <div className="absolute bottom-10 right-10">
    <button
      type="button"
      className="btn px-4 py-2 overflow-hidden bg-primary text-white rounded-md mt-5"

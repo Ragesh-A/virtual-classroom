@@ -1,4 +1,4 @@
-import {/*/ useEffect, useRef,*/ useState } from 'react';
+import {/*/ useEffect, useRef,*/ useEffect, useState } from 'react';
 import bg from '../../assets/images/video-conference.png';
 import Header from '../../components/classroom/header/Header';
 import WaitingPlace from '../../components/video-conference/WaitingPlace';
@@ -6,6 +6,7 @@ import WaitingPlace from '../../components/video-conference/WaitingPlace';
 // import { MEETUP_SOCKET_IP } from '../../constant/constant';
 // import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getToken } from '../../utils/storageHelper';
 
 const Home = () => {
   const [tab, setTab] = useState('home');
@@ -21,7 +22,12 @@ const Home = () => {
     e.preventDefault()
     navigate(`/meetup/${roomCode}`)
   }
-
+  useEffect(()=>{
+    const token = getToken()
+  if (!token) {
+    navigate('/auth/login')
+  }
+  },[])
 
   // const socket = useRef();
   // const { user } = useSelector((store) => store.user);

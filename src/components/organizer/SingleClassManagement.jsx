@@ -69,7 +69,7 @@ const SingleClassManagement = ({classid, setState}) => {
 
     classServices.updateClass(classid, nameValue, descriptionValue, opValue).then(res=>{
       if (res.success){
-        dispatch(setNotification({ success: false, message: 'class is updated' }))
+        dispatch(setNotification({ success: true, message: 'class is updated' }))
       }
       if (res.error){
         dispatch(setNotification({ success: false, message: res.error }))
