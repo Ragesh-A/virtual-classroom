@@ -84,10 +84,10 @@ const LectureStudentsManagement = () => {
           <p className="font-bold  text-textColor">{student.name}</p>
         </div>
         <div className="flex gap-2 md:gap-4">
-          <button className="bg-white text-textColor font-bold text-sm px-3 py-2 rounded hover:shadow hover:shadow-shadow">
+          {/* <button className="bg-white text-textColor font-bold text-sm px-3 py-2 rounded hover:shadow hover:shadow-shadow">
             <i className="fa-solid fa-eye md:me-2"></i>
             <span className='hidden md:block'>VIEW</span>
-          </button>
+          </button> */}
           <button className="bg-primary border-2 border-primary  text-white font-bold text-[10px] md:text-sm px-2 md:px-5 py-2 rounded hover:shadow hover:bg-white hover:text-primary hover:border-primary" onClick={()=>setPopup(student._id)}>
             Remove
           </button>
