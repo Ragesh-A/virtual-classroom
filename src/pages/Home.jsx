@@ -43,6 +43,11 @@ const Home = () => {
         const {data} = await axios.post(`${BASE_URL}/message/send-mail`, {
           name: name.trim(), sender: email.trim(), message: message.trim()
         })
+        if (data?.success?.isSended) {
+          setName('')
+          setEmail('')
+          setMessage('')
+        }
         dispatch(setNotification({ 
           success: data?.success?.isSended,
           message: data?.success?.isSended ? 'mail is sended' : 'failed to send mail'
