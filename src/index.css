@@ -3,6 +3,7 @@
 @tailwind utilities;
 *{
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 #root{
   max-width: 1620px;

@@ -6,8 +6,6 @@ import organizerRoute from './routes/organizerRoute';
 import Home from './pages/Home';
 import verifyRoute from './routes/verification.routes';
 import meetUp from './routes/communication.routes';
-// import VideoConference from './pages/video-conference/VideoConference';
-import ZeogoRoom from './pages/video-conference/ZeogoRoom';
 import PageNotFound from './components/common/PageNotFound';
 
 const App = createBrowserRouter([
@@ -19,7 +17,6 @@ const App = createBrowserRouter([
   organizerRoute,
   verifyRoute,
   meetUp,
-  { path: '/meetup/:meetupId', element: <ZeogoRoom /> },
   { path: '*', element: <PageNotFound /> },
 ]);
 

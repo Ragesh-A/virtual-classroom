@@ -26,3 +26,11 @@ export const MEETUP_SOCKET_IP = 'http://localhost:9090';
 
 export const ZEGO_SERVER_SECRET = '64772d6e1d1fd8bed531f0e9b6fb0659';
 export const zegoAppId = 421812598;
+
+
+export const iceServers = {
+  iceServers: [
+    { urls: "stun:stun.services.mozilla.com" },
+    { urls: 'stun:stun.l.google.com:19302' }
+  ]
+};

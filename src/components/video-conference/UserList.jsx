@@ -1,12 +1,12 @@
 import Avatar from '../common/Avatar';
 
-const UserList = () => {
+const UserList = ({ setSettingsActive }) => {
   const users = new Array(10).fill('user');
 
   return (
     <>
       <div className="flex py-2 md:flex-col px-3 justify-between md:p-3 md:h-full bg-white relative">
-        <div className="flex max-w-[85%] md:max-w-full gap-5 md:flex-col md:max-h-[80%]">
+        <div className="flex max-w-[65%] md:max-w-full gap-5 md:flex-col md:max-h-[80%]">
           <div className="overflow-scroll scroll flex flex-row gap-2 md:flex-col">
             {users.map((s, ind) => (
               <div className={`bg-tileColor p-1 rounded-md min-w-[6em] min-h-[6rem] flex justify-center items-center relative md:mt-2 $`} key={s+ind}>
@@ -25,9 +25,11 @@ const UserList = () => {
           <i className="ri-arrow-down-double-fill hidden md:block"></i>
           <i className="ri-arrow-right-double-line md:hidden"></i>
         </div>
-        <div className="bg-tileColor p-1 rounded-md min-w-[5em] min-h-[5rem] flex justify-center items-center relative md:mt-2">
+          <button
+            onClick={()=>setSettingsActive(prev=>!prev)}
+            className="bg-tileColor p-1 rounded-md min-w-[5em] min-h-[5rem] flex justify-center items-center relative md:mt-2">
           <i className="ri-settings-3-fill text-3xl text-blue-950"></i>
-        </div>
+        </button>
         </div>
       </div>
     </>
